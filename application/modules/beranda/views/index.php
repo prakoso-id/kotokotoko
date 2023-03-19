@@ -1,160 +1,224 @@
-<style type="text/css">
-    /*.product-item {
-        margin-bottom:15px !important;
-    }*/
-    .product-grid {
-        padding-top: 30px !important;
-    }
-</style>
-<!-- Slide -->
-<div class="ads-group v2 bd-slick content">
-    <div class="container container-240">
-        <div class="row">
-            <div class="col-md-8 col-sm-8 col-xs-12">
-                <div class="e-slide js-slider-3items">
-                    <?php foreach ($slider as $value) { ?>
-                        <div class="e-slide-img">
-                            <a href="<?php echo $value->url; ?>" target="_blank">
-                                <img src="<?php echo base_url('assets/images/slider/'.$value->image);?>" alt="" class="img-responsive">
-                                <div class="slide-content v1">
-                                    <!-- <p class="cate"></p> -->
-                                    <!-- <h3></h3> -->
-                                    <!-- <p class="sale"> <span class="red"> </span> </p> -->
-                                    <!-- <a href="<?php echo base_url('list-produk'); ?>" class="slide-btn e-pink-gradient">Shop now<i class="ion-ios-arrow-forward"></i></a> -->
-                                </div>
-                            </a>
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+    <?php foreach ($slider as $value) { ?>
+        
+        <div class="hero__items set-bg" data-setbg="<?php echo base_url('assets/images/slider/'.$value->image);?>">
+            <div class="container">
+                <a href="<?php echo $value->url; ?>" >
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
                         </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="row">
-                    <?php foreach ($banner_produk as $value) { ?>
-                       <div class="col-md-12 banner-img-item">
-                            <div class="banner-img banner-img2">
-                                <a href="<?php echo $value->url; ?>" target="_blank"><img src="<?php echo base_url('assets/images/banner_produk/'.$value->image)?>" alt="" class="img-responsive"></a>
-                                <div class="h-banner-content v4">
-                                    <p class="content-name" style="color: #fff;text-shadow: 2px 1px #7e7d7d;"><?php echo $value->title; ?></p>
-                                    <br>
-                                    <!-- <p class="content-price">From <span class="red">29.99</span></p> -->
-                                    <a href="<?php echo $value->url; ?>" class="btn-banner">Beli Sekarang<i class="ion-ios-arrow-forward"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
+    <?php } ?>
+        
     </div>
-</div>
+</section>
+<!-- Hero Section End -->
 
-<center style="margin-bottom: 30px;"><h2>Lagi Trending, nih !</h2></center>
-
-<div class="e-feature" style="margin-bottom: 0px; padding-bottom: 0px !important;">
-    <div class="container container-240">
+<!-- Banner Section Begin -->
+<section class="banner spad">
+    <div class="container">
         <div class="row">
-            <?php 
-            foreach ($kategori as $value) {
-                 if ($value->is_show_home == 1) {
-                     echo '<div class="col-xs-12 col-sm-4 col-md-4 feature-item">
-                            <div class="banner-img banner-img2">
-                                <a href="'.base_url().'list-produk/kategori/'.url($value->nama_usaha).'"><img src="'.base_url().'assets/images/kategori/'.$value->banner.'" alt="" class="img-responsive"></a>
-                                <div class="h-banner-content v5">
-                                    <p class="content-name" style="color:white; text-shadow: 1px 1px #dbdbdb;">'.$value->nama_usaha.'</p>
-                                    <p class="content-price"></p>
-                                    <a href="'.base_url('list-produk/kategori/'.url($value->nama_usaha)).'" class="btn-banner" style="color:white;">Belanja sekarang<i class="ion-ios-arrow-forward"></i></a>
-                                </div>
-                            </div>
-                        </div>';
-                 }
+        <?php 
+             $i=0;
+             foreach ($kategori as $value) {
+                  if ($value->is_show_home == 1) {
+                     if($i== 0){
+                        $col = 'col-lg-7 offset-lg-4';
+                     }
+                     switch ($i) {
+                        case 0:
+                            $col = 'col-lg-7 offset-lg-4';
+                            $bannerItem ='';
+                          break;
+                        case 1:
+                            $col = 'col-lg-5';
+                            $bannerItem ='banner__item--middle';
+                          break;
+                        case 2:
+                            $col = 'col-lg-7';
+                            $bannerItem ='banner__item--last';
+                          break;
+                      }
+                      echo '
+                         <div class="'.$col.'">
+                             <div class="banner__item '.$bannerItem.'">
+                                 <div class="banner__item__pic">
+                                     <img src="'.base_url().'assets/images/kategori/'.$value->banner.'" alt="">
+                                 </div>
+                                 <div class="banner__item__text">
+                                     <h2>'.$value->nama_usaha.'</h2>
+                                     <a href="'.base_url('list-produk/kategori/'.url($value->nama_usaha)).'">Shop now</a>
+                                 </div>
+                             </div>
+                         </div>';
+                         $i++;
+                  }
             } ?>
         </div>
     </div>
-</div>
+</section>
+<!-- Banner Section End -->
 
-<!-- Product tab gradient -->
-<div class="releases spc1 bg-gradient bg-insinde" style="padding-bottom: 30px !important;padding-top: 30px !important;">
-    <div class="container container-240">
-        <div class="ecome-heading style2 spc5" style="margin-bottom: 0px !important;">
-            <ul class="product-tab-sw v2">
-                <li class="active"><a data-toggle="tab" href="#terbaru" aria-expanded="true">Produk Terbaru</a></li>
-                <li class=""><a data-toggle="tab" href="#top-rated" aria-expanded="false">Produk Favorit</a></li>
-            </ul>
-            <a href="<?php echo base_url('list-produk'); ?>" class="btn-show">Lihat Semua<i class="ion-ios-arrow-forward"></i></a>
-        </div>
-        <div class="tab-content">
-            <div id="terbaru" class="tab-pane fade in active">
-                <div class="owl-carousel owl-theme owl-cate v3 js-owl-cate">
-                    <?php 
-                    if ($terbaru) {
-                        foreach ($terbaru as $value){ 
-                            echo card_produk($value,'product-grid product-grid-v2');
-                        }
-                    } 
-                    ?>
-                </div>
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">Best Sellers</li>
+                    <li data-filter=".new-arrivals">New Arrivals</li>
+                    <li data-filter=".hot-sales">Hot Sales</li>
+                </ul>
             </div>
-            <div id="top-rated" class="tab-pane fade">
-                <div class="owl-carousel owl-theme owl-cate v3 js-owl-cate">
-                    <?php 
+        </div>
+        <div class="row product__filter">
+        <?php 
+                if ($terbaru) {
+                    foreach ($terbaru as $value){ 
+                        echo '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">';
+                        echo card_produk($value,'product-grid product-grid-v2');
+                        echo '</div>';
+                    }
+                } 
+            ?>
+            <?php 
                     if ($populer) {
                         foreach ($populer as $value){ 
+                            echo '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">';
                             echo card_produk($value,'product-grid product-grid-v2');
+                            echo '</div>';
                         }
                     } 
                     ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<center style="margin-bottom: 30px; margin-top: 30px;"><h2>Lagi Cari Kategori Apa ?</h2></center>
-
-<div class="homepage-banner bg-gradient bg-insinde">
-    <div class="container container-240">
-        <div class="row">
-            <?php foreach ($kategori as $value) { ?>
-                <div class="col-md-2 col-sm-2 col-xs-6" style="margin-bottom: 20px;">
-                    <div class="banner-img banner-img2">
-                        <?php 
-                        if ($value->banner) {
-                            $url_image = base_url('assets/images/kategori/'.$value->banner);
-                        }else{
-                            $url_image = base_url('assets/mytemplate/img/b-product1.jpg');
-                        }
-                        ?>
-                        <a href="<?php echo base_url('list-produk/kategori/'.url($value->nama_usaha)); ?>"><img src="<?php echo $url_image; ?>" alt="" class="img-responsive"></a>
-                        <div class="h-banner-content v6">
-                            <p class="content-name"><a style="color:white; text-shadow: 1px 1px #dbdbdb;" href="<?php echo base_url('list-produk/kategori/'.url($value->nama_usaha)); ?>"><?php echo $value->nama_usaha; ?></a></p>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
             
         </div>
     </div>
-</div>
+</section>
+<!-- Product Section End -->
 
-<div class="our-blog" style="padding-top: 10px;padding-bottom: 0px;margin-bottom: 10px;">
-    <div class="container container-240">
-        <div class="ecome-heading style2">
-            <div class="title-icon t-inline t-line">
-                <i class="fa fa-newspaper-o fa-3x fa-gradient"></i>
-                <h1>Berita</h1>
+<!-- Categories Section Begin -->
+<section class="categories spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="categories__text">
+                    <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                </div>
             </div>
-            <a href="<?php echo base_url('list-berita'); ?>" class="btn-show">Lihat Semua<i class="ion-ios-arrow-forward"></i></a>
-        </div>
-        <p class="ecome-info spc2" style="margin-bottom: 30px;"></p>
-        <div class="product-tab-pd owl-carousel owl-theme js-owl-blog owl-custom-dots v2">
-            <?php 
-            if ($berita) {
-                foreach ($berita as $value) { 
-                    echo card_berita($value);
-                }
-            } 
-            ?>
+            <div class="col-lg-4">
+                <div class="categories__hot__deal">
+                    <img src="img/product-sale.png" alt="">
+                    <div class="hot__deal__sticker">
+                        <span>Sale Of</span>
+                        <h5>$29.99</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="categories__deal__countdown">
+                    <span>Deal Of The Week</span>
+                    <h2>Multi-pocket Chest Bag Black</h2>
+                    <div class="categories__deal__countdown__timer" id="countdown">
+                        <div class="cd-item">
+                            <span>3</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>1</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>50</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                    <a href="#" class="primary-btn">Shop now</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<!-- End blog
+</section>
+<!-- Categories Section End -->
+
+<!-- Instagram Section Begin -->
+<section class="instagram spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="instagram__pic">
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-1.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-2.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-3.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-4.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-5.jpg"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-6.jpg"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="instagram__text">
+                    <h2>Instagram</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                    <h3>#Male_Fashion</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Instagram Section End -->
+
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Latest News</span>
+                    <h2>Fashion New Trends</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 16 February 2020</span>
+                        <h5>What Curling Irons Are The Best Ones</h5>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 21 February 2020</span>
+                        <h5>Eternity Bands Do Last Forever</h5>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
+                    <div class="blog__item__text">
+                        <span><img src="img/icon/calendar.png" alt=""> 28 February 2020</span>
+                        <h5>The Health Benefits Of Sunglasses</h5>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Latest Blog Section End -->

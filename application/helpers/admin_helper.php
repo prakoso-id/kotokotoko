@@ -1021,7 +1021,7 @@ function card_produk($data,$class='', $diskon = null){
      if ($CI->session->identity == $data->nik) {
           $btn_keranjang = '<span></span>';
      }else{
-          $btn_keranjang = '<a href="javascript:void(0)" class="btn-icon add-chart" data-id="'.$data->id_produk.'" title="Tambahkan ke Keranjang"><i class="fa fa-cart-plus"></i></a>';
+          $btn_keranjang = '<a href="javascript:void(0)" class="add-cart" data-id="'.$data->id_produk.'" title="Tambahkan ke Keranjang">+ Add To Cart</a>';
      }
 
      if (isset($data->cara_pembayaran)) {
@@ -1037,7 +1037,7 @@ function card_produk($data,$class='', $diskon = null){
      
 
      if ($data->diskon > 0) {
-          $ribbon_price = '<div class="ribbon-price red"><span>' . round($data->diskon, 1) . '%</span></div>';
+          $ribbon_price = '<span class="label">' . round($data->diskon, 1) . '%</span>';
           $price = '
                <div class="product-price">
                     <span class="red">Rp. '.rp($data->harga - $data->diskon_nominal).'</span>
@@ -1055,56 +1055,33 @@ function card_produk($data,$class='', $diskon = null){
      }
 
      $html = '
-     <div class="product-item '.$class.'">
-          <div class="pd-bd product-inner">
-            <div class="product-img">
-                <a href="'.base_url('list-produk/produk/'.$parameter).'">
-                    <img style="width: 200px; height: 200px; object-fit:contain; display: block;margin-left: auto;margin-right: auto;" src="'.base_url('assets/produk/'.$data->username.'/'.$data->foto).'" alt="" class="img-reponsive">
-                </a>
-                '.$ribbon_price.'
-            </div>
-            <div class="product-info">
-                <div class="color-group">
-                </div>
-                <div class="element-list element-list-left">
-                    <center style="text-align:center;margin:auto;padding: 20px;">
-                        <a href="'.base_url('toko/'.short($data->username)).'"><span>'.readMore($data->namausaha,50).'</span></a>
-                        <br>
-                        <span style="font-size: 9px;"><i class="fa fa-map-marker"></i> '.$data->nama_kel.'</span>
-                    </center>
-                </div>
-                <div class="element-list element-list-middle">
-                    <div class="product-rating bd-rating">
+     <div class="product__item">
+          <a href="'.base_url('list-produk/produk/'.$parameter).'">
+               <div class="product__item__pic set-bg" data-setbg="'.base_url('assets/produk/'.$data->username.'/'.$data->foto).'">
+                    '.$ribbon_price.'
+                    <ul class="product__hover">
+                         <li><a href="#"><img src="'.base_url('assets/templateFE2/').'img/icon/heart.png" alt=""></a></li>
+                         <li><a href="#"><img src="'.base_url('assets/templateFE2/').'img/icon/compare.png" alt=""> <span>Compare</span></a></li>
+                         <li><a href="#"><img src="'.base_url('assets/templateFE2/').'img/icon/search.png" alt=""></a></li>
+                    </ul>
+               </div>
+          </a>
+          <div class="product__item__text product-info">
+               <h6>  
+                    '.readMore($data->nama_produk,50).'
+               </h6>
+               '.$btn_keranjang.'
+                
+               </a>
+               <div class="rating">
                     '.$icon_star.'
-                    <div class="number-rating">( '.$jum_ulasan.' Ulasan )</div>
-                    </div>
-                    <p class="product-cate" style="font-size: 9px;">
-                        <a href="'.base_url('list-produk/kategori/'.url($data->nama_usaha)).'"> '.$data->nama_usaha.'</a>
-                    </p>
-                    <h3 class="product-title" style="font-size: 16px; font-weight: bold;">
-                        <a href="'.base_url('list-produk/produk/'.short($data->kode_produk)).'">
-                            '.readMore($data->nama_produk,50).'
-                        </a>
-                    </h3>
-                    <div class="product-bottom">
-                        ' . $price . '
-                    </div>
-                    <div class="product-bottom-group">
-                        '.$btn_keranjang.'
-                        <a href="javascript:void(0)" class="btn-icon love-produk" title="Tambahkan ke Favorit" data-id="'.$data->id_produk.'">
-                         '.$icon_love.'   
-                         </a>
-                    </div>
-                </div>
-                <div class="product-button-group">
-                    '.$btn_keranjang.'
-                    <a href="javascript:void(0)" class="btn-icon love-produk" title="Tambahkan ke Favorit" data-id="'.$data->id_produk.'">
-                    '.$icon_love.'
-                    </a>
-                </div>
-            </div>
-        </div>
-     </div>';
+               </div>
+               <h5>'.$price.'</h5>
+               <div class="number-rating">( '.$jum_ulasan.' Ulasan )</div>
+          </div>
+     </div>
+     
+     ';
 
      return $html;
 }

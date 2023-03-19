@@ -5,7 +5,7 @@ class Beranda extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->template->set_layout('templatesv2/frontend');
+		$this->template->set_layout('frontend/index');
 		$this->load->model('list_produk/produk_model');
 		$this->load->model('list_berita/berita_model');
 	}
