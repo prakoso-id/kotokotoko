@@ -1,0 +1,253 @@
+.btn-submit {
+	font-size: 16px;
+	width: 120px;
+	height: 40px;
+	border-radius: 999px;
+	padding: 0;
+	border: 0;
+}
+
+.label-last-login {
+	display: inline;
+	font-size: 10px;
+}
+
+.profile-container {
+	background-color: #ebf7fa;margin-bottom: 20px;border-radius: 20px;
+}
+.profile-env > header {
+  position: relative;
+  /*z-index: 20;*/
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.profile-env > header .profile-picture {
+  position: relative;
+}
+.profile-env > header .profile-picture img, .profile-env > header .profile-picture .icon-foto-umkm {
+  float: right;
+  width: 150px;
+  height: 150px;
+  -moz-box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.9);
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  object-fit: cover;
+}
+.profile-env > header .profile-picture:hover img, .profile-env > header .profile-picture .icon-foto-umkm:hover {
+  zoom: 1;
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.profile-env > header .profile-info-sections {
+  margin: 0;
+  padding: 0;
+  /*margin-top: 15px;*/
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px;
+}
+
+.profile-env > header .profile-info-sections .profile-name strong,
+.profile-env > header .profile-info-sections .profile-name span {
+  display: block;
+}
+.profile-env > header .profile-info-sections .profile-name strong {
+  font-size: 25px;
+  font-weight: 700;
+}
+.profile-env > header .profile-info-sections .profile-name span {
+  font-size: 14px;
+  /*color: #bbbbbb;*/
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.profile-env > header .profile-info-sections .profile-name span a {
+  color: #bbbbbb;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.profile-env > header .profile-info-sections .profile-name span a:hover {
+  color: #888888;
+}
+.profile-env > header .profile-info-sections .profile-name .user-status {
+  position: relative;
+  display: inline-block;
+  background: #575d67;
+  top: -2px;
+  margin-left: 5px;
+  width: 6px;
+  height: 6px;
+  -webkit-border-radius: 6px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 6px;
+  -moz-background-clip: padding;
+  border-radius: 6px;
+  background-clip: padding-box;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.profile-env > header .profile-info-sections .profile-name .user-status.is-online {
+  background-color: #06b53c;
+}
+.profile-env > header .profile-info-sections .profile-name .user-status.is-offline {
+  background-color: #575d67;
+}
+.profile-env > header .profile-info-sections .profile-name .user-status.is-idle {
+  background-color: #f7d227;
+}
+.profile-env > header .profile-info-sections .profile-name .user-status.is-busy {
+  background-color: #ee4749;
+}
+.profile-env > header .profile-info-sections .profile-stat h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.profile-env > header .profile-info-sections .profile-stat span {
+  color: #bbbbbb;
+}
+.profile-env > header .profile-info-sections .profile-stat span a {
+  color: #bbbbbb;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.profile-env > header .profile-info-sections .profile-stat span a:hover {
+  color: #888888;
+}
+
+.profile-env > header .profile-buttons {
+  margin-top: 35px;
+}
+.profile-env > header .profile-buttons a {
+  margin: 0 4px;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.profile-env section {
+  position: relative;
+  z-index: 10;
+}
+
+.icon-foto-umkm{
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #f0f0f0;
+    padding-block:30px;
+}
+
+.btn-info-toko {
+  border: 2px solid #ff8126;
+  background-color: transparent;
+  color: #ff8126;
+}
+
+.btn-info-toko:hover {
+    -webkit-box-shadow: 0px 2px 20px 2px rgba(194, 106, 245, 0.68);
+            box-shadow: 0px 2px 20px 2px rgba(194, 106, 245, 0.68);
+}
+
+.my-btn-icon {
+	display: flex !important;
+	border: 1px solid #1F3DB0;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	justify-content: center;
+	-webkit-box-pack: center;
+	transition: all 0.3s ease 0s;
+}
+
+@media (max-width: 992px) {
+  .profile-env > header .profile-picture img, .profile-env > header .profile-picture .icon-foto-umkm {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-env > header .profile-picture .icon-foto-umkm {
+    font-size: 45px;
+    padding-block: 7px;
+  }
+
+  .profile-env > header .profile-buttons {
+    margin-top: 18px;
+  }
+  .profile-env > header .profile-info-sections .profile-name strong,
+  .profile-env > header .profile-info-sections .profile-stat h3 {
+    font-size: 16px;
+  }
+  .profile-env > header .profile-info-sections {
+    margin-top: 0;
+  }
+
+}
+@media (max-width: 768px) {
+  .profile-env section.profile-info-tabs {
+    margin-top: 30px;
+  }
+  .profile-env > header .profile-picture {
+    text-align: center;
+    display: block;
+  }
+  .profile-env > header .profile-picture img, .profile-env > header .profile-picture .icon-foto-umkm {
+    width: 80px;
+    height: 80px;
+    float: none;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  .profile-env > header .profile-picture .icon-foto-umkm {
+    font-size: 45px;
+    padding-block: 7px;
+  }
+  .profile-env .col-sm-10 {
+    text-align: center;
+  }
+}
+@media (max-width: 601px) {
+  .profile-env > header .profile-info-sections {
+    margin-bottom: 10px;
+  }
+  .profile-env > header .profile-info-sections li {
+    padding: 15px;
+  }
+
+  .profile-env > header .profile-buttons {
+    margin-top: 0;
+  }
+  .profile-env > header .profile-picture {
+    text-align: center;
+    display: block;
+  }
+  .profile-env > header .profile-picture img, .profile-env > header .profile-picture .icon-foto-umkm {
+    width: 80px;
+    height: 80px;
+    float: none;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  .profile-env > header .profile-picture .icon-foto-umkm {
+    font-size: 45px;
+    padding-block: 7px;
+  }
+  .profile-env .col-sm-10 {
+    text-align: center;
+  }
+}

@@ -1,0 +1,35 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ * 
+ */
+
+/*# sourceMappingURL=custom.css.map */
+#loading {
+  position:   fixed;
+  z-index:    9000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: rgba( 255, 255, 255, 1 )
+  url('../../mytemplate/img/loader.gif')
+  50% 50%
+  no-repeat;
+  opacity: 0.5;
+}
+
+.select2{
+	width: 100%;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+  .modal-xl {
+    width: 90%;
+   max-width:1200px;
+  }
+}

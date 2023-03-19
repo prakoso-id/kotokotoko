@@ -1,0 +1,272 @@
+.container{max-width:1170px; margin:auto;}
+
+.modal-footer .produk-foto , .modal-body .produk-foto{
+    height: 100px !important;
+    width: 100px !important;
+}
+.modal-footer .product-single, .modal-body .product-single
+{
+    width: 100px;
+}
+.modal-footer .product.product-single, .modal-body .product.product-single{
+    text-align: left !important; 
+    margin: 0px;
+}
+.modal-footer .product-price, .modal-footer .product-name, .modal-body .product-price, .modal-body .product-name{
+    font-size: 12px !important;
+}
+
+.modal-footer .product.product-single .quick-view, .modal-body .product.product-single .quick-view
+{
+    font-size: 8px;
+}
+.modal-footer .product-thumb, .modal-body .product-thumb{
+    margin: 0px !important;
+}
+
+.modal-footer .product.product-single .product-body, .modal-body .product.product-single .product-body{
+    padding: 10px;
+}
+
+.button_hapus {
+    top: 0;position: absolute;right: 0;padding: 1px 5px;
+}
+img{ max-width:100%;}
+.inbox_people {
+    background: #f8f8f8 none repeat scroll 0 0;
+    float: left;
+    overflow: hidden;
+    width: 30%; border-right:1px solid #c4c4c4;
+}
+.inbox_msg {
+    border: 1px solid #c4c4c4;
+    clear: both;
+    overflow: hidden;
+}
+.top_spac{ margin: 20px 0 0;}
+
+
+.recent_heading {float: left; width:40%;}
+.srch_bar {
+    display: inline-block;
+    text-align: right;
+    width: 60%; padding:
+}
+.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
+.recent_heading h4 {
+    color: #05728f;
+    font-size: 21px;
+    margin: auto;
+}
+.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+.srch_bar .input-group-addon button {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    padding: 0;
+    color: #707070;
+    font-size: 18px;
+}
+.srch_bar .input-group-addon { margin: 0 0 0 -27px;}
+
+.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+.chat_ib h5 span{ font-size:13px; float:right;}
+.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.chat_img {
+    float: left;
+    width: 11%;
+}
+.chat_ib {
+    float: left;
+    padding: 0 0 0 25px;
+    width: 88%;
+}
+
+.chat_people{ overflow:hidden; clear:both;}
+.chat_list {
+    border-bottom: 1px solid #c4c4c4;
+    margin: 0;
+    padding: 18px 16px 10px;
+    cursor: pointer;
+}
+.inbox_chat { height: 600px; overflow-y: scroll;}
+
+.active_chat{ background:#ebebeb;}
+
+.incoming_msg_img {
+    display: inline-block;
+    width: 6%;
+}
+.received_msg {
+    display: inline-block;
+    padding: 0 0 20px 10px;
+    vertical-align: top;
+    width: 92%;
+}
+.received_withd_msg p {
+    /*background: #ebebeb none repeat scroll 0 0;*/
+    background-image: linear-gradient(122deg,#E63219,#FDCB28);
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+}
+.time_date {
+    color: #747474;
+    display: block;
+    font-size: 12px;
+    margin: 8px 0 0;
+}
+.received_withd_msg { width: 50%;}
+.mesgs {
+    float: left;
+    width: 70%;
+}
+
+.sent_msg p {
+    /*background: #05728f none repeat scroll 0 0;*/
+    background-image: linear-gradient(122deg,#AB2828,#E63219);
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0; color:#fff;
+    padding: 5px 10px 5px 12px;
+    width:100%;
+}
+.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.incoming_msg {overflow: hidden;margin: 26px 0 26px;}
+.sent_msg {
+    float: right;
+    width: 50%;
+}
+.input_msg_write input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 100%;
+    padding: 10px;
+}
+
+.type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+.msg_send_btn {
+    background-image: linear-gradient(122deg, #E63219, #AB2828);
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 0;
+    bottom: 7px;
+    width: 33px;
+    margin-right: 10px;
+}
+.messaging { padding: 0 0 50px 0;}
+.msg_history {
+    overflow: hidden;
+}
+
+.icon-foto {
+    background-image: linear-gradient(122deg, #E63219, #AB2828);
+    padding: 10px 13px;
+    border-radius: 100%;
+    color: #fff;
+    display: table-cell;
+    top:2px;
+}
+
+.icon-foto span {
+    position: relative;
+    top: -3px;
+    font-weight: 700;
+}
+
+#notfound {
+  position: relative;
+  margin-top: 20px;
+}
+
+#notfound .notfound {
+  position: relative;
+  margin: 0 auto;
+}
+
+.notfound {
+  max-width: 520px;
+  width: 100%;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.notfound .notfound-404 {
+  position: relative;
+  height: 240px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 200px;
+  font-weight: 900;
+  margin: 0px;
+  color: #262626;
+  text-transform: uppercase;
+  letter-spacing: -40px;
+  margin-left: -20px;
+}
+
+.notfound .notfound-404 h1>span {
+  text-shadow: -8px 0px 0px #fff;
+}
+
+.notfound .notfound-404 h3 {
+  font-family: 'Cabin', sans-serif;
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #262626;
+  margin: 0px;
+  letter-spacing: 3px;
+  padding-left: 6px;
+}
+
+.notfound h2 {
+  font-family: 'Cabin', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.img-produk-msg {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+    float: left;
+    border: 1px solid #d2d2d2;
+    border-radius: 20%;
+}
+
+.img-produk-attach {
+    width: 120px; 
+    height: 120px; 
+    object-fit:cover; 
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+    border: 1px solid #d2d2d2;
+    border-radius: 20%;
+}
