@@ -5,7 +5,7 @@ class List_produk extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->template->set_layout('templatesv2/frontend');
+		$this->template->set_layout('frontend/index');
 		$this->load->model('produk_model');
 		//load libary pagination
         $this->load->library('pagination');
@@ -94,8 +94,8 @@ class List_produk extends MY_Controller {
 	}
 
 	public function index() {
-		$this->template->add_css('assets/mytemplate/css/bootstrap-slider.css');
-		$this->template->add_js('assets/mytemplate/js/bootstrap-slider.min.js',true);
+		$this->template->add_css(base_url().'assets/mytemplate/css/bootstrap-slider.css');
+		$this->template->add_js(base_url().'assets/mytemplate/js/bootstrap-slider.min.js',true);
 		
 		$dt = $this->_get_list_produk(site_url('list-produk'));
         
@@ -114,6 +114,8 @@ class List_produk extends MY_Controller {
 			'count_s' => $dt['s'],
 			'count_e' => $dt['e']
 		);
+
+		// var_dump($this->data);die;
         
 		$this->template->render("list_produk",$this->data);
 	}
@@ -122,13 +124,13 @@ class List_produk extends MY_Controller {
 		$this->template->add_title_segment('Produk');
 		$this->template->add_meta_tag("description", "Produk Portal UMKM Kota Tangerang");
 		$this->template->add_meta_tag("keywords", "list product,product,umkm,portal umkm,kota tangerang,tangerang,portal");
-		$this->template->add_css('assets/css/pesan.css');
-		$this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
-		$this->template->add_css('assets/mytemplate/css/detail_produk.css');
-		$this->template->add_css('assets/mytemplate/css/jquery.fancybox.min.css');
-		$this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js',true);
-		$this->template->add_js('assets/plugins/datatables/dataTables.bootstrap.min.js',true);
-		$this->template->add_js('assets/mytemplate/js/jquery.fancybox.min.js',true);
+		$this->template->add_css(base_url().'assets/css/pesan.css');
+		$this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
+		$this->template->add_css(base_url().'assets/mytemplate/css/detail_produk.css');
+		$this->template->add_css(base_url().'assets/mytemplate/css/jquery.fancybox.min.css');
+		$this->template->add_js(base_url().'assets/plugins/datatables/jquery.dataTables.min.js',true);
+		$this->template->add_js(base_url().'assets/plugins/datatables/dataTables.bootstrap.min.js',true);
+		$this->template->add_js(base_url().'assets/mytemplate/js/jquery.fancybox.min.js',true);
 
 		$id = short($kode,true);
 		$produk = $this->produk_model->getdetailproduk($id);
@@ -333,8 +335,8 @@ class List_produk extends MY_Controller {
     }
 
 	public function kategori($id) {
-		$this->template->add_css('assets/mytemplate/css/bootstrap-slider.css');
-		$this->template->add_js('assets/mytemplate/js/bootstrap-slider.min.js',true);
+		$this->template->add_css(base_url().'assets/mytemplate/css/bootstrap-slider.css');
+		$this->template->add_js(base_url().'assets/mytemplate/js/bootstrap-slider.min.js',true);
 
 		$id = htmlentities($id, ENT_QUOTES, 'UTF-8');
 		$nama_usaha = str_replace('-',' ',strtolower($id));
@@ -403,7 +405,7 @@ class List_produk extends MY_Controller {
     public function make_thumbnail($filename,$path)
     {   
         //source image asli
-        $src  = base_url().'assets/'.$path;
+        $src  = base_url().base_url().'assets/'.$path;
         $imageurl = $src.$filename;
         $dest = $_SERVER['DOCUMENT_ROOT'] . '/assets/'.$path;
 		

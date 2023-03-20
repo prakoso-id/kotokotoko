@@ -10,7 +10,7 @@ class Agenda extends MY_Controller {
 	}
 
     public function index(){
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Agenda');
         $this->template->add_meta_tag("description", "Agenda UMKM Kota Tangerang");
         $this->template->add_meta_tag("keywords", "agenda, agenda,news,umkm,portal umkm,kota tangerang,tangerang,portal");
@@ -112,7 +112,7 @@ class Agenda extends MY_Controller {
             redirect(base_url('not-found'));
         }
 
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
         $this->template->add_css('assets/mytemplate/css/jquery.fancybox.min.css');
         $this->template->add_js('assets/mytemplate/js/jquery.fancybox.min.js',true);
         

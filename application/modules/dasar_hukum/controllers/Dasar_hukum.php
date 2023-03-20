@@ -11,7 +11,7 @@ class Dasar_hukum extends MY_Controller {
     public function index()
     {
         $this->load->library('pagination');
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
 
         $this->template->add_title_segment('Dasar Hukum');
         $this->template->add_meta_tag("description", "Dasar Hukum UMKM Kota Tangerang");
@@ -113,7 +113,7 @@ class Dasar_hukum extends MY_Controller {
             redirect(base_url('not-found'));
         }
 
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Dasar Hukum');
         $this->template->add_meta_tag("description", "Dasar Hukum UMKM Kota Tangerang");
         $this->template->add_meta_tag("keywords", "dasar hukum, dasar hukum,news,umkm,portal umkm,kota tangerang,tangerang,portal");

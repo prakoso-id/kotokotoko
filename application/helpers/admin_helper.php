@@ -1006,6 +1006,8 @@ function card_produk($data,$class='', $diskon = null){
      }else{
           $icon_love = '<i class="fa fa-heart-o wish-'.$data->id_produk.'"></i>';
      }
+     $sale='';
+
 
      $jumlah = 5 - $data->ratting;
      $icon_star = ''; 
@@ -1038,6 +1040,7 @@ function card_produk($data,$class='', $diskon = null){
 
      if ($data->diskon > 0) {
           $ribbon_price = '<span class="label">' . round($data->diskon, 1) . '%</span>';
+          $sale='sale';
           $price = '
                <div class="product-price">
                     <span class="red">Rp. '.rp($data->harga - $data->diskon_nominal).'</span>
@@ -1045,6 +1048,7 @@ function card_produk($data,$class='', $diskon = null){
                </div>
           ';
      } else {
+
           $price = '<div class="product-price"><span>Rp. '.rp($data->harga).'</span></div>';
      }
 
@@ -1054,25 +1058,28 @@ function card_produk($data,$class='', $diskon = null){
           $parameter = short($data->kode_produk) . '/diskon';
      }
 
+
      $html = '
-     <div class="product__item">
-          <a href="'.base_url('list-produk/produk/'.$parameter).'">
-               <div class="product__item__pic set-bg" data-setbg="'.base_url('assets/produk/'.$data->username.'/'.$data->foto).'">
-                    '.$ribbon_price.'
-                    <ul class="product__hover">
-                         <li><a href="#"><img src="'.base_url('assets/templateFE2/').'img/icon/heart.png" alt=""></a></li>
-                         <li><a href="#"><img src="'.base_url('assets/templateFE2/').'img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                         <li><a href="#"><img src="'.base_url('assets/templateFE2/').'img/icon/search.png" alt=""></a></li>
-                    </ul>
+     <div class="product__item '.$sale.'">
+          
+               <div>
+                    <div class="product__item__pic set-bg" data-setbg="'.base_url('assets/produk/'.$data->username.'/'.$data->foto).'" style="background-image : url('.base_url('assets/produk/'.$data->username.'/'.$data->foto).')">
+                              '.$ribbon_price.'
+                         <ul class="product__hover">
+                              <li>
+                                   <a href="javascript:void(0)" style="background-color:#fff;" class="btn btn-icon" title="Tambahkan ke Favorit" onclick="wishlist('.$data->id_produk.')">'.$icon_love.'
+                                   </a>
+                              </li>
+                              <li><a class="btn btn-icon" style="background-color:#fff;" href="'.base_url('list-produk/produk/'.$parameter).'"><i class="fa fa-eye"></i></a></li>
+
+                         </ul>
+                    </div>
                </div>
-          </a>
           <div class="product__item__text product-info">
                <h6>  
                     '.readMore($data->nama_produk,50).'
                </h6>
                '.$btn_keranjang.'
-                
-               </a>
                <div class="rating">
                     '.$icon_star.'
                </div>

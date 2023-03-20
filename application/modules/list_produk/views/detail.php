@@ -1,12 +1,15 @@
 <div class="container container-240">
+<div class="row">
+		<div class="col-lg-12">
+			<div class="product__details__breadcrumb">
+				<a href="<?php echo base_url() ?>">Beranda</a>
+				<a href="<?php echo base_url('list-produk') ?>">Produk</a>
+				<span><?php echo text($produk->nama_produk); ?></span>
+			</div>
+		</div>
+	</div>
     <div class="single-product-detail product-bundle product-aff" style="margin-bottom: 30px;">
-        <ul class="breadcrumb">
-            <li><a href="<?php echo base_url() ?>">Beranda</a></li>
-			<li><a href="<?php echo base_url('list-produk') ?>">Produk</a></li>
-			<li><a href="<?php echo base_url('list-produk/kategori/'.url($produk->nama_usaha)) ?>"><?php echo $produk->nama_usaha; ?></a>
-			</li>
-			<li class="active"><?php echo text($produk->nama_produk); ?></li>
-        </ul>
+        
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="flex product-img-slide" style="height: 449px !important;">
@@ -204,83 +207,78 @@
             </div>
         </div>
 
-    	<div class="single-product-tab bd-7">
-            <div class="cmt-title text-center abs">
-                <ul class="nav nav-tabs text-center v3">
-                    <li class="active"><a data-toggle="pill" href="#desc">Deskripsi</a></li>
-                    <li><a data-toggle="pill" href="#review">Ulasan</a></li>
-                    <li><a data-toggle="pill" href="#discus">Diskusi</a></li>
-                </ul>
-            </div>
-	        <div class="tab-content" style="min-height: 500px; overflow: auto;">
-	            <div id="desc" class="tab-pane fade in active">
-	                <div class="entry-content">
-                        <div class="entry-inside">
-                        	<div class="row">
-                            <?php echo $produk->deskripsi; ?>
-                        	</div>
-                        </div>
-	                </div>
-	            </div>
-	            <div id="review" class="tab-pane fade in">
-	            	<div class="entry-content">
-                        <div class="entry-inside">
-			            	<div class="row">
-			            		<div class="col-md-12">
-			            			<table class="table table-hover" id="tabel-ulasan" width="100%">
-										<tbody>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="product__details__tab" style="min-height:500px;">
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item active">
+							<a class="nav-link " data-toggle="tab" href="#tabs-5" role="tab">Description</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Ulasan</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Diskusi</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tabs-5" role="tabpanel">
+							<div class="product__details__tab__content">
+								<?php echo $produk->deskripsi; ?>
+							</div>
+						</div>
+						<div class="tab-pane" id="tabs-6" role="tabpanel">
+							<div class="product__details__tab__content">
+								<table class="table table-hover" id="tabel-ulasan" width="100%">
+									<tbody>
 
-										</tbody>
-									</table>
-			            		</div>
-			            	</div>
-			            </div>
-			        </div>
-	            </div>
-	            <div id="discus" class="tab-pane fade in">
-	                <div class="entry-content">
-                        <div class="entry-inside">
-                            <div class="row">
-								<div class="col-md-8">
-									<table class="table table-hover" id="tabel-diskusi" width="100%">
-										<tbody>
-
-										</tbody>
-									</table>
-								</div>
-								<div class="col-md-4">
-									<?php
-										if($this->user_model->is_login()):
-									?>
-											<h4 class="text-uppercase">
-												Beri Pertanyaan
-											</h4>
-											<p>Ada pertanyaan ? Diskusikan dengan penjual atau pengguna lain</p>
-											<form id="form-diskusi">
-												<div class="form-group">
-													<input type="hidden" name="id_produk" value="<?php echo $produk->id_produk; ?>">
-                                                    <input type="hidden" name="username_umkm" value="<?php echo $produk->nik; ?>">
-													<textarea style="resize: none; height: 150px;color: #000;" class="form-control" name="pesan_diskusi" placeholder="Apa yang ingin anda tanyakan mengenai produk ini?"></textarea>
-													<input type="hidden" name="pesan">
-													<span class="help"></span>
-												</div>
-												<button class="button_mini btn btn-gradient" type="button" onclick="simpan_diskusi()">Kirim</button>
-											</form>
-									<?php
-										else:
-									?>
-										<p>Harap <a href="javascript:void(0);" onclick="login_ulasan()" style="color: #1F3DB0"> login </a> terlebih dahulu sebelum mengajukan pertanyaan. </p>		
-									<?php
-										endif;
-									?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane" id="tabs-7" role="tabpanel">
+							<div class="product__details__tab__content">
+								<div class="row">
+									<div class="col-md-8">
+										<table class="table table-hover" id="tabel-diskusi" width="100%">
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-4">
+										<?php
+											if($this->user_model->is_login()):
+										?>
+												<h4 class="text-uppercase">
+													Beri Pertanyaan
+												</h4>
+												<p>Ada pertanyaan ? Diskusikan dengan penjual atau pengguna lain</p>
+												<form id="form-diskusi">
+													<div class="form-group">
+														<input type="hidden" name="id_produk" value="<?php echo $produk->id_produk; ?>">
+														<input type="hidden" name="username_umkm" value="<?php echo $produk->nik; ?>">
+														<textarea style="resize: none; height: 150px;color: #000;" class="form-control" name="pesan_diskusi" placeholder="Apa yang ingin anda tanyakan mengenai produk ini?"></textarea>
+														<input type="hidden" name="pesan">
+														<span class="help"></span>
+													</div>
+													<button class="button_mini btn btn-gradient" type="button" onclick="simpan_diskusi()">Kirim</button>
+												</form>
+										<?php
+											else:
+										?>
+											<p>Harap <a href="javascript:void(0);" onclick="login_ulasan()" style="color: #1F3DB0"> login </a> terlebih dahulu sebelum mengajukan pertanyaan. </p>		
+										<?php
+											endif;
+										?>
+									</div>
 								</div>
 							</div>
-                        </div>
-	                </div>
-	            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	        </div>
-    	</div>
     </div>
     <div class="bestseller">
         <div class="ecome-heading style5v3 spc5v3" style="margin-bottom: 0px;">
@@ -316,7 +314,7 @@
     </div>
 
     <!-- profil umkm -->
-    <div class="container profile-container">
+    <!-- <div class="container profile-container">
     	<div class="profile-env">
 			<header class="row">
 	            <div class="col-md-1 col-sm-1 col-xs-2">
@@ -368,7 +366,7 @@
 	            </div>
 	        </header>
 		</div>
-	</div>
+	</div> -->
 
 </div>
 

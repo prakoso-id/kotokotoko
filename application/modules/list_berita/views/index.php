@@ -1,14 +1,23 @@
-<div class="container container-240">
-    <div class="blog-banner pd-banner v2">
-       <a href="javascript:void(0);" class="effect_img2"><img src="<?php echo base_url(); ?>assets/images/banner_berita.jpg" alt="" class="img-reponsive"></a> 
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Berita</h4>
+                    <div class="breadcrumb__links">
+                        <a href="<?= base_url()?>">Home</a>
+                        <span>Berita</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="container container-240 mt-5">
     <div class="blog spc1">
-        <ul class="breadcrumb">
-            <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-            <li class="active">Berita</li>
-        </ul>
         <div class="blog-grid">
-            <h1 class="blog-heading text-center" style="margin-bottom: 25px !important;">Berita</h1>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-9 col-sm-8 col-xs-12" style="float: left;margin-bottom: 20px;">

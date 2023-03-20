@@ -1886,7 +1886,7 @@ ol {
 	border-bottom: 2px solid transparent;
 }
 
-.product__details__tab .nav-tabs .nav-item .nav-link.active {
+.product__details__tab .nav-tabs .nav-item.active {
 	border-bottom: 2px solid #e53637;
 }
 
@@ -3826,6 +3826,10 @@ ol {
 		margin-bottom: 15px;
 	}
 
+	.product__details__tab .nav-tabs .nav-item .active {
+		border-bottom: 1px solid black;
+	}
+
 	.shopping__cart__table {
 		overflow-y: auto;
 	}
@@ -4198,3 +4202,4 @@ ol {
 	  font-size: 16px; }
   .product-info .btn-quickview {
 	color: #fff; }
+	

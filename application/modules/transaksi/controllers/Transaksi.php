@@ -12,7 +12,7 @@ class Transaksi extends MY_Controller {
     }
 
     public function customer() {
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Daftar Transaksi Pembelian');
 
         $this->template->add_css('assets/transaksi.css');

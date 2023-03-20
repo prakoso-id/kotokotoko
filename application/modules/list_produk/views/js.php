@@ -93,6 +93,8 @@
         });
     });
 
+
+
     function add_to_chart(id,type){
         var qty = $('[name="quantity"]').val();
         beli_chart(id,type,qty);

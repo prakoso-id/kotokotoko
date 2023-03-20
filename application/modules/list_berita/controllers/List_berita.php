@@ -5,7 +5,7 @@ class List_berita extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->template->set_layout('templatesv2/frontend');
+		$this->template->set_layout('frontend/index');
 		$this->load->model('berita_model');
 	}
 

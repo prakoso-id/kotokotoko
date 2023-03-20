@@ -12,7 +12,7 @@ class Notif extends MY_Controller {
 	}
 
 	public function index(){
-		$this->template->set_layout('templatesv2/frontend');
+		$this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Notifikasi');
         $this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
 		$this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js',true);

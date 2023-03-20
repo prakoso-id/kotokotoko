@@ -7,7 +7,8 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <?php echo $meta_tag; ?>
+    <title><?php echo $site_title; ?></title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -21,8 +22,34 @@
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/slicknav.min.css" type="text/css">
+
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/mytemplate/css/style.css">
+
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.css') ?>">
+    <?php echo $styles; ?>
+    <!-- Js Plugins -->
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery-3.3.1.min.js"></script>
+    <?php echo $scripts_header; ?>
+
+    <script src="<?php echo base_url()?>assets/mytemplate/js/bootstrap.js"></script>
+    <script src="<?php echo base_url()?>assets/mytemplate/js/owl.carousel.min.js"></script>
+    <script src="<?php echo base_url()?>assets/mytemplate/js/slick.js"></script>
+    <script src="<?php echo base_url()?>assets/mytemplate/js/countdown.js"></script>
+    <script src="<?php echo base_url(); ?>assets/mytemplate_backend/modules/popper.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nice-select.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nicescroll.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.magnific-popup.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.countdown.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.slicknav.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/mixitup.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/owl.carousel.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/main.js"></script>
+    
+    <script src="<?php echo base_url('assets/plugins/jQuery/purify.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+    
+    <?php echo $scripts_footer; ?>
 
 </head>
 
@@ -79,20 +106,7 @@
     </div>
     <!-- Search End -->
 
-    <!-- Js Plugins -->
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery-3.3.1.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/bootstrap.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nice-select.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nicescroll.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.magnific-popup.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.countdown.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.slicknav.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/mixitup.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/owl.carousel.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/main.js"></script>
-    <script src="<?php echo base_url('assets/plugins/jQuery/purify.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
-    <?php echo $scripts_footer; ?>
+    
 
     <script type="text/javascript">
         var page = "<?php echo $this->uri->segment(1); ?>";

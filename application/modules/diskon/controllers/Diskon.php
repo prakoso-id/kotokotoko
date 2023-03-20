@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Diskon extends MY_Controller {
     public function __construct() {
 		parent::__construct();
-		$this->template->set_layout('templatesv2/frontend');
+		$this->template->set_layout('frontend/index');
 		$this->load->model('produk_model');
 		//load libary pagination
         $this->load->library('pagination');

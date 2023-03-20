@@ -8,7 +8,7 @@ class Wishlist extends MY_Controller {
 		if(!$this->user_model->is_login()){
             redirect(base_url());
         }
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
         $this->load->model('wishlist_model');
         $this->load->library('pagination');
 	}

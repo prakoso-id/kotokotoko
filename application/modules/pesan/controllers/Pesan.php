@@ -26,7 +26,7 @@ class Pesan extends MY_Controller {
     }
 
 	public function index(){
-        $this->template->set_layout('templatesv2/frontend');
+        $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Pesan');
         $this->template->add_css('assets/css/pesan.css');
 
