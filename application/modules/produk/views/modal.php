@@ -100,7 +100,7 @@
 						</div>
 						<label id="diskon_hint" class="col-sm-3 col-form-label" style="font-style:italic"></label>
 					</div>
-					<div class="position-relative row form-group">
+					<div class="position-relative row form-group" style="display:none">
 						<label class="col-sm-3 col-form-label" style="font-weight:600">Integrasi</label>
 						<div class="col-lg-9">
 							<div class="custom-control custom-checkbox custom-control-inline">
@@ -117,13 +117,19 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="position-relative row form-group" id="showstok">
+					<!-- <div class="position-relative row form-group" id="showstok">
 						<label class="col-sm-3 col-form-label" style="font-weight:600"><font color="red">*</font>Stok</label>
 						<div class="col-lg-9">
 							<input type="text" name="stok" class="form-control currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency" placeholder="Stok Produk">
 							<span class="help-block"></span>
 						</div>
+					</div> -->
+					
+					<button type="button" class="btn btn-primary my-2" onclick="add_stok()"><i class="fas fa-plus"></i> Tambah Stok</button>
+					<div class="f_link_stok">
+						
 					</div>
+
 					<div class="position-relative row form-group">
 						<label class="col-sm-3 col-form-label" style="font-weight:600"><font color="red">*</font>Berat (Kg)</label>
 						<div class="col-lg-9">

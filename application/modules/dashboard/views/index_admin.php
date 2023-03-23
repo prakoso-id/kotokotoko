@@ -16,7 +16,7 @@
 	<div class="section-body">
 		<div class="row">
 			<div class="col-12 col-sm-12 col-lg-12">
-				<div class="card card-danger">
+				<!-- <div class="card card-danger">
 					<div class="card-header">
 						<h4>DATA UMKM PENDATAAN</h4>
 						<div class="card-header-action">
@@ -281,7 +281,7 @@
 
 						</div>
 					</div>  
-				</div>
+				</div> -->
 
 				<div class="card card-danger">
 					<div class="card-header">

@@ -31,12 +31,16 @@
 					<td class="thumb"><img src="<?php echo $p['foto_produk']; ?>" alt="" class="img-reponsive image-produk"></td>
 					<td class="details">
 						<a href="<?php echo base_url('list-produk/produk/'.short($p['kode_produk'])); ?>" target="_blank">
-							<?php echo $p['nama_produk']; ?>
+							<?php echo $p['nama_produk']; ?> 
+							<br>
+							<small>ukuran : <?php echo $p['size']; ?> </small>
 						</a>
 						<ul>
 							<li>
 								<input type="hidden" name="id_produk[<?php echo $i; ?>]" value="<?php echo $p['id_produk']; ?>">
 								<input type="hidden" name="quantity[<?php echo $i; ?>]" value="<?php echo $p['quantity']; ?>">
+								<input type="hidden" name="size[<?php echo $i; ?>]" value="<?php echo $p['size']; ?>">
+
 								<input type="hidden" name="harga[<?php echo $i; ?>]" value="<?php echo $p['harga'] - intval($p['diskon']); ?>">
 								<input type="hidden" name="berat[<?php echo $i; ?>]" value="<?php echo $p['berat']; ?>">
 								<textarea name="catatan[<?php echo $i; ?>]" class="form-control" placeholder="Tulis Catatan untuk Toko" style="resize: none;"></textarea>
@@ -138,9 +142,10 @@
 							<div class="row form-group">
 								<div class="col-sm-12">
 									<select name="pilih_pembayaran" id="pilih_pembayaran" class="form-control select2">
-										<option value="">--Pilih Pembayaran--</option>
+										<!-- <option value="">--Pilih Pembayaran--</option>
 										<option value="tf">Transfer Bank</option>
-										<option value="va">BJB Virtual Account</option>
+										<option value="va">BJB Virtual Account</option> -->
+										<option value="mid" selected>Midtrans</option>
 									</select>
 									<input type="hidden" name="pilih_pembayaran_hidden" id="pilih_pembayaran_hidden">
 									<span class="help"></span>

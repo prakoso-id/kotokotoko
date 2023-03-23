@@ -45,10 +45,10 @@
 					              	<label for="filter_invoice">Invoice</label>
 					              	<input type="text" name="filter_invoice" id="filter_invoice" placeholder="Cari Invoice" class="filter_invoice form-control" maxlength="20">
 					            </div>
-								<div class="form-group col-md-3">
+								<!-- <div class="form-group col-md-3">
 					              	<label for="filter_nama_umkm">Penjual</label>
 					              	<input type="text" name="filter_nama_umkm" id="filter_nama_umkm" placeholder="Cari penjual (UMKM)" class="filter_nama_umkm form-control" maxlength="20">
-					            </div>
+					            </div> -->
 					            <div class="form-group col-md-3">
 					              	<label for="filter_nama_pembeli">Pembeli</label>
 					              	<input type="text" name="filter_nama_pembeli" id="filter_nama_pembeli" placeholder="Cari pembeli" class="filter_nama_pembeli form-control" maxlength="20">

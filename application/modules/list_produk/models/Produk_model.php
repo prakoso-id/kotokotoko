@@ -108,6 +108,10 @@ class Produk_model extends CI_Model{
 		return $result;
 	}
 
+	function get_stok_ukuran_produk($id_produk){
+		$result = $this->db->get_where('m_produk_stok',array('id_produk' => $id_produk))->result();
+		return $result;
+	}
 	function get_produk_rekomendasi($id_jenis_usaha,$id_produk){
 		$this->db->select('a.kode_produk,a.nama_produk,a.harga,a.id_produk,a.diskon,a.diskon_nominal,a.ratting,b.nama_usaha,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto,(select COUNT(id_ulasan) from m_ulasan where id_produk = a.id_produk) as jumlah_ulasan,d.id_umkm as username,d.username as nik,d.namausaha,e.nama_kec,e.nama_kel,f.id_wishlist');
 		$this->db->from('m_produk a');

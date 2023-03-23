@@ -222,7 +222,7 @@
 
     function get_data_umkm_sidata(nik){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -271,7 +271,7 @@
 
     function get_prop(no_prop=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -282,6 +282,8 @@
             dataType: "html",
             success: function(data){
                 $('[name="no_prop"]').html(DOMPurify.sanitize( data, { SAFE_FOR_JQUERY: true } ));
+                $('[name="id_prop"]').html(DOMPurify.sanitize( data, { SAFE_FOR_JQUERY: true } ));
+
             },
             error: function (jqXHR, textStatus, errorThrown){
                 alert('Error get data from ajax');
@@ -291,7 +293,7 @@
 
     function get_kab(no_prop=null,no_kab=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -302,7 +304,9 @@
             },
             dataType: "html",
             success: function(data){
+                $('[name="id_kota"]').html(DOMPurify.sanitize( data, { SAFE_FOR_JQUERY: true } ));
                 $('[name="no_kota"]').html(DOMPurify.sanitize( data, { SAFE_FOR_JQUERY: true } ));
+
             },
             error: function (jqXHR, textStatus, errorThrown){
                 alert('Error get data from ajax');
@@ -312,7 +316,7 @@
 
     function get_kec(no_prop=null,no_kab=null,no_kec=null,type=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -338,7 +342,7 @@
 
     function get_kel(no_prop=null,no_kab=null,no_kec=null,no_kel=null,type=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -353,9 +357,9 @@
             success: function(data){
                 if (type == 'alamat_umkm') {
                     $('[name="id_kel"]').html(DOMPurify.sanitize( data, { SAFE_FOR_JQUERY: true } ));
-                    if (kodeWilayah != '') {
-                        $('[name=id_kel]').val(kodeWilayah.substr(6,4)).trigger('change');
-                    }
+                    // if (kodeWilayah != '') {
+                    //     $('[name=id_kel]').val(kodeWilayah.substr(6,4)).trigger('change');
+                    // }
                 }else{
                     $('[name="no_kel"]').html(DOMPurify.sanitize( data, { SAFE_FOR_JQUERY: true } ));
                 }
@@ -368,7 +372,7 @@
 
     function get_kode_pos(no_prop=null,no_kab=null,no_kec=null,no_kel=null,type=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -398,7 +402,7 @@
 
     function get_jenis_usaha(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'jenis_usaha',
@@ -417,7 +421,7 @@
 
     function get_bentuk_usaha(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -438,7 +442,7 @@
     function get_sektor_usaha(id=null){
         var id_jenis_usaha = $('[name="id_jenis_usaha"]').val();
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'sektor_usaha',
@@ -458,7 +462,7 @@
 
     function get_sarana_usaha(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'sarana_usaha',
@@ -477,7 +481,7 @@
 
     function get_status_tempat(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'status_tempat',
@@ -496,7 +500,7 @@
 
     function get_modal_luar(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'modal_luar',
@@ -515,7 +519,7 @@
 
     function get_bahan_bakar(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'bahan_bakar',
@@ -534,7 +538,7 @@
 
     function get_lainnya(id=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'lainnya',
@@ -553,7 +557,7 @@
 
     function get_m_bank(id_bank=null){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 type : 'master_bank',
@@ -572,7 +576,7 @@
 
     function get_m_kurir(){
         $.ajax({
-            url : "<?php echo base_url('transaksi/ajax_data/')?>",
+            url : "<?php echo base_url('transaksi/ajax_data')?>",
             type: "POST",
             async:false,
             data : {
@@ -664,7 +668,7 @@
     $('#defaultCheck1').change(function() {
         if(this.checked) {
             $.ajax({
-                url : "<?php echo base_url('dashboard/ajax_data/')?>",
+                url : "<?php echo base_url('dashboard/ajax_data')?>",
                 type: "POST",
                 data : {
                     type : 'data_pengguna',
@@ -814,6 +818,18 @@
         }
     });
 
+    $("[name='id_prop']").change(function(){
+        var id_prop = $('[name="id_prop"]').val();
+        get_kab(id_prop,null,null,null,'alamat_umkm');
+    });
+
+    $("[name='id_kota']").change(function(){
+        var id_prop = $('[name="id_prop"]').val();
+        var id_kota =  $('[name="id_kota"]').val();
+        console.log(id_kota);
+        get_kec(id_prop,id_kota,null,null,'alamat_umkm');
+    });
+
     $("[name='id_kec']").change(function(){
         var id_prop = $('[name="id_prop"]').val();
         var id_kota =  $('[name="id_kota"]').val();
@@ -830,7 +846,7 @@
 
     function get_selected_sektor_usaha(){
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 id_jenis_usaha : $('[name="id_jenis_usaha"]').val(),
@@ -966,7 +982,7 @@
         $('.view_ecommerce').empty();
         $('.view_medsos').empty();
         $.ajax({
-            url : "<?php echo base_url('dashboard/ajax_data/')?>",
+            url : "<?php echo base_url('/dashboard/ajax_data')?>",
             type: "POST",
             data : {
                 id : id,
@@ -1329,6 +1345,8 @@
         $('.preview-no_kel').text($('[name="no_kel"]').val() != 0 ? $('[name="no_kel"] option:selected').text() : '');
         var alamat_rumah = $('[name="alamat_rumah"]').val()+', RT : '+$('[name="no_rt"]').val()+', RW : '+$('[name="no_rw"]').val()+', KODE POS : '+$('[name="kode_pos_rumah"]').val();
         $('.preview-alamat_rumah').text(alamat_rumah);
+        $('.preview-id_prop').text($('[name="id_prop"]').val() != 0 ? $('[name="id_prop"] option:selected').text() : '');
+        $('.preview-id_kota').text($('[name="id_kota"]').val() != 0 ? $('[name="id_kota"] option:selected').text() : '');
         $('.preview-id_kec').text($('[name="id_kec"]').val() != 0 ? $('[name="id_kec"] option:selected').text() : '');
         $('.preview-id_kel').text($('[name="id_kel"]').val() != 0 ? $('[name="id_kel"] option:selected').text() : '');
         $('.preview-kode_pos').text($('[name="kode_pos"]').val());

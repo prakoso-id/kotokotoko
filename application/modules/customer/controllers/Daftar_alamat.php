@@ -16,9 +16,9 @@ class Daftar_alamat extends MY_Controller {
 		$this->template->add_meta_tag("description", "Portal UMKM Kota Tangerang");
 		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
 
-        $this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
-        $this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js',true);
-        $this->template->add_js('assets/plugins/datatables/dataTables.bootstrap.min.js',true);
+        $this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
+        $this->template->add_js(base_url().'assets/plugins/datatables/jquery.dataTables.min.js',true);
+        $this->template->add_js(base_url().'assets/plugins/datatables/dataTables.bootstrap.min.js',true);
 
         $k = keranjangku();
         $keranjang = $k['keranjang'];

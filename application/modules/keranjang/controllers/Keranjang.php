@@ -30,11 +30,13 @@ class Keranjang extends MY_Controller {
 			'dilihat'		=> $this->query_model->terakhir_dilihat(4),
 		);
 
+
 		$this->template->render("index",$this->data);
 	}
 
 	public function ajax_list(){
 		$keranjang = $this->query_model->keranjang('data',null,'id_umkm');
+		
 		
 		if ($keranjang) {
 
@@ -61,7 +63,7 @@ class Keranjang extends MY_Controller {
 									<th>
 										<div class="form-check" style="float:left;margin-right:10px;">
 										    <input type="checkbox" class="form-check-input" id="cek_all" '.$is_checked_all.'>
-										    <label class="form-check-label" for="cek_all"> Pilih Semua Barang</label>
+										    <label class="form-check-label" for="cek_all" style="margin-left:20px;"> Pilih Semua Barang</label>
 										</div>
 										<div class="btn_del_all">
 											<i class="fa fa-trash" title="Hapus item terpilih"></i>
@@ -120,7 +122,7 @@ class Keranjang extends MY_Controller {
 
 									$row_toko = '<div class="row" style="margin-bottom:30px;">
 													<div class="col-md-12 col-sm-12 col-xs-12">
-														<input style="float:left;" class="check-umkm-all" name="is_checked_umkm['.$value->username.']" id="check_umkm_'.$value->username.'" type="checkbox" data-id="'.$value->username.'" value="'.$value->username.'">
+														<input style="float:left; " class="check-umkm-all" name="is_checked_umkm['.$value->username.']" id="check_umkm_'.$value->username.'" type="checkbox" data-id="'.$value->username.'" value="'.$value->username.'">
 														<div class="info-produk">
 														<h4><a href="'.base_url().'toko/'.short($value->username).'" target="_blank">'.text($value->nama_umkm).' '.$icon_verify.'</a></h4>
 														<span style="font-size:10px;color:#999999;"><i class="fa fa-map-marker"></i> '.$value->nama_kel.'</span>
@@ -138,7 +140,7 @@ class Keranjang extends MY_Controller {
 								}
 
 								$html .= '<tr>
-											<td width="100%">
+											<td width="100%" style="margin-left:20px; ">
 												'.$row_toko.'
 												<div class="row">
 													<div class="col-md-12 col-sm-12 col-xs-12">
@@ -151,6 +153,7 @@ class Keranjang extends MY_Controller {
 														<div class="info-produk">
 															<h5><a href="'.base_url('list-produk/produk/'.$product_code).'" target="_blank">'.$value->nama_produk.'</a></h5>
 															' . $harga . '
+															<span style="font-size:10px;">Size : '.(($value->size) ? $value->size : '<font color="red">Habis</font>').'</span>
 															<span style="font-size:10px;">Stok : '.(($value->stok) ? $value->stok : '<font color="red">Habis</font>').'</span>
 														</div>
 													</div>
@@ -160,7 +163,7 @@ class Keranjang extends MY_Controller {
 																<div class="col-md-1 col-sm-1 col-xs-1 btn_love love-produk" data-id="'.$value->id_produk.'" title="Tambahkan ke favorit">
 										                         '.$icon_love.'   
 										                        </div>
-																<div class="col-md-1 col-sm-1 col-xs-1 btn_del hapus-produk" data-id="'.$value->id_produk.'" title="Hapus dari keranjang">
+																<div class="col-md-1 col-sm-1 col-xs-1 btn_del hapus-produk" data-id="'.$value->id_produk.'" data-size="'.$value->size.'" title="Hapus dari keranjang">
 																	<i class="fa fa-trash"></i>
 																</div>
 																<div class="col-md-6 col-sm-6 col-xs-6 input_quantity">
@@ -187,11 +190,11 @@ class Keranjang extends MY_Controller {
 												<input type="hidden" name="kode_produk['.$i.']" value="'.$value->kode_produk.'">
 												<input type="hidden" name="foto_produk['.$i.']" value="'.base_url('assets/produk/'.$value->username.'/'.$value->foto).'">
 												<input type="hidden" name="nama_produk['.$i.']" value="'.$value->nama_produk.'">
+												<input type="hidden" name="size['.$i.']" value="'.$value->size.'">
 												<input type="hidden" name="harga['.$i.']" id="harga_'.$i.'" value="'. $value->harga.'">
 												<input type="hidden" name="berat['.$i.']" id="berat_'.$i.'" value="'.$value->berat.'">
 												<input type="hidden" name="diskon['.$i.']" id="diskon_'.$i.'" value="'.$value->diskon_nominal.'">
 												<input type="hidden" name="diskon_persen['.$i.']" id="diskon_persen_'.$i.'" value="'.$value->diskon.'">
-												
 												<input type="hidden" name="sub_total_harga_barang['.$i.']" id="sub_total_harga_'.$i.'" value="'.$sub_total_harga_barang.'">
 												<input type="hidden" name="jumlah_diskon['.$i.']" id="jumlah_diskon_'.$i.'" value="'.$jumlah_diskon.'">
 												<input type="hidden" name="id_umkm['.$i.']" id="id_umkm_'.$i.'" value="'.$value->username.'">
@@ -280,9 +283,9 @@ class Keranjang extends MY_Controller {
 		$this->template->add_meta_tag("description", "Checkout Portal UMKM Kota Tangerang");
 		$this->template->add_meta_tag("keywords", "Checkout produk, product, umkm,portal umkm,kota tangerang,tangerang,portal");
 
-		$this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
-        $this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js',true);
-        $this->template->add_js('assets/plugins/datatables/dataTables.bootstrap.min.js',true);
+		$this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
+        $this->template->add_js(base_url().'assets/plugins/datatables/jquery.dataTables.min.js',true);
+        $this->template->add_js(base_url().'assets/plugins/datatables/dataTables.bootstrap.min.js',true);
 
 		if(!$this->user_model->is_login()){
 			redirect(base_url());
@@ -316,6 +319,7 @@ class Keranjang extends MY_Controller {
 											  'nama_produk' => $data_post['nama_produk'][$key_p],
 											  'foto_produk' => $data_post['foto_produk'][$key_p],
 											  'quantity' => $data_post['quantity'][$key_p],
+											  'size' => $data_post['size'][$key_p],
 											  'harga' => $data_post['harga'][$key_p],
 											  'diskon' => $data_post['diskon'][$key_p], //jumlah diskon
 											  'diskon_nominal' => $data_post['diskon'][$key_p], //nominal diskon
@@ -373,6 +377,8 @@ class Keranjang extends MY_Controller {
 			'dilihat'		=> $this->query_model->terakhir_dilihat(4),
 			'detail_bayar'  => $detail_bayar
 		);
+
+		
 
 		$this->template->render("bayar",$this->data);
 	}

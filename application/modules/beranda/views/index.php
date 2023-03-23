@@ -3,7 +3,7 @@
     <div class="hero__slider owl-carousel">
     <?php foreach ($slider as $value) { ?>
         
-        <div class="hero__items set-bg" data-setbg="<?php echo base_url('assets/images/slider/'.$value->image);?>">
+        <div class="hero__items set-bg" data-setbg="<?php echo base_url('assets/images/slider/'.$value->image);?>" >
             <div class="container">
                 <a href="<?php echo $value->url; ?>" >
                     <div class="row">

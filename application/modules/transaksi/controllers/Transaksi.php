@@ -15,15 +15,15 @@ class Transaksi extends MY_Controller {
         $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Daftar Transaksi Pembelian');
 
-        $this->template->add_css('assets/transaksi.css');
-        $this->template->add_css('assets/css/pesan.css');
+        $this->template->add_css(base_url().'assets/transaksi.css');
+        $this->template->add_css(base_url().'assets/css/pesan.css');
 
-        $this->template->add_css('assets/rating/css/star-rating.css');
-        $this->template->add_css('assets/rating/css/bootstrap.css');
-        $this->template->add_js('assets/rating/js/star-rating.js',true);
-        $this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
-        $this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js',true);
-        $this->template->add_js('assets/plugins/datatables/dataTables.bootstrap.min.js',true);
+        $this->template->add_css(base_url().'assets/rating/css/star-rating.css');
+        $this->template->add_css(base_url().'assets/rating/css/bootstrap.css');
+        $this->template->add_js(base_url().'assets/rating/js/star-rating.js',true);
+        $this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
+        $this->template->add_js(base_url().'assets/plugins/datatables/jquery.dataTables.min.js',true);
+        $this->template->add_js(base_url().'assets/plugins/datatables/dataTables.bootstrap.min.js',true);
 
         $k = keranjangku();
         $keranjang = $k['keranjang'];
@@ -54,11 +54,11 @@ class Transaksi extends MY_Controller {
         $this->template->set_layout('templatesv2/backend');
         $this->template->add_title_segment('Daftar Transaksi Penjualan');
 
-        $this->template->add_css('assets/transaksi.css');
-        $this->template->add_css('assets/css/pesan.css');
+        $this->template->add_css(base_url().'assets/transaksi.css');
+        $this->template->add_css(base_url().'assets/css/pesan.css');
 
-        $this->template->add_css('assets/rating/css/star-rating.css');
-        $this->template->add_css('assets/rating/css/bootstrap.css');
+        $this->template->add_css(base_url().'assets/rating/css/star-rating.css');
+        $this->template->add_css(base_url().'assets/rating/css/bootstrap.css');
         $this->template->add_js(base_url().'assets/rating/js/star-rating.js',true);
 
         $this->data = array(
@@ -82,11 +82,11 @@ class Transaksi extends MY_Controller {
         $this->template->set_layout('templatesv2/backend');
         $this->template->add_title_segment('Daftar Transaksi');
 
-        $this->template->add_css('assets/transaksi.css');
-        $this->template->add_css('assets/css/pesan.css');
+        $this->template->add_css(base_url().'assets/transaksi.css');
+        $this->template->add_css(base_url().'assets/css/pesan.css');
 
-        $this->template->add_css('assets/rating/css/star-rating.css');
-        $this->template->add_css('assets/rating/css/bootstrap.css');
+        $this->template->add_css(base_url().'assets/rating/css/star-rating.css');
+        $this->template->add_css(base_url().'assets/rating/css/bootstrap.css');
         $this->template->add_js(base_url().'assets/rating/js/star-rating.js',true);
 
         $this->data = array(

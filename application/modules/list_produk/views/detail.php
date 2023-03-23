@@ -133,8 +133,23 @@
                             <label>Dilihat :</label><span> <?php echo $produk->dilihat.' kali'; ?></span>
                         </div>
                         <div style="margin-bottom: 5px;">
-                            <label>Stok :</label><span> <?php echo $produk->stok.' produk'; ?></span>
+                            <label>Semua stok tersedia  :</label><span id="stok_realtime"> <?php echo $produk->stok.' produk'; ?></span>
                         </div>
+						<div class="product__details__option">
+                                <div class="product__details__option__size">
+                                    <span>Ukuran:</span>
+									<?php 
+									foreach ($stok_ukuran as $value) { ?>
+										<label for="<?= $value->ukuran ?>" onclick="changeStok('<?= $value->ukuran ?>',<?= $value->stok ?>)"><?= $value->ukuran ?>
+											<input type="radio" name="ukuran" value="<?= $value->ukuran ?>" id="<?= $value->ukuran ?>">
+										</label>
+									<?php } ?>
+                                </div>
+								<div style="margin-top:5px;margin-bottom: 10px;" id="stok_ukuran">
+									
+								</div>
+						</div>
+						
 
                         <div class="single-product-button-group" style="margin-top: 10px;">
                         	<?php if ($produk->stok > 0 && $produk->cara_pembayaran != 'langsung') { 
@@ -416,7 +431,12 @@
 		</div>
 	</div>
 </div>
-
+<script>
+	function changeStok(ukuran,id){
+		console.log(id);
+		$('#stok_ukuran').html('<label>stok untuk ukuran '+ukuran+'  :</label><span id="stok_realtime"> '+id+' Produk</span>')
+	}
+</script>
 <?php 
 // if ($produk->no_hp || ($this->user_model->is_login() && $this->session->identity != $produk->nik)) {
 // 	echo '<div class="btn-group btn-float" role="group" style="display: block;bottom: 10px;" aria-label="Basic example">';

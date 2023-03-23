@@ -25,13 +25,13 @@
 				      	<div class="card-body">
 				      		<div class="row">
 				      			<div class="col-md-12">
-				      				<button type="button" class="btn btn-danger button_action" onclick="button_sudah(1)">
+				      				<!-- <button type="button" class="btn btn-danger button_action" onclick="button_sudah(1)">
 										<i class="fa fa-plus"></i> &nbsp; Tambah Toko
-									</button>
+									</button> -->
 				      			</div>
 				      		</div>
 
-				      		<div class="form-row">
+				      		<div class="form-row" style="display: none;">
 								<div class="form-group col-md-6">
 					              	<label for="filter_nama">Nama Toko</label>
 					              	<input type="text" name="filter_nama" id="filter_nama" placeholder="Nama Usaha" required="" class="filter_perusahaan form-control" maxlength="20">

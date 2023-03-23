@@ -688,8 +688,9 @@ class Ajax extends MY_Controller {
             case 'add_chart':
                 if($this->user_model->is_login()){
                     if($this->input->post('status') == 'hapus'){ //jika hapus
+                        $post_size = $this->input->post('size',true);
                         $status = 'hapus';
-                        $insert = $this->query_model->delete('m_keranjang',array('id_produk' => (int)$this->input->post('id',true), 'username' => $this->session->identity));
+                        $insert = $this->query_model->delete('m_keranjang',array('id_produk' => (int)$this->input->post('id',true), 'username' => $this->session->identity,'size'=>$post_size));
 
                         $jml_keranjang = $this->_get_jum_keranjang();
 
@@ -704,8 +705,12 @@ class Ajax extends MY_Controller {
                                                 </li>';
                         }
                     }else{ //jika add_chart
+                        $post_size = $this->input->post('size',true);
                         $keranjang  = $this->_cek_keranjang();
                         $cek_stok = cek_stok_produk((int)$this->input->post('id',true));
+                        $cek_stok_ukuran = cek_stok_ukuran_produk((int)$this->input->post('id',true),$post_size);
+
+
                         if ($keranjang) { //jika sudah ada di db 
                             $status = 'update';
                             $quantity = $keranjang->quantity + 1;
@@ -714,11 +719,16 @@ class Ajax extends MY_Controller {
                                 echo json_encode(['success' => false,'login' => true,'message' => 'Stok barang yang tersedia tinggal '.$cek_stok.' pcs. Anda tidak dapat menambahkannya lagi ke dalam keranjang !']);
                                 exit();
                             }
+                            if ($cek_stok_ukuran < $quantity) {
+                                echo json_encode(['success' => false,'login' => true,'message' => 'Stok barang yang tersedia untuk ukuran '.$post_size.' tinggal '.$cek_stok.' pcs. Harap kurangi kuantitas !']);
+                                exit();
+                            }
 
                             $data = array(
                                 'status'        => 'simpan',
                                 'quantity'      => $quantity,
                                 'updated_at'    => date('Y-m-d H:i:s'),
+                                'size'          => $post_size
                             );
 
                             $insert = $this->query_model->update('m_keranjang',array('id_produk' => (int)$this->input->post('id',true), 'username' => $this->session->identity),$data);
@@ -731,12 +741,19 @@ class Ajax extends MY_Controller {
                                 exit();
                             }
 
+                            if ($cek_stok_ukuran < $quantity) {
+                                echo json_encode(['success' => false,'login' => true,'message' => 'Stok barang yang tersedia untuk ukuran '.$post_size.' tinggal '.$cek_stok.' pcs. Harap kurangi kuantitas !']);
+                                exit();
+                            }
+
                             $data = array(
                                 'id_produk'     => (int)$this->input->post('id',true),
                                 'username'      => $this->session->identity,
                                 'created_at'    => date('Y-m-d H:i:s'),
                                 'quantity'      => $quantity,
-                                'status'        => $status
+                                'status'        => $status,
+                                'size'          => $post_size
+
                             );
 
                             $insert = $this->query_model->insert_id('m_keranjang',$data);
@@ -751,11 +768,24 @@ class Ajax extends MY_Controller {
                     echo json_encode(['success' => false,'login' => false]);
                 }
             break;
+            case 'get_ukuran_stok':
+                if($this->user_model->is_login()){
+                    $ukuran = get_stok_ukuran_produk((int)$this->input->post('id',true));
+                    echo json_encode(['success' => true,'data_ukuran' => $ukuran]);
+
+                }
+                else{
+                    echo json_encode(['success' => false,'login' => false]);
+                }
+            break;
             case 'beli_chart':
                 if($this->user_model->is_login()){
                     $post_qty = $this->input->post('qty',true);
+                    $post_size = $this->input->post('size',true);
                     $keranjang  = $this->_cek_keranjang();
                     $cek_stok = cek_stok_produk((int)$this->input->post('id',true));
+                    $cek_stok_ukuran = cek_stok_ukuran_produk((int)$this->input->post('id',true),$post_size);
+
                     if($keranjang){ //jika ada di db
                         $quantity = $keranjang->quantity + $post_qty;
 
@@ -763,11 +793,16 @@ class Ajax extends MY_Controller {
                             echo json_encode(['success' => false,'login' => true,'message' => 'Stok barang yang tersedia tinggal '.$cek_stok.' pcs. Harap kurangi kuantitas !']);
                             exit();
                         }
+                        if ($quantity > $cek_stok_ukuran) {
+                            echo json_encode(['success' => false,'login' => true,'message' => 'Stok barang yang tersedia untuk ukuran '.$post_size.' tinggal '.$cek_stok.' pcs. Harap kurangi kuantitas !']);
+                            exit();
+                        }
                         
                         $data = array(
                             'status'        => 'simpan',
                             'quantity'      => $quantity,
                             'updated_at'    => date('Y-m-d H:i:s'),
+                            'size'          => $post_size
                         );
                         $insert = $this->query_model->update('m_keranjang',array('id_produk' => (int)$this->input->post('id',true), 'username' => $this->session->identity),$data);
                     }else{
@@ -776,12 +811,19 @@ class Ajax extends MY_Controller {
                             exit();
                         }
 
+                        if ($post_qty > $cek_stok_ukuran) {
+                            echo json_encode(['success' => false,'login' => true,'message' => 'Stok barang yang tersedia untuk ukuran '.$post_size.' tinggal '.$cek_stok.' pcs. Harap kurangi kuantitas !']);
+                            exit();
+                        }
+
+
                         $data = array(
                             'id_produk'     => (int)$this->input->post('id',true),
                             'username'      => $this->session->identity,
                             'created_at'    => date('Y-m-d H:i:s'),
                             'status'        => 'simpan',
                             'quantity'      => $post_qty,
+                            'size'          => $post_size
                         );
                         $insert = $this->query_model->insert('m_keranjang',$data);
                     }
@@ -1298,7 +1340,7 @@ class Ajax extends MY_Controller {
     private function _cek_keranjang(){
         $cek['select']  = 'a.status,a.quantity';
         $cek['table']   = 'm_keranjang a';
-        $cek['where']   = 'a.username = "'.$this->session->identity.'" AND a.id_produk = "'.(int)$this->input->post('id',true).'"';
+        $cek['where']   = 'a.username = "'.$this->session->identity.'"AND a.size ="'.$this->input->post('size',true).'" AND a.id_produk = "'.(int)$this->input->post('id',true).'"';
         $keranjang      = $this->query_model->getRow($cek);
         return $keranjang;
     }

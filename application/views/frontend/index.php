@@ -22,34 +22,19 @@
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/slicknav.min.css" type="text/css">
-
-    <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/style.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/mytemplate/css/style.css">
 
+    <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/style.css" type="text/css">
+
+   
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/select2/select2.css') ?>">
     <?php echo $styles; ?>
     <!-- Js Plugins -->
     <script src="<?= base_url('assets/templateFE2/')?>js/jquery-3.3.1.min.js"></script>
     <?php echo $scripts_header; ?>
 
-    <script src="<?php echo base_url()?>assets/mytemplate/js/bootstrap.js"></script>
-    <script src="<?php echo base_url()?>assets/mytemplate/js/owl.carousel.min.js"></script>
-    <script src="<?php echo base_url()?>assets/mytemplate/js/slick.js"></script>
-    <script src="<?php echo base_url()?>assets/mytemplate/js/countdown.js"></script>
-    <script src="<?php echo base_url(); ?>assets/mytemplate_backend/modules/popper.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nice-select.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nicescroll.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.magnific-popup.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.countdown.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.slicknav.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/mixitup.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/owl.carousel.min.js"></script>
-    <script src="<?= base_url('assets/templateFE2/')?>js/main.js"></script>
-    
-    <script src="<?php echo base_url('assets/plugins/jQuery/purify.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
-    
-    <?php echo $scripts_footer; ?>
+
 
 </head>
 
@@ -61,33 +46,6 @@
 
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
-    <!-- <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__option">
-            <div class="offcanvas__links">
-                <a href="#">Sign in</a>
-                <a href="#">FAQs</a>
-            </div>
-            <div class="offcanvas__top__hover">
-                <span>Usd <i class="arrow_carrot-down"></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
-                </ul>
-            </div>
-        </div>
-        <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-            <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
-        </div>
-    </div> -->
-    <!-- Offcanvas Menu End -->
 
     <?php $this->load->view('frontend/header');?>
         <!-- /header -->
@@ -107,7 +65,24 @@
     <!-- Search End -->
 
     
-
+    <script src="<?php echo base_url()?>assets/mytemplate/js/bootstrap.js"></script>
+    <script src="<?php echo base_url()?>assets/mytemplate/js/owl.carousel.min.js"></script>
+    <script src="<?php echo base_url()?>assets/mytemplate/js/slick.js"></script>
+    <script src="<?php echo base_url()?>assets/mytemplate/js/countdown.js"></script>
+    <script src="<?php echo base_url(); ?>assets/mytemplate_backend/modules/popper.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.nicescroll.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.magnific-popup.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.countdown.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/jquery.slicknav.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/mixitup.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/owl.carousel.min.js"></script>
+    <script src="<?= base_url('assets/templateFE2/')?>js/main.js"></script>
+    
+    <script src="<?php echo base_url('assets/plugins/jQuery/purify.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/forms/selects/select2.min.js');?>"></script>
+    <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
+    
+    <?php echo $scripts_footer; ?>
     <script type="text/javascript">
         var page = "<?php echo $this->uri->segment(1); ?>";
 
@@ -342,10 +317,12 @@
 
         $('.hapus-produk').click(function() {
             var id_produk = $(this).data("id");
-            del_cart(id_produk);
+            var size = $(this).data("size");
+            
+            del_cart(id_produk,size);
         });
 
-        function del_cart(id){   
+        function del_cart(id,size){   
             Swal.fire({
                 title: 'Konfirmasi Hapus',
                 text: "Apakah anda yakin ingin menghapus produk dari keranjang ?",
@@ -357,7 +334,7 @@
                 cancelButtonText: 'Tidak',
             }).then((result) => {
                 if (result.value) {
-                    proses_cart(id,'hapus');
+                    proses_cart(id,'hapus',size);
                 }else{
                     return false;
                 }
@@ -366,10 +343,61 @@
 
         $('.add-cart').click(function() {
             var id_produk = $(this).data("id");
-            proses_cart(id_produk,'add_chart');
+            $.ajax({
+                url : "<?php echo base_url('ajax/ajax_data')?>",
+                type: "POST",
+                data : {
+                    type : 'get_ukuran_stok',
+                    <?php echo $this->security->get_csrf_token_name(); ?> : '<?php echo $this->security->get_csrf_hash(); ?>',
+                    id : id_produk
+                },
+                dataType: "JSON",
+                success: function(data){
+                    
+                    $("#preload").hide();
+                    if(data.success){
+                        var ukuran = {};
+                            for (let i = 0; i < data.data_ukuran.length; i++) {
+                                ukuran[data.data_ukuran[i].ukuran] = data.data_ukuran[i].ukuran+' - Stok : ('+data.data_ukuran[i].stok+')' ;
+                            }
+                        Swal.fire({
+                            title: 'Pilih Ukuran',
+                            input: 'select',
+                            inputOptions: ukuran,
+                            inputPlaceholder: 'Pilih Ukuran',
+                            showCancelButton: true,
+                            inputValidator: (value) => {
+                                 proses_cart(id_produk,'add_chart',value);
+                            }
+                            })
+                    }else{
+                        if (data.login) {
+                            swal.fire({title: "Perhatian",text: data.message,type: "warning"});
+                        }else{
+                            swal.fire({
+                                title: "Perhatian",
+                                text: "Untuk menambahkan produk ke keranjang harap login terlebih dahulu !",
+                                type: "warning",
+                                confirmButtonText: "Login"
+                            }).then((result) => {
+                                if (result.value) {
+                                    // login();
+                                    window.location.href = "<?php echo base_url('login'); ?>";
+                                }
+                            });
+                        }
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown){
+                    $("#preload").hide();
+                    alert('Error get data from ajax');
+                }
+            });
+            
         });
 
-        function proses_cart(id,type='add_chart'){
+        function proses_cart(id,type='add_chart',size=''){
             $("#preload").show();
             $.ajax({
                 url : "<?php echo base_url('ajax/ajax_data')?>",
@@ -378,7 +406,8 @@
                     status : type,
                     type : 'add_chart',
                     <?php echo $this->security->get_csrf_token_name(); ?> : '<?php echo $this->security->get_csrf_hash(); ?>',
-                    id : id
+                    id : id,
+                    size: size,
                 },
                 dataType: "JSON",
                 success: function(data){
@@ -444,8 +473,10 @@
             });
         }
 
-        function beli_chart(id,type,qty=1){   
+        function beli_chart(id,type,qty=1,size){   
             $("#preload").show();
+
+            
             $.ajax({
                 url : "<?php echo base_url('ajax/ajax_data')?>",
                 type: "POST",
@@ -454,7 +485,8 @@
                     type : 'beli_chart',
                     <?php echo $this->security->get_csrf_token_name(); ?> : '<?php echo $this->security->get_csrf_hash(); ?>',
                     id : id,
-                    qty : qty
+                    qty : qty,
+                    size : size
                 },
                 dataType: "JSON",
                 success: function(data){

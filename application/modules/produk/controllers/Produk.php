@@ -52,6 +52,29 @@ class Produk extends MY_Controller {
         if (!$insert){
             echo json_encode(['success' => false, 'message' => 'Data gagal ditambahkan','status' => TRUE]);
         }else{
+
+            //insert stok produk
+            $data_stok_ukuran=array();
+            if (!empty($this->input->post('ukuran',true))) {
+                foreach ($this->input->post('ukuran',true) as $key => $value) {
+                    if ($this->input->post('stok',true)[$key] != '') {
+                        $data_stok_ukuran[] = array(
+                            'id_produk' => $insert,
+                            'ukuran' => $value,
+                            'stok' => format_uang($this->input->post('stok',true)[$key])
+                        );
+                    }
+                }
+            }
+
+            
+
+
+            if ($data_stok_ukuran) {
+                $this->query_model->insert_batch('m_produk_stok', $data_stok_ukuran);
+            }
+
+
             //insert foto produk
             $gallery = array();
             foreach ($this->input->post('file',true) as $key => $value) {
@@ -61,9 +84,16 @@ class Produk extends MY_Controller {
                ); 
             }
 
+
+
+
             if ($gallery) {
                 $this->query_model->insert_batch('m_produk_foto',$gallery);
             }
+
+            
+
+            
 
             echo json_encode(['success' => true, 'message' => 'Data Berhasil ditambahkan','status' => TRUE]);
         }
@@ -107,6 +137,8 @@ class Produk extends MY_Controller {
         $json_link_sosmed = $this->_get_json_link_sosmed();
         $json_link_video = $this->_get_json_link_video();
         $json_id_kurir = $this->_get_json_kurir();
+        $json_ukuran_stok = $this->_get_json_stok_ukuran();
+
 
         $data = array(
             'kode_produk'       => time(),
@@ -115,7 +147,8 @@ class Produk extends MY_Controller {
             'nama_produk'       => $this->input->post('nama_produk',true),
             'tags'              => $tags,
             'harga'             => format_uang($this->input->post('harga',true)),
-            'stok'              => format_uang($this->input->post('stok',true)),
+            // 'stok'              => format_uang($this->input->post('stok',true)),
+            'stok'              => $json_ukuran_stok['stok'],
             'berat'             => $this->input->post('berat',true),
             'diskon'            => $this->input->post('diskon',true),
             'diskon_nominal'    => format_uang($this->input->post('diskon_nominal',true)),
@@ -184,6 +217,26 @@ class Produk extends MY_Controller {
         return $json_link_eksternal;
     }
 
+    private function _get_json_stok_ukuran(){
+        $stok = 0;
+        if (!empty($this->input->post('ukuran',true))) {
+            foreach ($this->input->post('ukuran',true) as $key => $value) {
+                if ($this->input->post('stok',true)[$key] != '') {
+                    $stok += $this->input->post('stok',true)[$key];
+                }
+            }
+        }
+
+        if ($stok > 0) {
+            $json_data_stok_ukuran['stok'] = $stok;
+        }else{
+            $json_data_stok_ukuran['stok'] = 0;
+
+        }
+
+        return $json_data_stok_ukuran;
+    }
+
     private function _get_json_link_video(){
         $link_eksternal = array();
         if (!empty($this->input->post('link_video',true))) {
@@ -227,6 +280,7 @@ class Produk extends MY_Controller {
         $no 	= $this->input->post('start');
 
 		$list = $this->m_table->get_datatables('data_produk',$sort,$order);
+        
         foreach ($list as $l) {
             $no++;
             $l->no = $no;
@@ -237,7 +291,7 @@ class Produk extends MY_Controller {
             }
             $l->created_at = indonesian_date($l->created_at);
             $l->namausaha = text($l->namausaha);
-            $l->harga = "Rp. ".rp($l->harga);
+            $l->harga_produk = "Rp. ".rp($l->harga);
             $l->stok = rp($l->stok);
 
             if($this->user_model->is_umkm_admin()){
@@ -308,7 +362,13 @@ class Produk extends MY_Controller {
         $query['where']     = 'id_produk = '.(int)$this->input->post('id');
         $gallery            = $this->query_model->getData($query);
 
+        $query['select']    = '*';
+        $query['table']     = 'm_produk_stok';
+        $query['where']     = 'id_produk = '.(int)$this->input->post('id');
+        $stok            = $this->query_model->getData($query);
+
         $data['gallery']    = $gallery;
+        $data['stok']    = $stok;
         $data['produk']     = $produk;
 
         echo json_encode($data);

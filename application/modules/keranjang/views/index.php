@@ -47,19 +47,31 @@
 		width: 170px;
 		text-align: center;
 	}
+	.data_keranjang{
+		display: block;
+		margin-top: 20px;
+	}
 </style>
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Keranjang Saya</h4>
+                    <div class="breadcrumb__links">
+						<a href="<?php echo base_url(); ?>">Beranda</a>
+                        <span>Keranjang</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="container container-240">
-    <ul class="breadcrumb">
-        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-        <li class="active">Keranjang</li>
-    </ul>
     <div class="row shop-colect">
     	<div class="col-md-12 col-sm-12 col-xs-12 collection-list">
             <div class="e-product">
-                <div class="pd-top" style="padding: 20px 0;">
-                    <h1 class="title">Keranjang Saya</h1>
-                </div>
-                <div class="row data_keranjang">
+                <div class="row data_keranjang ">
                 	
 				</div>
 			</div>

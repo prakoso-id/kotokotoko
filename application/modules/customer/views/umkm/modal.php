@@ -34,16 +34,16 @@
                                 <small>Alamat Usaha</small>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="nav-link" id="nav_link_step-3" href="#step-3">
                                 <i class="fas fa-file-alt"></i>
                                 <br>
-                                <small>Upload Berkas</small>
+                                <small>Upload Logo</small>
                             </a>
-                        </li>
+                        </li> -->
 
                         <li>
-                            <a class="nav-link" id="nav_link_step-4" href="#step-4">
+                            <a class="nav-link" id="nav_link_step-3" href="#step-4">
                                 <i class="fas fa-check-circle"></i>
                                 <br>
                                 <small>Selesai</small>
@@ -59,15 +59,15 @@
                             <input type="hidden" name="jenis">
                             <input type="hidden" name="id">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-12" style="display: none;">
                                     <div class="position-relative row form-group">
                                         <label class="col-sm-12 col-form-label" style="font-weight:600">LEGALITAS IZIN USAHA</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="display: none;">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="position-relative row form-group">
+                                            <div class="position-relative row form-group " style="display: none;">
                                                 <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Bentuk Usaha</label>
                                                 <div class="col-lg-12">
                                                     <select name="id_bentuk_usaha" class="form-control select2" data-step="step-1" style="width: 100%;" onchange="load_form_nama_perusahaan()">
@@ -78,8 +78,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 f_nama_perusahaan" style="display: none;">
-                                            <div class="position-relative row form-group">
+                                        <div class="col-md-12 f_nama_perusahaan" >
+                                            <div class="position-relative row form-group" style="display: none;">
                                                 <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Nama Perusahaan</label>
                                                 <div class="col-lg-12">
                                                     <input type="text" name="nama_perusahaan" class="form-control" data-step="step-1" placeholder="Contoh : ABCD (Tanpa PT/CV)">
@@ -89,14 +89,14 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group" style="display: none;">
                                         <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Nama Usaha</label>
                                         <div class="col-lg-12">
                                             <input type="text" name="nama_usaha" class="form-control" data-step="step-1" placeholder="Contoh : Warung Kita Semua">
                                             <span class="help-block invalid-feedback"></span>
                                         </div>
                                     </div>
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group" style="display: none;">
                                         <label class="col-sm-12 col-form-label" style="font-weight:600">Nomor NPWP</label>
                                         <div class="col-lg-12">
                                             <input type="text" name="nomor_npwp" class="form-control" data-step="step-1" placeholder="Contoh : 01.855.081.4-412.000">
@@ -143,7 +143,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group" style="display:none;">
                                         <div class="col-md-12">
                                             <button type="button" class="btn btn-primary tambah_izin_usaha">
                                                 <i class="fa fa-plus"></i> &nbsp; Tambah Nama Izin Usaha
@@ -155,25 +155,25 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="position-relative row form-group">
-                                        <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Cara Pembayaran</label>
+                                    <div class="position-relative row form-group" >
+                                        <!-- <label class="col-sm-12 col-form-label" style="font-weight:600"style="display: none;"><font color="red">*</font>Cara Pembayaran</label> -->
                                         <div class="col-lg-12">
-                                            <div class="custom-control custom-checkbox">
+                                            <div class="custom-control custom-checkbox"style="display: none;">
                                                 <input class="custom-control-input" type="radio" name="cara_pembayaran" id="langsung" value="langsung" checked>
                                                 <label class="custom-control-label" for="langsung">
                                                     Langsung&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </label>
                                             </div>
-                                            <div class="custom-control custom-checkbox">
+                                            <div class="custom-control custom-checkbox"style="display: none;">
                                                 <input class="custom-control-input" type="radio" name="cara_pembayaran" id="transfer" value="transfer">
                                                 <label class="custom-control-label" for="transfer">
                                                     Transfer Bank&nbsp;&nbsp;&nbsp;
                                                 </label>
                                             </div>
-                                            <div id="transfer_bank" style="display:none">
+                                            <div id="transfer_bank" >
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="position-relative row form-group">
+                                                        <div class="position-relative row form-group"style="display: none;">
                                                             <label class="col-sm-12 col-form-label" style="font-weight:600">Nomor Rekening</label>
                                                             <div class="col-lg-12">
                                                                 <input type="text" name="no_rekening" class="form-control" data-step="step-1" placeholder="Nomor Rekening" onkeypress="return Angkasaja(event)" maxlength="20">
@@ -182,7 +182,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="position-relative row form-group">
+                                                        <div class="position-relative row form-group"style="display: none;">
                                                             <label class="col-sm-12 col-form-label" style="font-weight:600">Bank</label>
                                                             <div class="col-lg-12">
                                                                 <select name="id_bank" class="form-control select2 " data-step="step-1" style="width: 100%;">
@@ -194,7 +194,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="position-relative row form-group">
+                                                <div class="position-relative row form-group"style="display: none;">
                                                     <label class="col-sm-12 col-form-label" style="font-weight:600">Rekening Atas Nama</label>
                                                     <div class="col-lg-12">
                                                         <input type="text" name="an_rekening" class="form-control" data-step="step-1" placeholder="Rekening Atas Nama" value="<?php echo $this->session->nama_lengkap; ?>">
@@ -224,7 +224,7 @@
                                             <span class="help-block invalid-feedback"></span>
                                         </div>
                                     </div>
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group"style="display: none;">
                                         <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Sektor Usaha</label>
                                         <div class="col-lg-12">
                                             <select name="id_sektor_usaha[]" multiple="multiple" class="form-control select2 " data-step="step-1" style="width: 100%;" placeholder="Pilih sektor usaha yang sedang dijalani">
@@ -235,7 +235,7 @@
                                         </div>
                                     </div>
                                    
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group"style="display: none;">
                                         <label class="col-sm-12 col-form-label" style="font-weight:600">Kegiatan Usaha Utama</label>
                                         <div class="col-lg-12">
                                             <input type="text" name="kegiatan_usaha_utama" class="form-control" data-step="step-1" placeholder="Contoh : Usaha Makanan Beku">
@@ -243,7 +243,7 @@
                                         </div>
                                     </div>     
                                         
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group"style="display: none;">
                                         <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Tanggal Mulai Usaha</label>
                                         <div class="col-lg-12">
                                             <input style="width:100%;" class="form-control " data-step="step-1" type="text"  name="tgl_usaha" id="tgl_usaha">
@@ -291,7 +291,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="view_ecommerce">
+                                    <div class="view_ecommerce" style="display: none;">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="position-relative row form-group">
@@ -322,7 +322,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="position-relative row form-group">
+                                    <div class="position-relative row form-group" style="display: none;">
                                         <div class="col-md-12">
                                             <button type="button" class="btn btn-primary tambah_ecommerce" onclick="get_form_ecommerce()">
                                                 <i class="fa fa-plus"></i> &nbsp; Tambah Toko Online
@@ -340,7 +340,7 @@
                                         </label>
                                     </div>
                                     
-                                    <div class="view_medsos">
+                                    <div class="view_medsos" >
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="position-relative row form-group">
@@ -381,7 +381,7 @@
                                             </button>    
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style="display: none;">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="position-relative row form-group">
@@ -517,10 +517,32 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="position-relative row form-group">
+                                                <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Provinsi</label>
+                                                <div class="col-lg-12">
+                                                    <select name="id_prop" class="form-control select2" data-step="step-2" style="width: 100%;">
+
+                                                    </select>
+                                                    <input type="hidden" name="nama_prop" class="form-control" data-step="step-2">
+                                                    <span class="help-block invalid-feedback"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="position-relative row form-group">
+                                                <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Kota</label>
+                                                <div class="col-lg-12">
+                                                    <select name="id_kota" class="form-control select2" data-step="step-2" style="width: 100%;">
+
+                                                    </select>
+                                                    <input type="hidden" name="nama_kota" class="form-control" data-step="step-2">
+                                                    <span class="help-block invalid-feedback"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="position-relative row form-group">
                                                 <label class="col-sm-12 col-form-label" style="font-weight:600"><font color="red">*</font>Kecamatan</label>
                                                 <div class="col-lg-12">
-                                                    <input type="hidden" name="id_prop" data-step="step-2">
-                                                    <input type="hidden" name="id_kota" data-step="step-2">
                                                     <select name="id_kec" class="form-control select2" data-step="step-2" style="width: 100%;">
 
                                                     </select>
@@ -572,7 +594,7 @@
                             </div>
                         </div>
 
-                        <div id="step-3" class="tab-pane step-3" role="tabpanel">
+                        <div id="step-" class="tab-pane step-" role="tabpanel" >
                             <div class="position-relative row form-group">
                                 <label class="col-sm-3 col-form-label" style="font-weight:600">Logo Toko</label>
                                 <div class="col-lg-9">
@@ -684,7 +706,7 @@
                             </div>
                         </div>
 
-                        <div id="step-4" class="tab-pane step-4" role="tabpanel">
+                        <div id="step-3" class="tab-pane step-3" role="tabpanel">
                             <div class="alert alert-warning" role="alert">
                               <h4 class="alert-heading">Apakah data yang dikirim sudah benar?</h4>
                               <p style="text-align: justify;">Data yang sudah disimpan tidak bisa diubah lagi, pastikan data yang dimasukkan benar.</p>
@@ -696,11 +718,11 @@
                                 </div>
                                 
                                 <div class="col-md-12">
-                                    <h6 >LEGALITAS IZIN USAHA</h6>
+                                    <h6 >LEGALITAS IZIN USAHAs</h6>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" style="display:none;">
                                             <table class="table table-striped" width="100%">
                                                 <tr>
                                                   <th scope="row" width="30%">Nama Perusahaan</th><td width="70%"><span class="preview-nama_perusahaan"></span></td>
@@ -716,7 +738,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" style="display:none;">
                                             <table class="table table-striped" width="100%">
                                                 <tr>
                                                   <th scope="row" width="30%">Bentuk Usaha</th><td width="70%"><span class="preview-bentuk_usaha"></span></td>
@@ -783,6 +805,12 @@
                                 <div class="col-md-12">
                                     <h6 >ALAMAT WORKSHOP LOKASI USAHA</h6>
                                     <table class="table table-striped" width="100%">
+                                        <tr>
+                                          <th scope="row">Provinsi</th><td><span class="preview-id_prop"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">Kota/Kabupaten</th><td><span class="preview-id_kota"></span></td>
+                                        </tr>
                                         <tr>
                                           <th scope="row">Kecamatan</th><td><span class="preview-id_kec"></span></td>
                                         </tr>

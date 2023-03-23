@@ -199,13 +199,14 @@ class Query_model extends CI_Model{
 
 	public function keranjang($type,$limit=null,$sort=null,$order=null)
 	{
-		$this->db->select('a.id_keranjang,a.quantity,a.is_checked,b.stok,b.harga,b.diskon,b.diskon_nominal,b.nama_produk,b.berat,b.id_kurir as id_kurir_produk,
+		$this->db->select('a.id_keranjang,a.quantity,a.is_checked,a.size,(select stok from m_produk_stok  WHERE id_produk = a.id_produk AND ukuran = a.size LIMIT 1) as stok,b.harga,b.diskon,b.diskon_nominal,b.nama_produk,b.berat,b.id_kurir as id_kurir_produk,
 			b.id_umkm as username,c.namausaha as nama_umkm,c.username as username_umkm, c.id_kurir as id_kurir_umkm, c.id_status,
 			d.id_kel as id_kel_umkm, d.id_kec as id_kec_umkm, d.no_kab as no_kab_umkm, 
 			d.no_prop as no_prop_umkm, d.kode_pos as kode_pos_umkm, d.alamat as alamat_umkm, d.nama_kel, d.nama_kec,
 			a.id_produk,b.kode_produk,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto,e.id_wishlist');
 		$this->db->from('m_keranjang a');
 		$this->db->join('m_produk b','b.id_produk = a.id_produk');
+		// $this->db->join('m_produk_stok stoks','stoks.id_produk = b.id_produk');
 		$this->db->join('m_umkm c','c.id_umkm = b.id_umkm');
 		$this->db->join('m_umkm_alamat as d','d.id_umkm = c.id_umkm','left');
 		$this->db->join('m_wishlist e', 'e.id_produk = a.id_produk AND e.status = "like" AND e.username = "'.$this->session->identity.'"','left');
@@ -226,6 +227,10 @@ class Query_model extends CI_Model{
 			$result = $this->db->get()->num_rows();
 		}else if($type == 'data'){
 			$result = $this->db->get()->result();
+		}else if($type == 'datas'){
+			$this->db->get();
+			echo $this->db->last_query();
+			die;
 		}
 		return $result;
 	}

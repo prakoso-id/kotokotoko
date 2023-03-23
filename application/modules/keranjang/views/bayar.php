@@ -11,6 +11,24 @@
 	}
 	.form-group .select2-container { position: relative; z-index: 2; float: left; width: 100%; margin-bottom: 0; display: table; table-layout: fixed;} 
 </style>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Produk</h4>
+                    <div class="breadcrumb__links">
+						<a href="<?php echo base_url(); ?>">Beranda</a>
+						<a href="<?php echo base_url('keranjang'); ?>">Keranjang</a>
+                        <span>Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 <div class="container container-240">
     <ul class="breadcrumb">
         <li><a href="<?php echo base_url(); ?>">Beranda</a></li>

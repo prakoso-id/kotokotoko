@@ -241,8 +241,10 @@ function update_dilihat($id_produk,$dilihat)
                'created_at'    => date('Y-m-d H:s:i'),
           );
 
+
           $CI->query_model->insert('m_history',$history);
      }
+     
 
      return true;
 }
@@ -1182,6 +1184,36 @@ function cek_stok_produk($id_produk){
      $data = $CI->db->get()->row();
      if ($data) {
           $res = $data->stok;
+     }else{
+          $res = null;
+     }
+     return $res;
+}
+
+function cek_stok_ukuran_produk($id_produk, $ukuran){
+     $CI = get_instance();
+     $CI->db->select('stok');
+     $CI->db->from('m_produk_stok');
+     $CI->db->where('id_produk',(int)$id_produk);
+     $CI->db->where('ukuran',$ukuran);
+
+     $data = $CI->db->get()->row();
+     if ($data) {
+          $res = $data->stok;
+     }else{
+          $res = null;
+     }
+     return $res;
+}
+
+function get_stok_ukuran_produk($id_produk){
+     $CI = get_instance();
+     $CI->db->select('*');
+     $CI->db->from('m_produk_stok');
+     $CI->db->where('id_produk',(int)$id_produk);
+     $data = $CI->db->get()->result();
+     if ($data) {
+          $res = $data;
      }else{
           $res = null;
      }

@@ -1,5 +1,5 @@
 <!-- Header Section Begin -->
-<header class="header">
+<header class="header" id="myHeader">
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -38,7 +38,7 @@
                                 </div>
                             <?php } else{?>
                             <div class="header__top__links">
-                                <a href="#">Masuk/Daftar</a>
+                                <a href="<?= base_url('login') ?>">Masuk/Daftar</a>
                             </div>
                             <?php }?>
                             
@@ -109,6 +109,8 @@
                                                                 href="<?php echo base_url('list-produk/produk/'.short($value->kode_produk)) ?>"><?php echo readMore($value->nama_produk,50); ?>
                                                             </a></div>
                                                         <div class="product-price">
+                                                            <span>Ukuran : <?php echo $value->size; ?></span>
+                                                            <br>
                                                             <?php if ($value->diskon > 0) : ?>
                                                             <?php echo "Rp. ".rp($value->harga - $value->diskon_nominal); ?>
                                                             <span id="notif_cart_qty_<?php echo $i; ?>">( x
@@ -124,7 +126,7 @@
                                                     </div>
                                                 </div>
                                                 <div title="Hapus Produk dari Keranjang" class="e-del hapus-produk"
-                                                    data-id="<?php echo $value->id_produk; ?>"><i class="fa fa-trash"></i>
+                                                    data-id="<?php echo $value->id_produk; ?>"data-size="<?php echo $value->size; ?>"><i class="fa fa-trash"></i>
                                                 </div>
                                             </li>
                                             <?php $i++; }

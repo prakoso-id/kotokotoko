@@ -61,7 +61,7 @@
 			      			<div class="form-row">
 			      				<?php 
 			      				if(!$this->user_model->is_umkm_admin()){ ?>
-			      					<div class="form-group col-md-3">
+			      					<!-- <div class="form-group col-md-3">
 					              		<label for="filter_umkm">UMKM</label>
 					              		<select class="form-control select2 filter_umkm" name="filter_umkm" id="filter_umkm" style="width: 100%;">
 											<option value="">--Semua--</option>
@@ -77,20 +77,20 @@
 											?>
 										</select>
 									</div>
-									<input type="hidden" class="form-control filter_nama_umkm" name="filter_nama_umkm">
+									<input type="hidden" class="form-control filter_nama_umkm" name="filter_nama_umkm"> -->
 			      				<?php }else{
-			      					echo '<input type="hidden" class="form-control filter_umkm" name="filter_umkm">';
-			      					echo '<div class="form-group col-md-3">
-					              				<label for="filter_nama_umkm">Nama UMKM</label>
-					              				<input type="text" name="filter_nama_umkm" id="filter_nama_umkm" placeholder="Nama UMKM" required="" class="filter_nama_umkm form-control" maxlength="20">
-										  </div>';
+			      					// echo '<input type="hidden" class="form-control filter_umkm" name="filter_umkm">';
+			      					// echo '<div class="form-group col-md-3">
+					              	// 			<label for="filter_nama_umkm">Nama UMKM</label>
+					              	// 			<input type="text" name="filter_nama_umkm" id="filter_nama_umkm" placeholder="Nama UMKM" required="" class="filter_nama_umkm form-control" maxlength="20">
+									// 	  </div>';
 			      				} ?>
 					           
-					            <div class="form-group col-md-3">
+					            <div class="form-group col-md-4">
 					              	<label for="filter_produk">Nama Produk</label>
 					              	<input type="text" name="filter_produk" id="filter_produk" placeholder="Nama produk" required="" class="filter_produk form-control" maxlength="20">
 					            </div>
-					            <div class="form-group col-md-3">
+					            <div class="form-group col-md-4">
 					              	<label for="filter_status">Status</label>
 					              	<select class="form-control select2 filter_status" name="filter_status" id="filter_status">
 										<option value="">-- Status Produk --</option>
@@ -98,7 +98,7 @@
 										<option value="2">Tidak Aktif</option>
 									</select>
 					            </div>
-					            <div class="form-group col-md-3">
+					            <div class="form-group col-md-4">
 					              	<label for="filter_kategori">Kategori</label>
 					              	<select class="form-control select2 filter_kategori" name="filter_kategori" id="filter_kategori">
 										<option value="">-- Semua Kategori --</option>

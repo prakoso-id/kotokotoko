@@ -97,7 +97,16 @@
 
     function add_to_chart(id,type){
         var qty = $('[name="quantity"]').val();
-        beli_chart(id,type,qty);
+        var size = document.querySelector('input[name="ukuran"]:checked');
+        if(size ==null){
+            swal.fire({title: "Perhatian",text: 'Silahkan Pilih Ukuran ',type: "warning"});
+
+            return
+
+        }
+        var value = size.value
+
+        beli_chart(id,type,qty,value);
     }
 
     function table_data(){

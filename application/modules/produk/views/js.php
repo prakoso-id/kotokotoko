@@ -98,9 +98,9 @@
                 {'data':'foto'},
                 {'data':'nama_produk'},
                 {'data':'nama_usaha'},
-                {'data':'namausaha'},
+                {'data':'status','visible':false},
                 {'data':'stok'},
-                {'data':'harga'},
+                {'data':'harga_produk'},
                 {'data':'status'},
                 {'data':'aksi','orderable':false},
             ],
@@ -175,6 +175,7 @@
         $('.inputtags').tagsinput('removeAll');
         $('.inputtags input').attr('disabled', 'disabled');
         $('.f_link_video').html('');
+        $('.f_link_stok').html('');
         $('[name="stok"]').attr('disabled', false);
         $('[name="id_kurir[]').attr('disabled', false);
         $.ajax({
@@ -355,6 +356,51 @@
         $('.link_video_'+i).remove();
     }
 
+    var i_stok = 1;
+    function add_stok(){
+        $('.f_link_stok').append(html_form_stok(i_stok));
+        i_stok++;
+    }
+
+    function html_form_stok(i,v='',d='',is_disabled=false){
+        if (is_disabled) {
+            var disabled = 'disabled';
+            var btn_del = '';
+        }else{
+            var disabled = '';
+            var btn_del = `<div class="col-lg-2"><button type="button" class="btn btn-danger" onclick="del_stok(`+i+`)"><i class="fas fa-trash"></i> Hapus</button></div>`;
+        }
+        
+        var html = `<div class="position-relative row form-group link_stok_`+i+`">
+                        <label class="col-sm-3 col-form-label" style="font-weight:600">Stok Ukuran</label>
+                        <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <input type="text" name="ukuran[]" `+disabled+` class="form-control" id="link_stok_`+i+`" placeholder="Ukuran" value="`+d+`">
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" name="stok[]" `+disabled+` class="form-control currency-field" oninput="changeNumber(`+i+`)" placeholder="Stok Produk" id="mount_stok_`+i+`" placeholder="Stok Produk" value="`+v+`">
+                                </div>
+                                `+btn_del+`
+                            </div>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>`;
+        return html;
+    }
+
+    function del_stok(i){
+        $('.link_stok_'+i).remove();
+    }
+
+    function changeNumber(id){
+        const val = this.value;
+        // console.log(val);
+        // // return this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+        setInputFilter(document.getElementById("mount_stok_"+id), function(value) {
+        return /^-?\d*[.]?\d{0,2}$/.test(value) && (value === "" || parseInt(value) <= 999); });
+    }
+
     function simpan_data(){
         Swal.fire({
           title: 'Konfirmasi Simpan',
@@ -390,6 +436,7 @@
                     contentType:false,
                     cache:false,
                     success: function (res) {
+                        alert(res);
                         var obj = JSON.parse(res);
                         if(obj.status){
                             if (obj.success !== true) {
@@ -428,6 +475,8 @@
         $('.inputtags').tagsinput('removeAll');
         $('.inputtags input').attr('disabled', 'disabled');
         $('.f_link_video').html('');
+        $('.f_link_stok').html('');
+
         $.ajax({
             url : "<?php echo base_url('produk/ajax_lihat')?>",
             type: "post",
@@ -462,6 +511,15 @@
                     $.each(arr_link_video, function(item, i) {
                         $('.f_link_video').append(html_form_video(item,i));
                     });
+                }
+
+                if (data.stok) {
+                    if(data.stok.length != 0){
+                        var stok = data.stok;
+                        for (var i = 0; i < stok.length; i++) {
+                            $('.f_link_stok').append(html_form_stok(stok[i].id_stock,stok[i].stok,stok[i].ukuran));
+                        }
+                    }
                 }
 
                 $('[name="diskon"]').val(data.produk.diskon);
@@ -562,6 +620,22 @@
                     $.each(arr_link_video, function(item, i) {
                         $('.f_link_video').append(html_form_video(item,i,true));
                     });
+                }
+
+                if (data.produk.link_video) {
+                    var arr_link_video = JSON.parse(data.produk.link_video);
+                    $.each(arr_link_video, function(item, i) {
+                        $('.f_link_video').append(html_form_video(item,i,true));
+                    });
+                }
+
+                if (data.stok) {
+                    if(data.stok.length != 0){
+                        var stok = data.stok;
+                        for (var i = 0; i < stok.length; i++) {
+                            $('.f_link_stok').append(html_form_stok(stok[i].id_stock,stok[i].stok,stok[i].ukuran,true));
+                        }
+                    }
                 }
 
                 CKEDITOR.instances['pesan_detail'].setData(data.produk.deskripsi);

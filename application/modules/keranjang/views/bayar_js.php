@@ -30,7 +30,7 @@
 		$('#modal_alamat .modal-title').text('Data Alamat');
 		$('#modal_alamat').modal('show');
 		$('#modal_alamat .table_alamat').html('');	
-		$('#modal_alamat .table_alamat').load('<?php echo base_url('ajax/table_alamat');?>/', function(data, status) 
+		$('#modal_alamat .table_alamat').load('<?php echo base_url('ajax/table_alamat');?>', function(data, status) 
 	        {
 	            //$("#loading-overlay").hide();         
 	        }
@@ -106,6 +106,7 @@
 	function get_ongkir(id_umkm){
 		var id_alamat = $('#id_alamat').val();
 		var id_kurir = $('#id_kurir_'+id_umkm).val();
+		console.log(id_kurir,id_alamat);
 		if (!id_alamat) {
 			Swal.fire({type: 'warning',text: 'Silahkan pilih alamat pengiriman terlebih dahulu !',title : 'Peringatan'});
 
@@ -118,10 +119,11 @@
 			$('#kurir_service_'+id_umkm).html('<option value="">--Pilih Service--</option>');
 			hitung_total_checkout();
 		}else{
+			
 			$("#loading").show();
 			$('#kurir_service_'+id_umkm).html('<option value="">--Pilih Service--</option>');
 			$.ajax({
-				url : "<?php echo base_url('ajax/ajax_data/')?>",
+				url : "<?php echo base_url('ajax/ajax_data')?>",
 				type: "POST",
 				data : {
 					type : 'data_ongkir',

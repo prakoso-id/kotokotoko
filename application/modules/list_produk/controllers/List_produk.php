@@ -137,6 +137,8 @@ class List_produk extends MY_Controller {
 
 		if($produk){
 			$gallery = $this->produk_model->get_foto_produk($produk->id_produk);
+			$stok_ukuran = $this->produk_model->get_stok_ukuran_produk($produk->id_produk);
+
 			$rekomendasi = $this->produk_model->get_produk_rekomendasi($produk->id_jenis_usaha,$produk->id_produk);
 			$produk_lain = $this->produk_model->get_produk_lain($produk->id_umkm,$produk->id_produk);
 			update_dilihat($produk->id_produk,$produk->dilihat);
@@ -174,6 +176,7 @@ class List_produk extends MY_Controller {
 				'active'		=> $active,
 				'produk'		=> $produk,
 				'gallery'		=> $gallery,
+				'stok_ukuran'	=> $stok_ukuran,
 				'rekomendasi'	=> $rekomendasi,
 				'produk_lain'	=> $produk_lain,
 				'keranjang'		=> $keranjang,
@@ -182,6 +185,8 @@ class List_produk extends MY_Controller {
 				'title_beranda'	=> $produk->nama_produk,
 				'paling_dicari' => get_most_search(),
 			);
+
+			// echo json_encode($this->data);die;
 
 			$this->template->render("detail",$this->data);
 		}

@@ -96,7 +96,9 @@
 
 					$('.hapus-produk').click(function() {
 						var id_produk = $(this).data("id");
-						del_cart(id_produk);
+						var size = $(this).data("size");
+
+						del_cart(id_produk,size);
 					});
 
 					$('.btn-number').click(function(e){
