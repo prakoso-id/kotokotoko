@@ -60,6 +60,7 @@
 				var data = new FormData(form);
 				var url = '<?php echo base_url("ajax/ajax_save"); ?>';
 
+
 				$.ajax({
 					url: url,
 					type: 'post',
@@ -69,13 +70,41 @@
 					contentType:false,
 					cache:false,
 					success: function (res) {
-						$("#loading").hide();
 						var obj = JSON.parse(res);
+
+						$("#loading").hide();
+						
+						// var obj = JSON.parse(res);
 						if(obj.status){
 							if (obj.success !== true) {
 								Swal.fire({text: obj.message,title: "Error" ,type: "error"});
 							}else {
 								Swal.fire({text: obj.message,title: "Sukses",type: "success"});
+
+								// snap.pay(obj.snapToken, {
+								// 	// Optional
+								// 	onSuccess: function (result) {
+								// 		console.log("onSuccess")
+								// 		/* You may add your own js here, this is just example */
+								// 		//document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+								// 		document.getElementById('result-json').value += JSON.stringify(result, null, 2);
+								// 		// $('#finishFormZakat').submit();
+								// 	},
+								// 	// Optional
+								// 	onPending: function (result) {
+								// 		console.log("onPending")
+								// 		/* You may add your own js here, this is just example */
+								// 		document.getElementById('result-json').value += JSON.stringify(result, null, 2);
+								// 		// $('#finishFormZakat').submit();
+								// 	},
+								// 	// Optional
+								// 	onError: function (result) {
+								// 		console.log("onError")
+								// 		/* You may add your own js here, this is just example */
+								// 		document.getElementById('result-json').value += JSON.stringify(result, null, 2);
+								// 		// $('#finishFormZakat').submit();
+								// 	}
+								// });
 
                                 setTimeout(function () {
 							       window.location.href = "<?php echo base_url('transaksi/customer'); ?>";

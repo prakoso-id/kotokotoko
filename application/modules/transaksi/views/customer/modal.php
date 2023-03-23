@@ -1,5 +1,5 @@
 <div id="modal_data" class="modal fade">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLongTitle"></h5>
@@ -314,7 +314,7 @@
 </div>
 
 <div id="modal_ulasan" class="modal fade" data-backdrop="false">
-	<div class="modal-dialog modal-md">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLongTitle"></h5>
@@ -392,7 +392,7 @@
 </div>
 
 <div id="modal_chat" class="modal fade" data-backdrop="false">
-	<div class="modal-dialog modal-md">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">
@@ -409,7 +409,7 @@
 </div>
 
 <div id="modal_upload_bukti_bayar" class="modal fade" data-backdrop="false">
-	<div class="modal-dialog modal-md">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">

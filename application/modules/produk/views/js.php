@@ -436,7 +436,6 @@
                     contentType:false,
                     cache:false,
                     success: function (res) {
-                        alert(res);
                         var obj = JSON.parse(res);
                         if(obj.status){
                             if (obj.success !== true) {

@@ -750,7 +750,7 @@
         $('[name="nama_file_bukti_bayar"]').val('');
         $('.preview-upload-file-bukti-bayar').empty();
         $.ajax({
-            url : "<?php echo base_url('transaksi/ajax_lihat/')?>",
+            url : "<?php echo base_url('transaksi/ajax_lihat')?>",
             type: "POST",
             data : {
                 id   : id_transaksi,
@@ -906,7 +906,7 @@
         }, 1000);
     }
 
-    function lihat_pembayaran(id_transaksi=null,no_virtual_acount=null,is_checkout=null) {
+    function lihat_pembayaran(id_transaksi=null,no_virtual_acount=null,is_checkout=null,midtrans=null) {
         $.ajax({
             url : "<?php echo base_url('transaksi/ajax_lihat')?>",
             type: "POST",
@@ -918,136 +918,138 @@
             },
             dataType: "JSON",
             success: function(data){
-                if (data.no_rekening) {
-                    var norek = data.no_rekening;
-                    var nama_bank = data.nama_bank;
-                    var an_rek = data.an_rekening.toUpperCase();
-                }else{
-                    var norek = '';
-                    var nama_bank = '';
-                    var an_rek = '';
-                }
+                if(midtrans==null){
+                    if (data.no_rekening) {
+                        var norek = data.no_rekening;
+                        var nama_bank = data.nama_bank;
+                        var an_rek = data.an_rekening.toUpperCase();
+                    }else{
+                        var norek = '';
+                        var nama_bank = '';
+                        var an_rek = '';
+                    }
 
-                if (data.va == null) {
-                    var html = `
-                        <div class="alert alert-warning" role="alert">
-                            <p style="text-align: justify;">Silahkan lakukan pembayaran dengan melakukan transfer langsung ke nomor rekening UMKM. Pesanan Anda tidak akan dikirim sampai Anda telah menyelesaikan dan mengupload bukti pembayaran.</p>
+                    if (data.va == null) {
+                        var html = `
+                            <div class="alert alert-warning" role="alert">
+                                <p style="text-align: justify;">Silahkan lakukan pembayaran dengan melakukan transfer langsung ke nomor rekening UMKM. Pesanan Anda tidak akan dikirim sampai Anda telah menyelesaikan dan mengupload bukti pembayaran.</p>
+                                <hr>
+                                <p class="mb-0" style="text-align: justify;">Jika anda tidak melakukan pembayaran dalam waktu 24 jam, maka pesanan anda akan di batalkan secara otomatis oleh sistem.</p>
+                            </div>
+                            
                             <hr>
-                            <p class="mb-0" style="text-align: justify;">Jika anda tidak melakukan pembayaran dalam waktu 24 jam, maka pesanan anda akan di batalkan secara otomatis oleh sistem.</p>
-                        </div>
-                        
-                        <hr>
-                        
-                        <label>Detail Pembayaran</label>
-                        <table class="table" width="100%">
-                            <tr align="left">
-                                <td width="30%">Nama Bank</td>
-                                <td width="2%"> : </td>
-                                <td width="68%"><strong>`+nama_bank+`</strong></td>
-                            </tr>
-                            <tr align="left">
-                                <td>Nama Pemilik</td>
-                                <td> : </td>
-                                <td><strong>`+an_rek+`</strong></td>
-                            </tr>
-                            <tr align="left">
-                                <td>Nomor Rekening</td>
-                                <td> : </td>
-                                <td><strong>`+norek+`</strong></td>
-                            </tr>
-                            <tr align="left">
-                                <td>Jumlah yang harus dibayar</td>
-                                <td> : </td>
-                                <td><strong>Rp. `+format_uang(data.total)+`</strong></td>
-                            </tr>
-                        </table>`;
-                } else {
-                    var html = `
-                        <div class="alert alert-warning" role="alert">
-                            <p style="text-align: justify;">Silahkan lakukan pembayaran dengan melakukan transfer langsung ke nomor Virtual Account Bank BJB. Pesanan Anda tidak akan dikirim sampai Anda telah menyelesaikan pembayaran.</p>
+                            
+                            <label>Detail Pembayaran</label>
+                            <table class="table" width="100%">
+                                <tr align="left">
+                                    <td width="30%">Nama Bank</td>
+                                    <td width="2%"> : </td>
+                                    <td width="68%"><strong>`+nama_bank+`</strong></td>
+                                </tr>
+                                <tr align="left">
+                                    <td>Nama Pemilik</td>
+                                    <td> : </td>
+                                    <td><strong>`+an_rek+`</strong></td>
+                                </tr>
+                                <tr align="left">
+                                    <td>Nomor Rekening</td>
+                                    <td> : </td>
+                                    <td><strong>`+norek+`</strong></td>
+                                </tr>
+                                <tr align="left">
+                                    <td>Jumlah yang harus dibayar</td>
+                                    <td> : </td>
+                                    <td><strong>Rp. `+format_uang(data.total)+`</strong></td>
+                                </tr>
+                            </table>`;
+                    } else {
+                        var html = `
+                            <div class="alert alert-warning" role="alert">
+                                <p style="text-align: justify;">Silahkan lakukan pembayaran dengan melakukan transfer langsung ke nomor Virtual Account Bank BJB. Pesanan Anda tidak akan dikirim sampai Anda telah menyelesaikan pembayaran.</p>
+                                <hr>
+                                <p class="mb-0" style="text-align: justify;">Jika anda tidak melakukan pembayaran dalam waktu 1 jam, maka pesanan anda akan di batalkan secara otomatis oleh sistem.</p>
+                            </div>
+
                             <hr>
-                            <p class="mb-0" style="text-align: justify;">Jika anda tidak melakukan pembayaran dalam waktu 1 jam, maka pesanan anda akan di batalkan secara otomatis oleh sistem.</p>
-                        </div>
+                            
+                            <label>Detail Pembayaran</label>
 
-                        <hr>
-                        
-                        <label>Detail Pembayaran</label>
+                            <table class="table" width="100%">
+                                <tr align="left">
+                                    <td width="30%">Nama Bank</td>
+                                    <td width="2%"> : </td>
+                                    <td width="68%"><strong>BANK BJB</strong></td>
+                                </tr>
+                                <tr align="left">
+                                    <td>Nomor Virtual Account</td>
+                                    <td> : </td>
+                                    <td><strong>`+data.va+`</strong></td>
+                                </tr>
+                                <tr align="left">
+                                    <td>Jumlah yang harus dibayar</td>
+                                    <td> : </td>
+                                    <td><strong>Rp. `+format_uang(data.total)+`</strong></td>
+                                </tr>
+                                <tr align="left">
+                                    <td>Batas Akhir Pembayaran</td>
+                                    <td> : </td>
+                                    <td><strong>`+data.expired_virtual_account+`</strong></td>
+                                </tr>
+                            </table>
 
-                        <table class="table" width="100%">
-                            <tr align="left">
-                                <td width="30%">Nama Bank</td>
-                                <td width="2%"> : </td>
-                                <td width="68%"><strong>BANK BJB</strong></td>
-                            </tr>
-                            <tr align="left">
-                                <td>Nomor Virtual Account</td>
-                                <td> : </td>
-                                <td><strong>`+data.va+`</strong></td>
-                            </tr>
-                            <tr align="left">
-                                <td>Jumlah yang harus dibayar</td>
-                                <td> : </td>
-                                <td><strong>Rp. `+format_uang(data.total)+`</strong></td>
-                            </tr>
-                            <tr align="left">
-                                <td>Batas Akhir Pembayaran</td>
-                                <td> : </td>
-                                <td><strong>`+data.expired_virtual_account+`</strong></td>
-                            </tr>
-                        </table>
+                            <hr>
 
-                        <hr>
+                            <label>Cara Pembayaran</label>
 
-                        <label>Cara Pembayaran</label>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top:20px; text-align:left;">`;
 
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top:20px; text-align:left;">`;
+                        $.each(data.cara_bayar, function(i, cb) {
+                            if (i == 0) {
+                                var is_open = 'in';
+                            }else{
+                                var is_open = '';
+                            }
 
-                    $.each(data.cara_bayar, function(i, cb) {
-                        if (i == 0) {
-                            var is_open = 'in';
-                        }else{
-                            var is_open = '';
-                        }
-
-                        html += `<div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="heading`+i+`">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse`+i+`" aria-expanded="true" aria-controls="collapse`+i+`">
-                                                `+cb.channel+`
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse`+i+`" class="panel-collapse collapse `+is_open+`" role="tabpanel" aria-labelledby="heading`+i+`">
-                                        <div class="panel-body">
-                                            <ul>`;
-                                            $.each(cb.cara, function(x, cr) {
-                                                html += `<li>`+(x+1)+`. `+cr+`</li>`;
-                                            });
-                                    html += `</ul>
+                            html += `<div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading`+i+`">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse`+i+`" aria-expanded="true" aria-controls="collapse`+i+`">
+                                                    `+cb.channel+`
+                                                </a>
+                                            </h4>
                                         </div>
-                                    </div>
-                                </div>`;
+                                        <div id="collapse`+i+`" class="panel-collapse collapse `+is_open+`" role="tabpanel" aria-labelledby="heading`+i+`">
+                                            <div class="panel-body">
+                                                <ul>`;
+                                                $.each(cb.cara, function(x, cr) {
+                                                    html += `<li>`+(x+1)+`. `+cr+`</li>`;
+                                                });
+                                        html += `</ul>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                        });
+
+                        html += `</div>`;
+                    }
+
+                    if (is_checkout) {
+                        var msg_title = '<strong>Pesanan Anda berhasil dibuat</strong>';
+                    }else{
+                        var msg_title = '<strong>Pembayaran</strong>';
+                    }
+
+                    Swal.fire({
+                    title: msg_title,
+                    icon: 'info',
+                    width: 800,
+                    html: html,
+                    showCloseButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:'<i class="fa fa-thumbs-up"></i> Oke',
+                    confirmButtonAriaLabel: 'Thumbs up, great!'
                     });
-
-                    html += `</div>`;
                 }
-
-                if (is_checkout) {
-                    var msg_title = '<strong>Pesanan Anda berhasil dibuat</strong>';
-                }else{
-                    var msg_title = '<strong>Pembayaran</strong>';
-                }
-
-                Swal.fire({
-                  title: msg_title,
-                  icon: 'info',
-                  width: 800,
-                  html: html,
-                  showCloseButton: true,
-                  focusConfirm: false,
-                  confirmButtonText:'<i class="fa fa-thumbs-up"></i> Oke',
-                  confirmButtonAriaLabel: 'Thumbs up, great!'
-                });
             },
             error: function (jqXHR, textStatus, errorThrown){
                 alert('Error get data from ajax');

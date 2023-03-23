@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/mytemplate/css/style.css">
 <style type="text/css">
 	.progress {
 		height: 25px;
@@ -63,7 +64,8 @@
         </div>
     </div>
 </div>
-
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-I6-gbAMFndGtup5U"></script>
+<!-- <script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-4uYv68mbQD3CkMvY"></script> -->
 <?php
 	$this->load->view('modal');
 	$this->load->view('js');

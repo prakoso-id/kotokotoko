@@ -89,7 +89,7 @@
                   </li>
                   <li class="'.($active == 'pengguna'?'active':'').'"><a class="nav-link" href="'.base_url('pengguna').'"><i class="fas fa-users"></i> <span>Pengguna</span></a></li>
                   <li class="'.($active == 'produk'?'active':'').'"><a class="nav-link" href="'.base_url('produk').'"><i class="fas fa-archive"></i> <span>Produk</span></a></li>
-                  <li class="'.($active == 'transaksi_admin'?'active':'').'"><a class="nav-link" href="'.base_url('transaksi/admin').'"><i class="fas fa-clipboard-list"></i> <span>Transaksi</span></a></li>
+                  <li class="'.($active == 'transaksi_penjual'?'active':'').'"><a class="nav-link" href="'.base_url('transaksi/penjual').'"><i class="fas fa-clipboard-list"></i> <span>Transaksi</span></a></li>
                   <li class="'.($active == 'slider'?'active':'').'"><a class="nav-link" href="'.base_url('slider').'"><i class="fas fa-images"></i> <span>Slider & Banner</span></a></li>
                   <li class="'.($active == 'agenda'?'active':'').'"><a class="nav-link" href="'.base_url('agenda/data').'"><i class="fas fa-calendar"></i> <span>Agenda</span></a></li>
                   <li class="'.($active == 'berita'?'active':'').'"><a class="nav-link" href="'.base_url('berita').'"><i class="fas fa-newspaper"></i> <span>Berita</span></a></li>

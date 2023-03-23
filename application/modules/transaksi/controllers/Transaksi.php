@@ -8,7 +8,20 @@ class Transaksi extends MY_Controller {
         if(!$this->user_model->is_login()){
             redirect(base_url());
         }
+        include APPPATH . 'third_party/midtrans-master/Midtrans.php';
+        //Set your Merchant Server Key
+        // \Midtrans\Config::$serverKey = 'Mid-server-hwdhaGr7iFHIXqr-7qrmU1no'; // production
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-nlDTnIx1fJSsS7l6y-1Ob5ys'; // sandbox
+        //Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false; // sandbox
+        // \Midtrans\Config::$isProduction = true; // production
+        // \Midtrans\Config::$isProduction = false;
+        //Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        //Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
         $this->load->model('transaksi_model');
+        
     }
 
     public function customer() {
@@ -47,7 +60,7 @@ class Transaksi extends MY_Controller {
     }
 
     public function penjual() {
-        if (!$this->user_model->is_umkm_penjual()) {
+        if (!$this->user_model->is_umkm_admin()) {
             redirect(base_url());
         }
 
@@ -96,10 +109,12 @@ class Transaksi extends MY_Controller {
             'option_umkm'   => $this->query_model->getumkm(),
             'master_status_transaksi' => $this->transaksi_model->get_m_status_transaksi(),
             'title_beranda' => 'Transaksi',
-            'id_transaksi' => @$this->input->post('id_transaksi')
+            'id_transaksi' => @$this->input->post('id_transaksi'),
+            'submodul' => @$this->input->post('submodul')
+
         );
 
-        $this->template->render("admin/index",$this->data);
+        $this->template->render("penjual/index",$this->data);
     }
 
     public function ajax_list()
@@ -151,6 +166,13 @@ class Transaksi extends MY_Controller {
                     }elseif ($l->id_status_transaksi == 0 && $l->metode_bayar == 'va') {
                         $btn_upload_pembayaran = '<div class="css-1v0ixe8">
                                                     <a href="javascript:void(0);" onclick="lihat_pembayaran(null,'.$l->va_full.')" style="color: #5cb85c;">
+                                                        <span class="fa fa-money" style="font-size: 14px;margin-top: -5px;margin-right: 10px;"></span>
+                                                        <span>Bayar Sekarang</span>
+                                                    </a>
+                                                </div>';
+                    }elseif ($l->id_status_transaksi == 0 && $l->metode_bayar == 'midtrans') {
+                        $btn_upload_pembayaran = '<div class="css-1v0ixe8">
+                                                    <a href="javascript:void(0);" onclick="upload_bukti_bayar('.$l->id_transaksi.')" style="color: #5cb85c;">
                                                         <span class="fa fa-money" style="font-size: 14px;margin-top: -5px;margin-right: 10px;"></span>
                                                         <span>Bayar Sekarang</span>
                                                     </a>
@@ -322,7 +344,7 @@ class Transaksi extends MY_Controller {
                                             Lihat '.($l->jumlah_barang - 1).' Produk Lainnya
                                         </span></div>':'').'
                                 </div>
-                                <div class="footer flex font__size--m" style="margin:0;">
+                                <div class="footer flex font__size--m" style="margin:0; background-color:#fff">
                                     <div class="flex flex--center">
                                         '.$btn_ulasan.'
                                         '.$btn_upload_pembayaran.'
@@ -948,6 +970,42 @@ class Transaksi extends MY_Controller {
                 // kirim_email_transaksi_admin($this->input->post('id_transaksi',true));
                 echo json_encode(['success' => true, 'message' => 'Data bukti pembayaran berhasil disimpan','status' => TRUE]);
             break;
+            case 'bayar_midtrans':
+                $data_costumer = $this->get_contact_user($this->session->user_id);
+                $transaksi = $this->get_total_amaunt($this->input->post('id',true));
+                var_dump($transaksi);die;
+                try {
+                    
+                    $transaction_details = array(
+                        'order_id'      => $this->get_uuid(),
+                        // 'gross_amount'  => $total_harga + $expld_service[2],
+                    );
+                    $customer_details = array(
+                        'first_name'    => $this->session->identity,
+                        'last_name'     => "",
+                        'email'         => $data_costumer->email,
+                        'phone'         => $data_costumer->no_telp
+                    );
+                    //$enable_payments = array("wtf");
+                    $enable_payments = $this->input->post('f_paymethod');
+                    $transaction = array(
+                        'enabled_payments' => $enable_payments,
+                        'transaction_details' => $transaction_details,
+                        'customer_details' => $customer_details,
+                    );
+                    $snapToken = \Midtrans\Snap::getSnapToken($transaction);
+                    // $data=array('token_midtrans' => $snapToken,);
+                    // $this->db->update('m_transaksi', $data, array('id_transaksi' => $insert));
+
+                    //$snapToken = "";
+                    
+                } catch (Exception $e) {
+                    $snapToken = "";
+                }
+
+                echo json_encode(['success' => true, 'snap_token'=>$snapToken, 'status' => TRUE]);
+
+            break;
             default:
                 # code...
             break;
@@ -1163,5 +1221,21 @@ class Transaksi extends MY_Controller {
             )
 
         );
+    }
+
+    private function get_contact_user($user_id){
+        $query['select']    = 'a.email,a.no_telp';
+        $query['table']     = 'm_pengguna a';
+        $query['where']     = 'a.id_pengguna = '.(int)$user_id;
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
+
+    private function get_total_amaunt($id_transaksi){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_transaksi a';
+        $query['where']     = 'a.id_transaksi = '.(int)$id_transaksi;
+        $data               = $this->query_model->getRow($query);
+        return $data;
     }
 }

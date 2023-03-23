@@ -193,13 +193,13 @@ class M_table extends CI_model
             case 'data_pembelian':
                 // $this->db->select('b.no_invoice, a.quantity,a.harga, d.nama_produk,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto, e.username, c.nama_status, a.created_at , a.id_transaksi_detail,b.id_status_transaksi,d.kode_produk');
 
-                $this->db->select('b.*,a.harga,a.quantity,a.jumlah_harga,d.nama_produk,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto, c.nama_status, d.kode_produk,a.id_transaksi_detail,count(b.no_invoice) as jumlah_barang,e.namausaha,f.jumlah_yg_dibayar as jumlah_bayar_va');
+                $this->db->select('b.*,a.harga,a.quantity,a.jumlah_harga,d.nama_produk,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto, c.nama_status, d.kode_produk,a.id_transaksi_detail,count(b.no_invoice) as jumlah_barang,e.namausaha');
                 $this->db->from('m_transaksi b');
                 $this->db->join('m_transaksi_detail a','b.id_transaksi = a.id_transaksi');
                 $this->db->join('m_status_transaksi c','c.id_status_transaksi = b.id_status_transaksi');
                 $this->db->join('m_produk d','d.id_produk = a.id_produk');
                 $this->db->join('m_umkm e','e.id_umkm = d.id_umkm');
-                $this->db->join('pembayaran_VA f','f.no_virtual_acount = b.va and b.id_status_transaksi = 0','left');
+                // $this->db->join('pembayaran_VA f','f.no_virtual_acount = b.va and b.id_status_transaksi = 0','left');
             
                 $this->db->where('b.username',$this->session->identity);
 
@@ -208,7 +208,9 @@ class M_table extends CI_model
                 if(@$filter['status']) $this->db->where('b.id_status_transaksi', $filter['status']);
                 if(@$filter['status'] == '0') $this->db->where('b.id_status_transaksi', 0);
 
-                $this->db->group_by("case when b.metode_bayar = 'va' and b.id_status_transaksi = '0' then b.va else b.no_invoice end");
+                $this->db->group_by("case when b.id_status_transaksi = '0' then b.va else b.no_invoice end");
+                // $this->db->get();
+                // echo $this->db->last_query();die;
 
                 if($_POST['order'][0]['column'] == 0)
                 {

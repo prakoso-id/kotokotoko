@@ -15,7 +15,7 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/bootstrap.min.css" type="text/css">
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/bootstrap.min.css" type="text/css"> -->
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/magnific-popup.css" type="text/css">

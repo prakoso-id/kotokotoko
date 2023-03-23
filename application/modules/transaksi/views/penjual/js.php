@@ -92,6 +92,8 @@
                 if (data.status) {
                     var data = data.data;
 
+                    console.log(data);
+
                     $('.nama_status').text(data.nama_status);
 
                     // set progres bar
@@ -222,6 +224,7 @@
 
                     //jika status menunggu konfirmasi atau sedang diproses maka munculkan form untuk ubah status
                     if (data.id_status_transaksi == 1 || data.id_status_transaksi == 2) {
+                        console.log('wow');
                         $('.f_status_transaksi').show();
                         get_m_status_transaksi(data.id_status_transaksi);
                         $('#btnSave').show();
