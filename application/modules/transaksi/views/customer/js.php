@@ -95,6 +95,77 @@
         table_data();
     });
 
+    function bayar_midtrans(id_transaksi){
+        $.ajax({
+            url : "<?php echo base_url('transaksi/ajax_lihat')?>",
+            type: "POST",
+            data : {
+                id  : id_transaksi,
+                <?php echo $this->security->get_csrf_token_name(); ?> : '<?php echo $this->security->get_csrf_hash(); ?>',
+                type : 'bayar_midtrans',
+            },
+            dataType: "JSON",
+            success: function(data){
+                snap.pay(data.snap_token, {
+                    // Optional
+                    onSuccess: function (result) {
+                        console.log("onSuccess")
+                        /* You may add your own js here, this is just example */
+                        //document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                        // document.getElementById('result-json').value += JSON.stringify(result, null, 2);
+                        // $('#finishFormZakat').submit();
+                        transaksi_midtrans_done(id_transaksi,data.snap_token);
+                    },
+                    // Optional
+                    onPending: function (result) {
+                        console.log("onPending")
+                        /* You may add your own js here, this is just example */
+                        // document.getElementById('result-json').value += JSON.stringify(result, null, 2);
+                        // $('#finishFormZakat').submit();
+                    },
+                    // Optional
+                    onError: function (result) {
+                        console.log("onError")
+                        /* You may add your own js here, this is just example */
+                        // document.getElementById('result-json').value += JSON.stringify(result, null, 2);
+                        // $('#finishFormZakat').submit();
+                    }
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Error get data from ajax');
+            }
+        });
+    }
+
+    function transaksi_midtrans_done(id_transaksi,snapToken){
+        $.ajax({
+            url : "<?php echo base_url('transaksi/ajax_save')?>",
+            type: "POST",
+            data : {
+                type : 'bayar_midtrans_done',
+                <?php echo $this->security->get_csrf_token_name(); ?> : '<?php echo $this->security->get_csrf_hash(); ?>',
+                id_transaksi : id_transaksi,
+                snapToken : snapToken
+            },
+            dataType: "JSON",
+            success: function(data){
+                if(data.status)
+                {
+                    Swal.fire({title: "Selamat!",text: "Pesanan berhasil dibayar",type: "success",});
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500); 
+                }else{
+                    Swal.fire({title: "Perhatian",text: "Pesanan gagal dibayar",type: "warning",});
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Error get data from ajax');
+            }
+        });
+    }
+
     function detail_pesanan(id){
         $('.simpan_data').html('');
         $('.perintah_pembayaran').hide();

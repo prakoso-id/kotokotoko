@@ -1,16 +1,33 @@
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Produk Favorit Saya</h4>
+                    <div class="breadcrumb__links">
+						<a href="<?php echo base_url(); ?>">Beranda</a>
+                        <span>Produk Favorit Saya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 <div class="container container-240 shop-collection">
-    <ul class="breadcrumb">
+    <!-- <ul class="breadcrumb">
         <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
         <li class="active">Produk Favorit Saya</li>
-    </ul>
+    </ul> -->
     <div class="row shop-colect">
     	<div class="col-md-12 col-sm-12 col-xs-12 collection-list">
             <div class="e-product">
                 <div class="pd-top">
-                    <h1 class="title">Produk Favorit Saya</h1>
+                    <h1 class="title"></h1>
                     <div class="show-element"><span><?= 'Menampilkan '.$count_s.'-'.$count_e.' dari '.$count_all.' data'; ?></span></div>
                 </div>
-                <div class="row">
+                <div class="row" >
                 	<div class="col-md-12">
 	                	<div class="input-group col-md-3 col-sm-4 col-xs-12" style="float: right;">
 	                        <input type="hidden" class="form-control" id="cari_produk_old" value="<?php echo htmlentities($this->input->get('cari',true), ENT_QUOTES, 'UTF-8') ?>">
@@ -53,16 +70,16 @@
                     </div>
                 </div>
                 <div class="product-collection-grid product-grid product-grid-v2">
-                    <div class="row">
+                    <div class="row" style="display:block !important;">
                         <?php 
                         if ($wishlist) {
                             foreach ($wishlist as $value) {
                                 echo card_produk($value,'col-xs-6 col-sm-6 col-md-3 col-lg-3');
                             }
                         }else{ ?>
-                            <div class="shopping-cart v2 bd-7">
+                            <div class="shopping-cart v2 bd-7 ">
                                 <div class="cmt-title text-center abs">
-                                    <h1 class="page-title v4">Oppss..</h1>
+                                    <h1 class="page-title v4" style="margin-top:30px">Oppss..</h1>
                                     <div class="w-empty">
                                         <p>Produk tidak ditemukan !</p>
                                     </div>

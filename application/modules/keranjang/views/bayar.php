@@ -83,7 +83,7 @@
     <?php $this->load->view('terakhir_dilihat'); ?>
 </div>
 
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-I6-gbAMFndGtup5U"></script>
+<!-- <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-I6-gbAMFndGtup5U"></script> -->
 <!-- <script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-4uYv68mbQD3CkMvY"></script> -->
 <?php
 	$this->load->view('bayar_js');

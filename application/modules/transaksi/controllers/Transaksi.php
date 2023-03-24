@@ -172,7 +172,7 @@ class Transaksi extends MY_Controller {
                                                 </div>';
                     }elseif ($l->id_status_transaksi == 0 && $l->metode_bayar == 'midtrans') {
                         $btn_upload_pembayaran = '<div class="css-1v0ixe8">
-                                                    <a href="javascript:void(0);" onclick="upload_bukti_bayar('.$l->id_transaksi.')" style="color: #5cb85c;">
+                                                    <a href="javascript:void(0);" onclick="bayar_midtrans('.$l->id_transaksi.')" style="color: #5cb85c;">
                                                         <span class="fa fa-money" style="font-size: 14px;margin-top: -5px;margin-right: 10px;"></span>
                                                         <span>Bayar Sekarang</span>
                                                     </a>
@@ -354,14 +354,7 @@ class Transaksi extends MY_Controller {
                                                 <span>Lihat Detail Pesanan</span>
                                             </a>
                                         </div>
-                                        <div class="css-gcemtj">
-                                            <div class="css-1jyc08">
-                                                <a href="javascript:void(0);" onclick="hubungi_pesan('.$l->id_transaksi.','.$l->id_umkm.')">
-                                                    <span class="fa fa-comments" style="font-size: 14px;margin-top: -5px;margin-right: 10px;"></span>
-                                                    <span>Hubungi Penjual</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -757,6 +750,46 @@ class Transaksi extends MY_Controller {
                 }
                 echo json_encode($data);
             break;
+            case 'bayar_midtrans':
+                $data_costumer = $this->get_contact_user($this->session->user_id);
+                $transaksi = $this->get_transaksi($this->input->post('id',true));
+                $firstName = $this->splitName($data_costumer->nama);
+                // echo json_encode($data_costumer);die;
+                if($transaksi->token_midtrans){
+                    $snapToken = $transaksi->token_midtrans;
+                }else{
+                    try {
+                    
+                        $transaction_details = array(
+                            'order_id'      => $this->get_uuid(),
+                            'gross_amount'  => (int)$transaksi->total,
+                        );
+                        $customer_details = array(
+                            'first_name'    => $firstName[0],
+                            'last_name'     => count($firstName) > 1 ? $firstName[1] : "",
+                            'email'         => $data_costumer->email,
+                            'phone'         => $data_costumer->no_telp
+                        );
+                        //$enable_payments = array("wtf");
+                        $enable_payments = $this->input->post('f_paymethod');
+                        $transaction = array(
+                            'enabled_payments' => $enable_payments,
+                            'transaction_details' => $transaction_details,
+                            'customer_details' => $customer_details,
+                        );
+                        $snapToken = \Midtrans\Snap::getSnapToken($transaction);
+                        $data=array('token_midtrans' => $snapToken,);
+                        $this->db->update('m_transaksi', $data, array('id_transaksi' => $this->input->post('id',true)));
+    
+                        //$snapToken = "";
+                        
+                    } catch (Exception $e) {
+                        $snapToken = "";
+                    }
+                }
+
+                echo json_encode(['success' => true, 'snap_token'=>$snapToken, 'status' => TRUE]);
+            break;
             default:
                 # code...
                 break;
@@ -970,40 +1003,25 @@ class Transaksi extends MY_Controller {
                 // kirim_email_transaksi_admin($this->input->post('id_transaksi',true));
                 echo json_encode(['success' => true, 'message' => 'Data bukti pembayaran berhasil disimpan','status' => TRUE]);
             break;
-            case 'bayar_midtrans':
-                $data_costumer = $this->get_contact_user($this->session->user_id);
-                $transaksi = $this->get_total_amaunt($this->input->post('id',true));
-                var_dump($transaksi);die;
-                try {
-                    
-                    $transaction_details = array(
-                        'order_id'      => $this->get_uuid(),
-                        // 'gross_amount'  => $total_harga + $expld_service[2],
-                    );
-                    $customer_details = array(
-                        'first_name'    => $this->session->identity,
-                        'last_name'     => "",
-                        'email'         => $data_costumer->email,
-                        'phone'         => $data_costumer->no_telp
-                    );
-                    //$enable_payments = array("wtf");
-                    $enable_payments = $this->input->post('f_paymethod');
-                    $transaction = array(
-                        'enabled_payments' => $enable_payments,
-                        'transaction_details' => $transaction_details,
-                        'customer_details' => $customer_details,
-                    );
-                    $snapToken = \Midtrans\Snap::getSnapToken($transaction);
-                    // $data=array('token_midtrans' => $snapToken,);
-                    // $this->db->update('m_transaksi', $data, array('id_transaksi' => $insert));
+            case 'bayar_midtrans_done':
 
-                    //$snapToken = "";
-                    
-                } catch (Exception $e) {
-                    $snapToken = "";
+                $transaksi = $this->get_transaksi($this->input->post('id_transaksi',true));
+                // var_dump($transaksi);die;
+                if($transaksi->token_midtrans == $this->input->post('snapToken',true)){
+                    $data = array(
+                        'id_status_transaksi'   => 1,
+                        'updated_at'            => date('Y-m-d H:i:s'),
+                        'updated_by'            => $this->session->identity
+                    );
+                    $insert = $this->query_model->update('m_transaksi',array('id_transaksi' => $this->input->post('id_transaksi',true)), $data);
+    
+                    echo json_encode(['success' => true, 'message' => 'Transaksi berhasil dibayar','status' => TRUE]);
+                    exit();
+                }else{
+                    echo json_encode(['success' => false, 'message' => 'Transaksi gagal dibayar','status' => false]);
+                    exit();
                 }
 
-                echo json_encode(['success' => true, 'snap_token'=>$snapToken, 'status' => TRUE]);
 
             break;
             default:
@@ -1224,18 +1242,45 @@ class Transaksi extends MY_Controller {
     }
 
     private function get_contact_user($user_id){
-        $query['select']    = 'a.email,a.no_telp';
+        $query['select']    = 'a.*';
         $query['table']     = 'm_pengguna a';
         $query['where']     = 'a.id_pengguna = '.(int)$user_id;
         $data               = $this->query_model->getRow($query);
         return $data;
     }
 
-    private function get_total_amaunt($id_transaksi){
+    private function get_transaksi($id_transaksi){
         $query['select']    = 'a.*';
         $query['table']     = 'm_transaksi a';
         $query['where']     = 'a.id_transaksi = '.(int)$id_transaksi;
         $data               = $this->query_model->getRow($query);
         return $data;
+    }
+
+    
+
+    public function splitName($name)
+    {
+        $name = trim($name);
+        $name = explode(' ', $name);
+        $first_name = $name[0];
+        unset($name[0]);
+        $last_name = implode(' ', $name);
+        return array($first_name, $last_name);
+    }
+
+    public function get_uuid()
+    {
+        return sprintf(
+            '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0x0fff) | 0x4000,
+            mt_rand(0, 0x3fff) | 0x8000,
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff)
+        );
     }
 }

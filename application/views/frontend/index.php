@@ -15,7 +15,7 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <!-- <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/bootstrap.min.css" type="text/css"> -->
+    <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/magnific-popup.css" type="text/css">
@@ -40,7 +40,7 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <div id="loading">
         <div class="loader"></div>
     </div>
 
@@ -79,15 +79,20 @@
     <script src="<?= base_url('assets/templateFE2/')?>js/main.js"></script>
     
     <script src="<?php echo base_url('assets/plugins/jQuery/purify.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/clientjs-master/dist/client.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/forms/selects/select2.min.js');?>"></script>
     <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
     
     <?php echo $scripts_footer; ?>
+
     <script type="text/javascript">
+        
+        set_session()
         var page = "<?php echo $this->uri->segment(1); ?>";
+        
 
         $(window).on('load', function () {
-            $("#preload").fadeOut("fast");
+            $("#loading").fadeOut("fast");
         });
 
         $(document).ready(function(){
@@ -271,7 +276,7 @@
         });
 
         function wishlist(id){   
-            $("#preload").show();
+            $("#loading").show();
             $.ajax({
                 url : "<?php echo base_url('ajax/ajax_data')?>",
                 type: "POST",
@@ -282,7 +287,7 @@
                 },
                 dataType: "JSON",
                 success: function(data){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     if(data.success)
                     {
                         if(data.status == 'like')
@@ -309,7 +314,7 @@
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     alert('Error get data from ajax');
                 }
             });
@@ -354,7 +359,7 @@
                 dataType: "JSON",
                 success: function(data){
                     
-                    $("#preload").hide();
+                    $("#loading").hide();
                     if(data.success){
                         var ukuran = {};
                             for (let i = 0; i < data.data_ukuran.length; i++) {
@@ -374,31 +379,69 @@
                         if (data.login) {
                             swal.fire({title: "Perhatian",text: data.message,type: "warning"});
                         }else{
-                            swal.fire({
-                                title: "Perhatian",
-                                text: "Untuk menambahkan produk ke keranjang harap login terlebih dahulu !",
-                                type: "warning",
-                                confirmButtonText: "Login"
-                            }).then((result) => {
-                                if (result.value) {
-                                    // login();
-                                    window.location.href = "<?php echo base_url('login'); ?>";
-                                }
-                            });
+                            // swal.fire({
+                            //     title: "Perhatian",
+                            //     text: "Untuk menambahkan produk ke keranjang harap login terlebih dahulu !",
+                            //     type: "warning",
+                            //     confirmButtonText: "Login"
+                            // }).then((result) => {
+                            //     if (result.value) {
+                            //         // login();
+                            //         window.location.href = "<?php echo base_url('login'); ?>";
+                            //     }
+                            // });
+                            // var ukuran = {};
+                            // for (let i = 0; i < data.data_ukuran.length; i++) {
+                            //     ukuran[data.data_ukuran[i].ukuran] = data.data_ukuran[i].ukuran+' - Stok : ('+data.data_ukuran[i].stok+')' ;
+                            // }
+                            //     Swal.fire({
+                            //         title: 'Pilih Ukuran',
+                            //         input: 'select',
+                            //         inputOptions: ukuran,
+                            //         inputPlaceholder: 'Pilih Ukuran',
+                            //         showCancelButton: true,
+                            //         inputValidator: (value) => {
+                            //             proses_cart(id_produk,'add_chart',value);
+                            //         }
+                            //         })
+                            // proses_cart
                         }
                     }
 
                 },
                 error: function (jqXHR, textStatus, errorThrown){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     alert('Error get data from ajax');
                 }
             });
             
         });
 
+        function set_session(){
+            const clientBrowser = new ClientJS();
+            const fingerprint = clientBrowser.getFingerprint();
+            $.ajax({
+                url : "<?php echo base_url('ajax/ajax_data')?>",
+                type: "POST",
+                data : {
+                    type : 'session_no_login',
+                    <?php echo $this->security->get_csrf_token_name(); ?> : '<?php echo $this->security->get_csrf_hash(); ?>',
+                    fingerprint,
+                },
+                dataType: "JSON",
+                success: function(data){
+                    
+                },
+            });
+        }
+
+        
         function proses_cart(id,type='add_chart',size=''){
-            $("#preload").show();
+            // Initialize the agent at application startup.
+            // get_visitorID();
+            
+            $("#loading").show();
+            
             $.ajax({
                 url : "<?php echo base_url('ajax/ajax_data')?>",
                 type: "POST",
@@ -411,7 +454,7 @@
                 },
                 dataType: "JSON",
                 success: function(data){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     if(data.success){
                         if(data.status == 'simpan'){
                             if(data.jml_keranjang == 1){
@@ -467,14 +510,14 @@
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     alert('Error get data from ajax');
                 }
             });
         }
 
         function beli_chart(id,type,qty=1,size){   
-            $("#preload").show();
+            $("#loading").show();
 
             
             $.ajax({
@@ -490,7 +533,7 @@
                 },
                 dataType: "JSON",
                 success: function(data){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     if(data.success){
                         window.location.href = "<?php echo base_url('keranjang'); ?>";
                     }else{
@@ -512,7 +555,7 @@
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown){
-                    $("#preload").hide();
+                    $("#loading").hide();
                     alert('Error get data from ajax');
                 }
             });

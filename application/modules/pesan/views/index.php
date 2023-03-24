@@ -8,19 +8,32 @@
 	    overflow-y: scroll;
 	}
 </style>
-
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Pesan</h4>
+                    <div class="breadcrumb__links">
+						<a href="<?php echo base_url(); ?>">Beranda</a>
+                        <span>Pesan Saya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 <div class="container container-240">
-    <ul class="breadcrumb v3">
-        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-        <li class="active">Pesan</li>
-    </ul>
+
     <div class="row" style="margin-bottom: 20px;">
     	<div class="col-md-12">
     		<div class="cmt-title text-center abs">
-                <h1 class="page-title v1">Pesan</h1>
+                
             </div>
 
-    		<button class="btn" style="float: right; margin-bottom: 10px;" onclick="refresh()">
+    		<button class="btn" style="float: right; margin-bottom: 10px; margin-top:20px;" onclick="refresh()">
 				<i class="fa fa-refresh"></i> Refresh
 			</button>
 			<div class="messaging" style="margin-bottom: 30px;">
@@ -28,7 +41,7 @@
 					<div class="inbox_people">
 						<div class="headind_srch">
 							<div class="recent_heading">
-								<h4 style="color: #AB2828;">Pesan</h4>
+								<h4 style="color: #000;">Pesan</h4>
 
 							</div>
 						</div>
@@ -47,9 +60,9 @@
 										<div class="chat_ib">
 											<?php 
 											if($value['flag'] == 1){
-												echo '<p style="color: #AB2828; font-size: 11px;">Penjual</p>';
+												echo '<p style="color: #000; font-size: 11px;">Penjual</p>';
 											}elseif($value['flag'] == 2){
-												echo '<p style="color: #AB2828; font-size: 11px;">Admin</p>';
+												echo '<p style="color: #000; font-size: 11px;">Admin</p>';
 											} 
 											?>
 											<h5>
@@ -64,7 +77,7 @@
 												<p style="font-size: 10px; font-weight: 500">
 													<?php 
 													if ($value['to_umkm']) {
-														echo '<i style="color: #ab2828">Ke : '.$value['to_umkm'].'</i><br>';
+														echo '<i style="color: #000">Ke : '.$value['to_umkm'].'</i><br>';
 													}
 													echo indonesian_date($value['created_at']); 
 													?>
@@ -87,10 +100,10 @@
 							<div id="notfound" style="top: 120px;position: relative;">
 								<div class="notfound">
 									<div class="notfound-404">
-										<h3 style="color: #AB2828">Selamat Datang di Fitur</h3>
-										<h1 style="color: #AB2828"><span>P</span><span>E</span><span>S</span><span>A</span><SPAN>N</SPAN></h1>
+										<!-- <h3 style="color: #000">Selamat Datang di Fitur</h3> -->
+										<h1 style="color: #000"><span>P</span><span>E</span><span>S</span><span>A</span><SPAN>N</SPAN></h1>
 									</div>
-									<h2 style="color: #AB2828">Silakan memilih pesan untuk memulai percakapan</h2>
+									<h2 style="color: #000">Silakan memilih pesan untuk memulai percakapan</h2>
 								</div>
 							</div>
 						</center>

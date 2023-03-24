@@ -15,18 +15,30 @@
 		content: ' ' !important;
 	}
 </style>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Transaksi Pembelian</h4>
+                    <div class="breadcrumb__links">
+						<a href="<?php echo base_url(); ?>">Beranda</a>
+                        <span>Transaksi Pembelian</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 <div class="container container-240">
-    <ul class="breadcrumb v3">
-        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-        <li class="active">Transaksi Pembelian</li>
-    </ul>
+
     <div class="row">
         <div class="col-md-12">
-            <div class="cmt-title text-center abs">
-                <h1 class="page-title v1" style="width: auto !important;padding: 5px;">Daftar Transaksi Pembelian</h1>
-            </div>
+            
             <div class="page-content">
-            	<div class="row" style="margin-bottom: 10px;">
+            	<div class="row" style="margin-top:20px;margin-bottom: 10px;">
             		<div class="col-md-12">
 					    <div class="col-sm-4">
 					      	<input type="text" name="filter_nama" placeholder="Cari Nama Barang" required="" class="filter_nama form-control" maxlength="20">

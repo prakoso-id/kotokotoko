@@ -920,14 +920,16 @@ function aktifkan_produk_by_umkm($id_umkm){
 
 function keranjangku(){
      $CI = get_instance();
-     if($CI->user_model->is_login())
-     {
-          $data['keranjang']     = $CI->query_model->keranjang('data',5);
-          $data['jml_keranjang'] = $CI->query_model->keranjang('jumlah');
-     }else{
-          $data['keranjang'] = null;
-          $data['jml_keranjang'] = 0;
-     }
+     // if($CI->user_model->is_login())
+     // {
+     //      $data['keranjang']     = $CI->query_model->keranjang('data',5);
+     //      $data['jml_keranjang'] = $CI->query_model->keranjang('jumlah');
+     // }else{
+     //      $data['keranjang'] = null;
+     //      $data['jml_keranjang'] = 0;
+     // }
+     $data['keranjang']     = $CI->query_model->keranjang('data',5);
+     $data['jml_keranjang'] = $CI->query_model->keranjang('jumlah');
 
      return $data;
 }

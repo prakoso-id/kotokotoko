@@ -1,3 +1,9 @@
+<style>
+
+    .cart{
+        padding-right:0px !important;
+    }
+</style>
 <!-- Header Section Begin -->
 <header class="header" id="myHeader">
         <div class="header__top">
@@ -74,17 +80,48 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <div class="row d-flex justify-content-end">
-                            <div class="px-5">
-                                <a href="#" class="search-switch"><img src="<?= base_url('assets/templateFE2/')?>/img/icon/search.png" alt=""></a>
-                            </div>                            
-                            <div class="px-5">
-                                <a href="#"><img src="<?= base_url('assets/templateFE2/')?>/img/icon/heart.png" alt=""></a>
+                        <div class="row d-flex justify-content-end">      
+                            <!-- <div class="cart px-3">
+                                <div class="" title="Notifikasi">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="label5">
+                                        <img src="<?php echo base_url()?>assets/mytemplate/img/icons8-notification-24.png" alt="" width="30px" style="min-width: 12px;">
+                                        <span class="count-notif-all"></span>
+                                        <input type="hidden" name="count_notif_all" id="count_notif_all" value="0">
+                                    </a>
+                                    <div class="dropdown-menu dropdown-cart">
+                                        <div style="overflow-y: scroll; height:400px;">
+                                            <ul class="mini-products-list notif-list">
+                                                
+                                            </ul>
+                                        </div>
+
+                                        <div class="bottom-cart" style="margin-top: 10px;">
+                                            <div class="button-cart pull-right">
+                                                <a href="<?php echo base_url('notif'); ?>" class="cart-btn e-checkout btn-gradient">Lihat Notifikasi</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                -->
+                            <div class="px-3" style="display: flex; align-items: center;">
+                                <a href="<?php echo base_url('wishlist') ?>"><img src="<?= base_url()?>assets/mytemplate/img/icon-heart.png" style="min-width: 12px; " alt=""></a>
                             </div>
-                            <div class="cart px-5" title="Keranjang">
+                            
+                            
+
+
+                            <!-- <div class="px-3">
+                                <a href="<?php echo base_url('pesan') ?>" class="" title="Pesan">
+                                    <img src="<?php echo base_url()?>assets/mytemplate/img/icons8-envelope-24.png" alt="" width="30px" style="min-width: 12px;">
+                                    <span class="count-pesan-all"></span>
+                                    <input type="hidden" name="count_pesan_all" id="count_pesan_all" value="0">
+                                </a>
+                            </div> -->
+                            
+                            <div class="cart px-3" title="Keranjang">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true" aria-expanded="false" id="label5">
-                                    <img src="<?= base_url('assets/templateFE2/')?>/img/icon/cart.png" />
+                                    <img src="<?php echo base_url()?>assets/mytemplate/img/icon-cart.png" style="min-width: 12px;"/>
                                     <span class="count cart-count jumlah_keranjang"><?php echo $jml_keranjang; ?></span>
                                     <input type="hidden" name="jumlah_keranjang" value="<?php echo $jml_keranjang; ?>">
                                 </a>
@@ -145,17 +182,19 @@
 
                                     <div class="bottom-cart" style="margin-top: 10px;">
                                         <div class="button-cart pull-right">
-                                            <?php 
+                                            <a href="<?=base_url('keranjang')?>" class="cart-btn e-checkout btn-gradient">Lihat Keranjang</a>
+                                            <!-- <?php 
                                                 if ($this->user_model->is_login()) {
                                                     echo '<a href="'.base_url('keranjang').'" class="cart-btn e-checkout btn-gradient">Lihat Keranjang</a>';
                                                 }else{
                                                     echo '<a href="javascript:void(0)" onclick="proses_cart(1,`add_chart`)" class="cart-btn e-checkout btn-gradient">Lihat Keranjang</a>';
                                                 }
-                                                ?>
+                                                ?> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
 
                         <!-- <div class="price"><?php echo $jml_keranjang; ?></div> -->

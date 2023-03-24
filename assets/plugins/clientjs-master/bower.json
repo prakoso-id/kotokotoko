@@ -1,0 +1,26 @@
+{
+  "name": "clientjs",
+  "version": "0.2.1",
+  "main": [
+    "dist/client.base.min.js"
+  ],
+  "ignore": [
+    ".husky",
+    ".drone.sec",
+    ".drone.yml",
+    ".eslintignore",
+    ".eslintrc.js",
+    ".gitignore",
+    ".lintstagedrc",
+    ".release-it.json",
+    "commitlint.config.js",
+    "karma",
+    "node_modules",
+    "package-lock.json",
+    "package.json",
+    "sauce.json",
+    "scripts",
+    "specs",
+    "webpack.config.js"
+  ]
+}

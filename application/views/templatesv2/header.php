@@ -160,11 +160,11 @@
                                 </div>
 
 
-                                <a href="<?php echo base_url('pesan') ?>" class="cart" title="Pesan">
+                                <!-- <a href="<?php echo base_url('pesan') ?>" class="cart" title="Pesan">
                                     <img src="<?php echo base_url()?>assets/mytemplate/img/icons8-envelope-24.png" alt="" width="30px" style="min-width: 12px;">
                                     <span class="count-pesan-all"></span>
                                     <input type="hidden" name="count_pesan_all" id="count_pesan_all" value="0">
-                                </a>
+                                </a> -->
                                 <a href="<?php echo base_url('wishlist') ?>" title="Favorit"><img src="<?php echo base_url()?>assets/mytemplate/img/icon-heart.png" alt="" style="min-width: 12px;"></a>
                             <?php } ?>
                             

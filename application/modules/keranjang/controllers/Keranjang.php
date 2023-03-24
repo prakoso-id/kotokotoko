@@ -5,9 +5,9 @@ class Keranjang extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		if(!$this->user_model->is_login()){
-            redirect(base_url());
-        }
+		// if(!$this->user_model->is_login()){
+        //     redirect(base_url());
+        // }
 		$this->template->set_layout('frontend/index'); 
 	}
 
