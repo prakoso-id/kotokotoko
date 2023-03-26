@@ -221,14 +221,14 @@ class M_table extends CI_model
             break;
 
             case 'data_penjualan':
-                $column_search = array('a.created_at','b.no_invoice','f.nama','e.namausaha','b.total','c.nama_status'); 
-                $this->db->select('b.*,a.harga,a.quantity,a.jumlah_harga,d.nama_produk,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto, c.nama_status, a.created_at as created_transaksi,d.kode_produk,a.id_transaksi_detail,count(b.no_invoice) as jumlah_barang,e.namausaha,f.nama');
+                $column_search = array('a.created_at','b.no_invoice','e.namausaha','b.total','c.nama_status'); 
+                $this->db->select('b.*,a.harga,a.quantity,a.jumlah_harga,d.nama_produk,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto, c.nama_status, a.created_at as created_transaksi,d.kode_produk,a.id_transaksi_detail,count(b.no_invoice) as jumlah_barang,e.namausaha');
                 $this->db->from('m_transaksi b');
                 $this->db->join('m_transaksi_detail a','b.id_transaksi = a.id_transaksi');
                 $this->db->join('m_status_transaksi c','c.id_status_transaksi = b.id_status_transaksi');
                 $this->db->join('m_produk d','d.id_produk = a.id_produk');
                 $this->db->join('m_umkm e','e.id_umkm = d.id_umkm');
-                $this->db->join('m_pengguna f','f.username = b.username');
+                // $this->db->join('m_pengguna f','f.username = b.username');
 
                 if(!$this->user_model->is_umkm_admin() && !$this->user_model->is_umkm_verifikator()){
                     $this->db->where('e.username',$this->session->identity);
@@ -243,6 +243,9 @@ class M_table extends CI_model
                 if(@$filter['nama_pembeli']) $this->db->like('f.nama', $filter['nama_pembeli']);
 
                 $this->db->group_by('b.no_invoice');
+
+                // $this->db->get();
+                // echo $this->db->last_query();die;
                 if($_POST['order'][0]['column'] == 0)
                 {
                      $this->db->order_by('a.id_transaksi_detail',$order);

@@ -1,5 +1,5 @@
 <div id="modal_data" class="modal fade">
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLongTitle"></h5>

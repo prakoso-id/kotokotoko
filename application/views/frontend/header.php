@@ -45,6 +45,8 @@
                             <?php } else{?>
                             <div class="header__top__links">
                                 <a href="<?= base_url('login') ?>">Masuk/Daftar</a>
+                                <a href="<?= base_url('transaksi/customer') ?>">Transaksi</a>
+
                             </div>
                             <?php }?>
                             
@@ -182,7 +184,7 @@
 
                                     <div class="bottom-cart" style="margin-top: 10px;">
                                         <div class="button-cart pull-right">
-                                            <a href="<?=base_url('keranjang')?>" class="cart-btn e-checkout btn-gradient">Lihat Keranjang</a>
+                                            <a href="<?=base_url('keranjang')?>" class="cart-btn e-checkout ">Lihat Keranjang</a>
                                             <!-- <?php 
                                                 if ($this->user_model->is_login()) {
                                                     echo '<a href="'.base_url('keranjang').'" class="cart-btn e-checkout btn-gradient">Lihat Keranjang</a>';

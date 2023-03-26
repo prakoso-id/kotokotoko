@@ -89,6 +89,7 @@ class Query_model extends CI_Model{
 			$this->db->where($value['where']);
 		}
 
+		
 		if (isset($value['join'])) {
 			foreach ($value['join'] as $join) {
 				$this->db->join($join['0'],$join['1'],(isset($join['2'])?$join['2']:null));

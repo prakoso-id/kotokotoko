@@ -5,7 +5,7 @@
                 <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" style="margin-top: -80px;"><span aria-hidden="true">&times;</span></button>
             </div>
-			<div class="modal-body" style="min-height: 500px !important;">
+			<div class="modal-body" style="min-height: 500px !important; padding:0px !important;">
 				<div class="col-md-12 table_alamat">
 					
 				</div>

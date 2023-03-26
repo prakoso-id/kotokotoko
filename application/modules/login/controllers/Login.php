@@ -8,9 +8,9 @@ class Login extends MY_Controller {
 	}
 
 	public function index() {
-		if($this->user_model->is_login()){
-			redirect(base_url());
-		}
+		// if($this->user_model->is_login()){
+		// 	redirect(base_url());
+		// }
 		$this->data = array(
 			'name' => $this->security->get_csrf_token_name(),
 			'hash' => $this->security->get_csrf_hash()
@@ -19,9 +19,9 @@ class Login extends MY_Controller {
 	}
 
 	public function ajax_proses() {
-		if($this->user_model->is_login()){
-			echo json_encode(array('status' => true, 'redirect' => base_url()));
-		}
+		// if($this->user_model->is_login()){
+		// 	echo json_encode(array('status' => true, 'redirect' => base_url()));
+		// }
 
 		$this->_validate();
 		$username 	= $this->input->post('username',true);

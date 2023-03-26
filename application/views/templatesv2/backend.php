@@ -81,19 +81,13 @@
             <?php 
             if($this->user_model->is_umkm_admin()){
               echo '<li class="'.($active == 'dashboard'?'active':'').'"><a class="nav-link" href="'.base_url('dashboard').'"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
-                  <li class="'.($active == 'pesan'?'active':'').'"><a class="nav-link" href="'.base_url('pesan/penjual').'"><i class="fas fa-envelope"></i> 
-                    <span>Pesan  
-                    <font class="count-pesan-all badge badge-danger"></font>
-                    <input type="hidden" name="count_pesan_all" id="count_pesan_all" value="0"></span>
-                    </a>
-                  </li>
+                  
                   <li class="'.($active == 'pengguna'?'active':'').'"><a class="nav-link" href="'.base_url('pengguna').'"><i class="fas fa-users"></i> <span>Pengguna</span></a></li>
                   <li class="'.($active == 'produk'?'active':'').'"><a class="nav-link" href="'.base_url('produk').'"><i class="fas fa-archive"></i> <span>Produk</span></a></li>
                   <li class="'.($active == 'transaksi_penjual'?'active':'').'"><a class="nav-link" href="'.base_url('transaksi/penjual').'"><i class="fas fa-clipboard-list"></i> <span>Transaksi</span></a></li>
                   <li class="'.($active == 'slider'?'active':'').'"><a class="nav-link" href="'.base_url('slider').'"><i class="fas fa-images"></i> <span>Slider & Banner</span></a></li>
-                  <li class="'.($active == 'agenda'?'active':'').'"><a class="nav-link" href="'.base_url('agenda/data').'"><i class="fas fa-calendar"></i> <span>Agenda</span></a></li>
                   <li class="'.($active == 'berita'?'active':'').'"><a class="nav-link" href="'.base_url('berita').'"><i class="fas fa-newspaper"></i> <span>Berita</span></a></li>
-                  <li class="'.($active == 'dasar_hukum'?'active':'').'"><a class="nav-link" href="'.base_url('dasar_hukum/data').'"><i class="fas fa-gavel"></i> <span>Dasar Hukum</span></a></li>';
+                  ';
             }elseif ($this->user_model->is_umkm_verifikator()) {
               echo '<li class="'.($active == 'dashboard'?'active':'').'"><a class="nav-link" href="'.base_url('dashboard').'"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
                     <li class="'.($active == 'umkm'?'active':'').'"><a class="nav-link" href="'.base_url('umkm').'"><i class="fas fa-check"></i> <span>Verifikasi Toko</span></a></li>';

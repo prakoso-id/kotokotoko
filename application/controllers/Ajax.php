@@ -172,299 +172,6 @@ class Ajax extends MY_Controller {
                     }
                 }
 
-                // $metode_pembayaran = $this->input->post('pilih_pembayaran', true);
-                // if ($metode_pembayaran === 'va') { //pembayaran va
-                //     $metode_bayar = 'va';
-                //     // $this->db->trans_rollback();
-                //     // echo json_encode(['success' => false, 'message' => 'Pembayaran VA belum didukung, silahkan coba beberapa saat lagi !','status' => TRUE]);
-                //     // exit();
-
-                //     $nik = $this->session->identity;
-                //     $nama  = $this->session->nama_lengkap;
-                //     $email = $this->session->email;
-                //     $telp  = $this->session->no_telp;
-
-                //     $total_bayar = $total_bayar_barang = $total_bayar_ongkir = 0;
-                //     foreach ($keranjang as $kr) {
-                //         $total_bayar_barang = $total_bayar_barang + (($kr['harga'] - $kr['diskon_nominal']) * $kr['jml']);
-                //     }
-
-                //     $arr_ongkir = $this->input->post('sub_total_ongkir_umkm',true);
-                //     foreach ($arr_ongkir as $o) {
-                //         $total_bayar_ongkir = $total_bayar_ongkir + $o;
-                //     }
-                //     $total_bayar = $total_bayar_barang + $total_bayar_ongkir;
-
-                //     $query = $this->db->query('INSERT va_bjb_booking (va) SELECT (SELECT va FROM va_bjb_booking ORDER BY id DESC LIMIT 1)+1 FROM dual');
-                //     $last_id = $this->db->insert_id();
-                //     $urutva = $this->db->query('SELECT va FROM va_bjb_booking WHERE id=' . $last_id)->row_array();
-                //     $urutva = $urutva["va"];
-                //     for ($i = 0; $i < 7; $i++) {
-                //         $urutva = "0" . $urutva;
-                //         if (strlen($urutva) == 7) break;
-                //     }
-                //     $nomor_va         = 14401;
-                //     $nomor_va         = $nomor_va . $urutva;
-                //     $jenis_pembayaran = "BARONGSAY";
-                //     $id_pembayaran    = date("Ymd") . "-" . strtoupper($jenis_pembayaran) . "-" . $urutva;
-                //     $expired          = date('Y-m-d H:i:s', strtotime("+60 minute"));
-                //     $temp             = strtotime($expired);
-                //     $datetime1        = new DateTime();
-                //     $datetime2        = new DateTime($expired);
-                //     $interval         = $datetime1->diff($datetime2);
-                //     $elapsed          = $interval->format('%h:%i:%s');
-
-                //     $this->db->select("*");
-                //     $this->db->from("va_bjb_setup");
-                //     $bjb_setup = $this->db->get()->row_array();
-                //     $nomor_va_full = $bjb_setup["client_type"] . $bjb_setup["cin"] . $nomor_va;
-
-                //     //call jwt
-                //     if ($total_bayar > 0) {
-                //         $paramsCalljwt = array(
-                //             'no_va'         => $nomor_va,
-                //             'nama_wp'       => $nama,
-                //             'id_pembayaran' => $id_pembayaran,
-                //             'email_user'    => $email,
-                //             'amount'        => $total_bayar,
-                //             'expired_date'  => $expired,
-                //             'no_telp'       => $telp,
-                //         );
-
-                //         $url = "172.16.9.127/services/va/va_borongsai/calljwt";
-                //         $ch = curl_init($url);
-                //         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0');
-                //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                //         curl_setopt($ch, CURLOPT_USERPWD, 'r3795t4p1t9rk0t4:mSXs9pmNkoAGDgSEGD3Dqe6jvehNrB24');
-                //         curl_setopt($ch, CURLOPT_POST, 1);
-                //         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($paramsCalljwt));
-                //         $time_start = microtime(true);
-                //         $resultJwt = json_decode(curl_exec($ch), true);
-                //         $info = curl_getinfo($ch);
-                //         curl_close($ch);
-                //         $time_end = microtime(true);
-                //         $execution_time["payment_calljwt"] = ($time_end - $time_start);
-
-                //         if ($info["http_code"] == 200) {
-                //             $bjbinquiry = json_decode($resultJwt["bjb_inquirybill"], true);
-                //             if ($bjbinquiry) {
-                //                 if (isset($bjbinquiry["response_code"])) {
-                //                     if ($bjbinquiry["response_code"] == "0000") {
-                //                         //simpan ke db
-                //                         if ($resultJwt["bjb_response"]) {
-                //                             $bjb_response = $resultJwt["bjb_response"];
-                //                         } else {
-                //                             $bjb_response = null;
-                //                         }
-                //                         if ($resultJwt["bjb_token"]) {
-                //                             $bjb_token = $resultJwt["bjb_token"];
-                //                         } else {
-                //                             $bjb_token = null;
-                //                         }
-                //                         if ($resultJwt["bjb_inquirybill"]) {
-                //                             $bjb_inquiry = $resultJwt["bjb_inquirybill"];
-                //                         } else {
-                //                             $bjb_inquiry = null;
-                //                         }
-                //                         if ($bjbinquiry["response_code"]) {
-                //                             $bjb_inquiry_response_code = $bjbinquiry["response_code"];
-                //                         } else {
-                //                             $bjb_inquiry_response_code = null;
-                //                         }
-
-                //                         $execution_time = json_encode($execution_time);
-                //                         $params_pembayaran = [
-                //                             'id_pembayaran'             => $id_pembayaran,
-                //                             'nik_user'                  => $nik,
-                //                             'nama_user'                 => $nama,
-                //                             'email_user'                => $email,
-                //                             'jenis_pembayaran'          => "BARONGSAY",
-                //                             'no_virtual_acount'         => $nomor_va,
-                //                             'va_full'                   => $nomor_va_full,
-                //                             'urut_va'                   => $urutva,
-                //                             'expired_virtual_account'   => $expired,
-                //                             'status_pembayaran'         => "Belum Lunas",
-                //                             'is_bayar'                  => 0,
-                //                             'jumlah_yg_dibayar'         => $total_bayar,
-                //                             'va_dari'                   => "barongsay_web",
-                //                             'va_ke'                     => "va-bjb",
-                //                             'telp_user'                 => $telp,
-                //                             'bjb_response'              => $bjb_response,
-                //                             'bjb_token'                 => $bjb_token,
-                //                             'bjb_inquiry'               => $bjb_inquiry,
-                //                             'bjb_inquiry_response_code' => $bjb_inquiry_response_code,
-                //                             'execution_time'            => $execution_time,
-                //                             'created_at'                => date("Y-m-d H:i:s"),
-                //                         ];
-
-                //                         $this->db->insert('pembayaran_VA',$params_pembayaran);
-                //                         $id = $this->db->insert_id();
-
-                //                         foreach ($data_post['id_umkm'] as $id_umkm) {
-                //                             $kurir = $this->input->post('id_kurir',true)[$id_umkm];
-                //                             $expld_kurir = explode('#', $kurir);
-                //                             $service = $this->input->post('kurir_service',true)[$id_umkm];
-                //                             $expld_service = explode('#', $service);
-                                            
-                //                             //insert ke m_transaksi
-                //                             $data = array(
-                //                                 'id_umkm'               => $id_umkm,
-                //                                 'id_status_transaksi'   => 0, //menunggu pembayaran
-                //                                 'no_invoice'            => 'INV/UMKM/'.$id_umkm.'/'.date('dmy').'/'.date('his'),
-                //                                 'id_alamat'             => $this->input->post('id_alamat',true),
-                //                                 'username'              => $this->session->identity,
-                //                                 'ongkir'                => $this->input->post('sub_total_ongkir_umkm',true)[$id_umkm],
-                //                                 'id_kurir'              => $expld_kurir[0],
-                //                                 'kurir_service'         => $expld_service[0],
-                //                                 'ket_ongkir'            => $expld_service[1],
-                //                                 'created_at'            => date('Y-m-d H:i:s'),
-                //                                 'source'                => 'web',
-                //                                 'va'                    => $nomor_va,
-                //                                 'va_full'               => $nomor_va_full,
-                //                                 'metode_bayar'          => $metode_bayar,
-                //                             );
-                //                             $this->db->insert('m_transaksi',$data);
-                //                             $insert = $this->db->insert_id();
-
-                //                             $detail = array();
-                //                             $arr_id_produk = array();
-                //                             $total_harga = $total_berat = $total_diskon_produk = 0;
-                //                             foreach ($data_post[$id_umkm] as $key => $p){
-                //                                 foreach ($keranjang as $kr) {
-                //                                     if ($this->input->post('id_produk',true)[$key] == $kr['id_produk']) {
-                //                                         $quantity = $kr['jml'];
-                //                                         $harga = $kr['harga'] - $kr['diskon_nominal'];
-                //                                         $berat = $kr['berat'];
-                //                                         $jum_berat = $berat * $quantity;
-                //                                         $jum_harga = $harga * $quantity;
-                //                                         $jum_harga_normal = $kr['harga'] * $quantity;
-                //                                         $jum_nominal_diskon = $kr['diskon_nominal'] * $quantity;
-
-                //                                         $detail[] = array(
-                //                                             'id_transaksi'          => $insert,
-                //                                             'id_produk'             => $this->input->post('id_produk',true)[$key],
-                //                                             'quantity'              => $quantity,
-                //                                             'harga'                 => $harga,
-                //                                             'harga_normal'          => $kr['harga'],
-                //                                             'diskon'                => $kr['diskon'],
-                //                                             'nominal_diskon'        => ($kr['diskon_nominal']?$kr['diskon_nominal']:'0'),
-                //                                             'jumlah_nominal_diskon' => $jum_nominal_diskon,
-                //                                             'berat'                 => $berat,
-                //                                             'jumlah_berat'          => $jum_berat,
-                //                                             'jumlah_harga'          => $jum_harga,
-                //                                             'jumlah_harga_normal'   => $jum_harga_normal,
-                //                                             'catatan'               => ($data_post['catatan'][$key]?$data_post['catatan'][$key]:'-'),
-                //                                             'created_at'            => date('Y-m-d H:i:s'),
-                //                                         );
-
-                //                                         $arr_id_produk[] = $this->input->post('id_produk',true)[$key];
-                                    
-                //                                         $total_harga = $total_harga + $jum_harga;
-                //                                         $total_berat = $total_berat + $jum_berat;
-                //                                         $total_diskon_produk = $total_diskon_produk + $jum_nominal_diskon;
-                //                                     }
-                //                                 }
-                //                             }
-
-                //                             if ($detail) {
-                //                                 //insert ke m_transaksi_detail
-                //                                 $this->db->insert_batch('m_transaksi_detail',$detail);
-
-                //                                 //delete data di m_keranjang
-                //                                 $this->db->where_in('id_produk',$arr_id_produk);
-                //                                 $this->db->where('username',$this->session->identity);
-                //                                 $this->db->where('is_checked','1');
-                //                                 $this->db->delete('m_keranjang');
-
-                //                                 //update ke m_transaksi
-                //                                 $data_transaksi = array('total_harga' => $total_harga,
-                //                                                         'total_berat' => $total_berat,
-                //                                                         'total' => ($total_harga + $expld_service[2]), //total harga barang + ongkir
-                //                                                         'nominal_diskon_produk' => $total_diskon_produk,
-                //                                                         'nominal_diskon_ongkir' => 0,
-                //                                                         );
-                //                                 $this->db->update('m_transaksi', $data_transaksi, array('id_transaksi' => $insert));
-                //                             }else{
-                //                                 $this->db->trans_rollback();
-                //                                 echo json_encode(['success' => false, 'message' => 'Pesanan kamu gagal dibuat, tidak ada barang yang dibeli.','status' => TRUE]);
-                //                                 exit();
-                //                             }
-                //                         }
-
-                //                         if ($this->db->trans_status() === false) {
-                //                             $this->db->trans_rollback();
-                //                             echo json_encode(['success' => false, 'message' => 'Pesanan kamu gagal dibuat. Terjadi kesalahan, silahkan coba beberapa saat lagi !','status' => TRUE]);
-                //                             exit();
-                //                         } else {
-                //                             $this->db->trans_commit();
-                //                             //send notif ke pembeli
-                //                             $judul = 'Pesanan berhasil dibuat';
-                //                             $message = 'Silahkan melakukan pembayaran dalam waktu 1 jam.';
-                //                             $username_pengirim = $this->session->identity;
-                //                             $username_penerima =  $this->session->identity;
-                //                             $send = send_notif($username_pengirim,$username_penerima,$judul,$message,'transaksi_pembelian','detail_transaksi_va_belum_bayar',$nomor_va_full,null);
-                //                         }
-
-                //                         $this->session->set_flashdata('no_virtual_acount',$nomor_va_full);
-                //                         echo json_encode(['success' => true, 'message' => 'Pesanan kamu telah berhasil dibuat.','status' => TRUE]);
-                //                         exit();
-                //                     }else{
-                //                         $this->db->trans_rollback();
-                //                        $params_log = [
-                //                             'log' => "response code tidak sesuai,response code yang di terima : " . $bjbinquiry["response_code"] . "",
-                //                             'nik' => $nik,
-                //                             'nama' => $nama
-                //                         ];
-                //                         $this->db->insert("log_eror_callback_va", $params_log);
-                //                         echo json_encode(['success' => false, 'message' => 'Terjadi kesalahan coba beberapa saat lagi !','status' => TRUE]);
-                //                         exit();
-                //                     }
-                //                 }else{
-                //                     $this->db->trans_rollback();
-                //                     $params_log = [
-                //                         'log' => "tidak ada response_code dari service jwt",
-                //                         'nik' => $nik,
-                //                         'nama' => $nama
-                //                     ];
-                //                     $this->db->insert("log_eror_callback_va", $params_log);
-                //                     echo json_encode(['success' => false, 'message' => 'Terjadi kesalahan coba beberapa saat lagi !','status' => TRUE]);
-                //                     exit();
-                //                 }
-                //             }else{
-                //                 $this->db->trans_rollback();
-                //                 $params_log = [
-                //                     'log' => "response bjbinquiry kosong",
-                //                     'nik' => $nik,
-                //                     'nama' => $nama
-                //                 ];
-                //                 $this->db->insert("log_eror_callback_va", $params_log);
-                //                 echo json_encode(['success' => false, 'message' => 'Terjadi kesalahan coba beberapa saat lagi !','status' => TRUE]);
-                //                 exit();
-                //             }
-                //         }else{
-                //             $this->db->trans_rollback();
-                //             $params_log = [
-                //                 'log' => "http code dari service jwt " . $info['http_code'] . "",
-                //                 'nik' => $nik,
-                //                 'nama' => $nama
-                //             ];
-                //             $this->db->insert("log_eror_callback_va", $params_log);
-                //             echo json_encode(['success' => false, 'message' => 'Terjadi kesalahan coba beberapa saat lagi !','status' => TRUE]);
-                //             exit();
-                //         }
-                //     }else{
-                //         $this->db->trans_rollback();
-                //         $params_log = [
-                //             'log' => "Amount tidak sesuai",
-                //             'nik' => $nik,
-                //             'nama' => $nama
-                //         ];
-                //         $this->db->insert("log_eror_callback_va", $params_log);
-                //         echo json_encode(['success' => false, 'message' => 'Amount tidak sesuai !','status' => TRUE]);
-                //         exit();
-                //     }
-                // }elseif($metode_pembayaran === 'mid'){
-
                     $metode_bayar = 'midtrans';
                     foreach ($data_post['id_umkm'] as $id_umkm) {
                         $kurir = $this->input->post('id_kurir',true)[$id_umkm];
@@ -490,7 +197,7 @@ class Ajax extends MY_Controller {
                             'metode_bayar'          => $metode_bayar,
                         );
                         $this->db->insert('m_transaksi',$data);
-                        $insert = $this->db->insert_id();
+                        $insert_parrent = $this->db->insert_id();
 
                         $detail = array();
                         $arr_id_produk = array();
@@ -507,7 +214,7 @@ class Ajax extends MY_Controller {
                                     $jum_nominal_diskon = $kr['diskon_nominal'] * $quantity;
 
                                     $detail[] = array(
-                                        'id_transaksi'          => $insert,
+                                        'id_transaksi'          => $insert_parrent,
                                         'id_produk'             => $this->input->post('id_produk',true)[$key],
                                         'quantity'              => $quantity,
                                         'harga'                 => $harga,
@@ -557,7 +264,7 @@ class Ajax extends MY_Controller {
                                                     'nominal_diskon_produk' => $total_diskon_produk,
                                                     'nominal_diskon_ongkir' => 0,
                                                     );
-                            $this->db->update('m_transaksi', $data_transaksi, array('id_transaksi' => $insert));
+                            $this->db->update('m_transaksi', $data_transaksi, array('id_transaksi' => $insert_parrent));
                             // echo json_encode($insert);die;
                             if ($this->db->trans_status() === false) {
                                 $this->db->trans_rollback();
@@ -591,130 +298,32 @@ class Ajax extends MY_Controller {
                             exit();
                         }
                     }
+
+                    if($this->input->post('data_user',true) === 'kosong'){
+
+                        $data_penerima = $this->get_data_penerima($this->session->identity);
+
+                        $data_visitor = $this->get_data_visitor($this->session->identity);
+                        if($data_visitor){
+                            $data = array(
+                                'email'                   => $this->input->post('email_anon',true),
+                            );
+
+                            $this->db->update('m_visitor_anon', $data, array('visitor_id' => $this->session->identity));
+                        }else{
+                            $data = array(
+                                'visitor_id'              => $this->session->identity,
+                                'email'                   => $this->input->post('email_anon',true),
+                                'nama'                    =>$data_penerima->nama_penerima,
+                                'no_telp'                 =>$data_penerima->no_penerima,
+                            );
+                            $this->db->insert('m_visitor_anon',$data);
+                        }
+                        
+                    }
                    
                     echo json_encode(['success' => true, 'message' => 'Pesanan kamu telah berhasil dibuat. silahkan lanjutkan pembayaran','status' => TRUE]);
 
-                // }else{ //pembayaran transfer bank
-                //     $metode_bayar = 'bank_transfer';
-                //     foreach ($data_post['id_umkm'] as $id_umkm) {
-                //         $kurir = $this->input->post('id_kurir',true)[$id_umkm];
-                //         $expld_kurir = explode('#', $kurir);
-                //         $service = $this->input->post('kurir_service',true)[$id_umkm];
-                //         $expld_service = explode('#', $service);
-                        
-                //         //insert ke m_transaksi
-                //         $data = array(
-                //             'id_umkm'               => $id_umkm,
-                //             'id_status_transaksi'   => 0, //menunggu pembayaran
-                //             'no_invoice'            => 'INV/UMKM/'.$id_umkm.'/'.date('dmy').'/'.date('his'),
-                //             'id_alamat'             => $this->input->post('id_alamat',true),
-                //             'username'              => $this->session->identity,
-                //             'ongkir'                => $this->input->post('sub_total_ongkir_umkm',true)[$id_umkm],
-                //             'id_kurir'              => $expld_kurir[0],
-                //             'kurir_service'         => $expld_service[0],
-                //             'ket_ongkir'            => $expld_service[1],
-                //             'created_at'            => date('Y-m-d H:i:s'),
-                //             'source'                => 'web',
-                //             'metode_bayar'          => $metode_bayar,
-                //         );
-                //         $this->db->insert('m_transaksi',$data);
-                //         $insert = $this->db->insert_id();
-
-                //         $detail = array();
-                //         $arr_id_produk = array();
-                //         $total_harga = $total_berat = $total_diskon_produk = 0;
-                //         foreach ($data_post[$id_umkm] as $key => $p){
-                //             foreach ($keranjang as $kr) {
-                //                 if ($this->input->post('id_produk',true)[$key] == $kr['id_produk']) {
-                //                     $quantity = $kr['jml'];
-                //                     $harga = $kr['harga'] - $kr['diskon_nominal'];
-                //                     $berat = $kr['berat'];
-                //                     $jum_berat = $berat * $quantity;
-                //                     $jum_harga = $harga * $quantity;
-                //                     $jum_harga_normal = $kr['harga'] * $quantity;
-                //                     $jum_nominal_diskon = $kr['diskon_nominal'] * $quantity;
-
-                //                     $detail[] = array(
-                //                         'id_transaksi'          => $insert,
-                //                         'id_produk'             => $this->input->post('id_produk',true)[$key],
-                //                         'quantity'              => $quantity,
-                //                         'harga'                 => $harga,
-                //                         'harga_normal'          => $kr['harga'],
-                //                         'diskon'                => $kr['diskon'],
-                //                         'nominal_diskon'        =>($kr['diskon_nominal']?$kr['diskon_nominal']:'0'),
-                //                         'jumlah_nominal_diskon' => $jum_nominal_diskon,
-                //                         'berat'                 => $berat,
-                //                         'jumlah_berat'          => $jum_berat,
-                //                         'jumlah_harga'          => $jum_harga,
-                //                         'jumlah_harga_normal'   => $jum_harga_normal,
-                //                         'catatan'               => ($data_post['catatan'][$key]?$data_post['catatan'][$key]:'-'),
-                //                         'created_at'            => date('Y-m-d H:i:s'),
-                //                     );
-
-                //                     $arr_id_produk[] = $this->input->post('id_produk',true)[$key];
-                
-                //                     $total_harga = $total_harga + $jum_harga;
-                //                     $total_berat = $total_berat + $jum_berat;
-                //                     $total_diskon_produk = $total_diskon_produk + $jum_nominal_diskon;
-                //                 }
-                //             }
-                //         }
-
-                //         if ($detail) {
-                //             //insert ke m_transaksi_detail
-                //             $this->db->insert_batch('m_transaksi_detail',$detail);
-
-                //             //delete data di m_keranjang
-                //             $this->db->where_in('id_produk',$arr_id_produk);
-                //             $this->db->where('username',$this->session->identity);
-                //             $this->db->where('is_checked','1');
-                //             $this->db->delete('m_keranjang');
-
-                //             //update ke m_transaksi
-                //             $data_transaksi = array('total_harga' => $total_harga,
-                //                                     'total_berat' => $total_berat,
-                //                                     'total' => ($total_harga + $expld_service[2]), //total harga barang + ongkir
-                //                                     'nominal_diskon_produk' => $total_diskon_produk,
-                //                                     'nominal_diskon_ongkir' => 0,
-                //                                     );
-                //             $this->db->update('m_transaksi', $data_transaksi, array('id_transaksi' => $insert));
-
-                //             if ($this->db->trans_status() === false) {
-                //                 $this->db->trans_rollback();
-                //                 echo json_encode(['success' => false, 'message' => 'Pesanan kamu gagal dibuat. Terjadi kesalahan, silahkan coba beberapa saat lagi !','status' => TRUE]);
-                //                 exit();
-                //             } else {
-                //                 $this->db->trans_commit();
-                //                 //send notif ke pembeli
-                //                 $judul = 'Pesanan '.$no_invoice.' berhasil dibuat';
-                //                 $message = 'Silahkan melakukan pembayaran dan upload bukti pembayaran dalam waktu 1x24 jam.';
-                //                 $username_pengirim = $this->input->post('username_umkm',true)[$id_umkm];
-                //                 $username_penerima =  $this->session->identity;
-                //                 $send = send_notif($username_pengirim,$username_penerima,$judul,$message,'transaksi_pembelian','detail_transaksi',$insert,'checkout');
-                //                 // kirim_email_transaksi_sukses($insert);
-
-                //                 //send notif ke penjual
-                //                 $judul = '1 pesanan baru '.$no_invoice;
-                //                 $message = 'Klik disini untuk melihat detail pesanan';
-                //                 $username_pengirim = $this->session->identity;
-                //                 $username_penerima = $this->input->post('username_umkm',true)[$id_umkm];
-                //                 $send2 = send_notif($username_pengirim,$username_penerima,$judul,$message,'transaksi_penjualan','detail_transaksi',$insert,'checkout');
-                //                 // kirim_email_transaksi_admin($insert);
-
-                //                 // var_dump($send);
-                //                 // var_dump($send2);
-                //                 // die();
-                //             }
-                //         }else{
-                //             $this->db->trans_rollback();
-                //             echo json_encode(['success' => false, 'message' => 'Pesanan kamu gagal dibuat, tidak ada barang yang dibeli.','status' => TRUE]);
-                //             exit();
-                //         }
-                //     }
-
-                //     $this->session->set_flashdata('id_transaksi',$insert);
-                //     echo json_encode(['success' => true, 'message' => 'Pesanan kamu telah berhasil dibuat.','status' => TRUE]);
-                // }
             break;
             default:
                 # code...
@@ -1557,4 +1166,21 @@ class Ajax extends MY_Controller {
         $data               = $this->query_model->getRow($query);
         return $data;
     }
+    private function get_data_visitor($visitor_id){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_visitor_anon a';
+        $query['where']     = 'a.visitor_id = '.$visitor_id;
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
+
+    private function get_data_penerima($user_id){
+        $query['select']    = 'a.nama_penerima,a.no_penerima';
+        $query['table']     = 'm_alamat a';
+        $query['where']     = 'a.username = '.$user_id;
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
+
+   
 }

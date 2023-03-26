@@ -14,7 +14,7 @@ class Keranjang extends MY_Controller {
 	public function index() {
 		$this->session->set_tempdata('code',random_num(20),60);
 		$this->template->add_title_segment('Keranjang');
-		$this->template->add_meta_tag("description", "Keranjang Belanja Portal UMKM Kota Tangerang");
+		$this->template->add_meta_tag("description", "Keranjang Belanja Toko Muslimah no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "keranjang produk, product, umkm,portal umkm,kota tangerang,tangerang,portal");
 
 		$k = keranjangku();
@@ -280,7 +280,7 @@ class Keranjang extends MY_Controller {
 
 	public function bayar($code){
 		$this->template->add_title_segment('Checkout');
-		$this->template->add_meta_tag("description", "Checkout Portal UMKM Kota Tangerang");
+		$this->template->add_meta_tag("description", "Checkout Toko Muslimah no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "Checkout produk, product, umkm,portal umkm,kota tangerang,tangerang,portal");
 
 		$this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
@@ -365,6 +365,11 @@ class Keranjang extends MY_Controller {
 		$detail_bayar = array('data' => $dt, 'sub_total_harga_barang' => $sub_total_harga_barang, 'jumlah_diskon' => $jumlah_diskon);
 
 		// var_dump(json_encode($detail_bayar)); die();
+		// echo json_encode($this->session->identity);die;
+
+		$data_user = $this->get_contact_user($this->session->identity);
+
+		
 
 		$this->data = array(
 			'name'		=> $this->security->get_csrf_token_name(),
@@ -375,11 +380,20 @@ class Keranjang extends MY_Controller {
 			'jml_keranjang'	=> $jml_keranjang,
 			'title_beranda'	=> 'Checkout',
 			'dilihat'		=> $this->query_model->terakhir_dilihat(4),
-			'detail_bayar'  => $detail_bayar
+			'detail_bayar'  => $detail_bayar,
+			'data_user'		=> $data_user
 		);
 
 		
 
 		$this->template->render("bayar",$this->data);
 	}
+
+	private function get_contact_user($user_id){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_pengguna a';
+        $query['where']     = 'a.username = "'.$user_id.'"';
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
 }

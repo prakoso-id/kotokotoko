@@ -12,11 +12,12 @@ class Beranda extends MY_Controller {
 
 	public function index() {
 		$this->template->add_title_segment('Beranda');
-		$this->template->add_meta_tag("description", "Portal UMKM Kota Tangerang");
+		$this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
 
 		$populer = $this->produk_model->get_produk_populer();
 		$terbaru = $this->produk_model->get_produk_terbaru();
+		$diskon = $this->produk_model->get_produk_diskontertinggi();
 
 		$k = keranjangku();
 		$keranjang = $k['keranjang'];
@@ -42,6 +43,7 @@ class Beranda extends MY_Controller {
 			'active'	=> 'beranda',
 			'populer'	=> $populer,
 			'terbaru'	=> $terbaru,
+			'diskon'	=> $diskon,
 			'keranjang'	=> $keranjang,
 			'kategori'	=> $this->query_model->getKategori(),
 			'slider'	=> $data_slider,

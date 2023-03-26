@@ -1,4 +1,4 @@
-<div class="col-md-8 col-sm-8 col-xs-12" style="margin-bottom: 20px;">
+<div class="col-md-8 col-sm-8 col-xs-12" style="margin-bottom: 20px; padding-left:0px !important;">
 	<div class="shopping-cart bd-7">
 	<?php
 	$i=0; 
@@ -129,7 +129,7 @@
 	</div>
 </div>
 
-<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 20px; padding-right:0px !important;">
 	<div class="cart-total bd-7">
 		<div class="table-responsive">
 	        <table class="shop_table">
@@ -159,7 +159,7 @@
 	</div>
 </div>
 
-<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 20px; padding-right:0px !important;">
 	<div class="cart-total bd-7">
 		<div class="table-responsive">
 	        <table class="shop_table">

@@ -15,7 +15,7 @@ $config['template_js'] = array(
 );
 
 //default site title
-$config['base_title'] = 'Portal UMKM Kota Tangerang';
+$config['base_title'] = 'Toko Muslimah no 1 di indonesia';
 
 //default title separator
 $config['title_separator'] = ' | ';

@@ -947,25 +947,14 @@ function get_most_search()
 }
 
 function card_berita($data,$class=''){
-     $html =   '<div class="'.$class.' blog-post-item">
-                    <div class="blog-img">
-                       <a href="'.base_url('list-berita/berita/'.short($data->kode_berita)).'" class="hover-images"><img style="width: 440px; height: 345px; object-fit:cover; display: block;margin-left: auto;margin-right: auto;" src="'.base_url('assets/images/berita/').$data->foto.'" alt="" class="img-reponsive"></a>
-                       <div class="blog-post-date e-gradient abs">
-                           <span class="b-date">'.$data->tanggal.'</span>
-                           <span class="b-month">'.tampil_bulan($data->bulan).'</span>
-                       </div>
-                    </div>
-                    <div class="blog-info">
-                       <h3 style="margin-bottom:10px;" class="blog-post-title" title="'.$data->judul.'"><a href="'.base_url('list-berita/berita/'.short($data->kode_berita)).'">'.readMore($data->judul,50).'</a></h3>
-                       <div style="margin-bottom:10px;"><i class="fa fa-clock-o"></i> '.indonesian_date($data->created_at).'</div>
-                       <p class="blog-post-desc">'.readMore($data->berita,200).'</p>
-                       <div class="blog-post-author">
-                           <div class="author">Posted by <span class="c-black">'.text($data->nama_pengguna).'</span></div>
-                           <div title="Dilihat"><i class="fa fa-eye"></i> <span class="c-black"></span>'.$data->dilihat.'</div>
-                       </div>
-                       
-                    </div>
-               </div>';
+     $html = '<div class="blog__item">
+               <div class="blog__item__pic set-bg" data-setbg="'.base_url('assets/images/berita/').$data->foto.'"></div>
+               <div class="blog__item__text">
+               <span><img src="img/icon/calendar.png" alt=""> '.indonesian_date($data->created_at).'</span>
+               <h5>'.$data->judul.'</h5>
+               <a href="'.base_url('list-berita/berita/'.short($data->kode_berita)).'">Read More</a>
+               </div>
+          </div>';
      return $html;
 }
 

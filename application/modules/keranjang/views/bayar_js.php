@@ -37,99 +37,93 @@
 	    );
 	}
 
+	function validator_penerima(){
+
+		var email_anon = $('#email_anon').val()
+		
+		if(!email_anon){
+			console.log(email_anon);
+			Swal.fire({text: 'Email Penerima Tidak Boleh Kosong',title: "Perhatian" ,type: "warning"});
+			return false;
+		}
+	}
+
 	function proses(){
-		Swal.fire({
-	      title: 'Konfirmasi',
-	      text: "Apakah anda ingin memproses transaksi pembelian ? Sebelum melanjutkan pastikan data yang anda masukkan sudah benar.",
-	      type: 'question',
-	      showCancelButton: true,
-	      confirmButtonColor: '#3085d6',
-	      cancelButtonColor: '#d33',
-	      confirmButtonText: 'Ya',
-	      cancelButtonText: 'Tidak',
-	    }).then((result) => {
-	      	if (result.value) {
-	      		$("#loading").show();  
+		var data_user = $('#data_user').val();
+		var email_anon = $('#email_anon').val()
+		console.log(data_user);
+		if(data_user === 'kosong' && !email_anon){
+			validator_penerima();
+		}else{
+			Swal.fire({
+				title: 'Konfirmasi',
+				text: "Apakah anda ingin memproses transaksi pembelian ? Sebelum melanjutkan pastikan data yang anda masukkan sudah benar.",
+				type: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Ya',
+				cancelButtonText: 'Tidak',
+				}).then((result) => {
+					if (result.value) {
+						$("#loading").show();  
 
-	      		$('#proses_data').text('Sedang memproses...'); //change button text
-		    	$('#proses_data').attr('disabled',true); //set button disable
-		    	$('.form-group').removeClass('has-error');
-		    	$('.help').empty();
-						
-				var form = $('#checkout-form')[0];
-				var data = new FormData(form);
-				var url = '<?php echo base_url("ajax/ajax_save"); ?>';
+						$('#proses_data').text('Sedang memproses...'); //change button text
+						$('#proses_data').attr('disabled',true); //set button disable
+						$('.form-group').removeClass('has-error');
+						$('.help').empty();
+								
+						var form = $('#checkout-form')[0];
+						var data = new FormData(form);
+						var url = '<?php echo base_url("ajax/ajax_save"); ?>';
 
 
-				$.ajax({
-					url: url,
-					type: 'post',
-					data: data,
-					// async:false, // kalo pake ini, loading ngga keluar
-					processData:false,
-					contentType:false,
-					cache:false,
-					success: function (res) {
-						var obj = JSON.parse(res);
+						$.ajax({
+							url: url,
+							type: 'post',
+							data: data,
+							// async:false, // kalo pake ini, loading ngga keluar
+							processData:false,
+							contentType:false,
+							cache:false,
+							success: function (res) {
+								var obj = JSON.parse(res);
 
-						$("#loading").hide();
-						
-						// var obj = JSON.parse(res);
-						if(obj.status){
-							if (obj.success !== true) {
-								Swal.fire({text: obj.message,title: "Error" ,type: "error"});
-							}else {
-								Swal.fire({text: obj.message,title: "Sukses",type: "success"});
+								$("#loading").hide();
+								
+								// var obj = JSON.parse(res);
+								if(obj.status){
+									if (obj.success !== true) {
+										Swal.fire({text: obj.message,title: "Error" ,type: "error"});
+									}else {
+										Swal.fire({text: obj.message,title: "Sukses",type: "success"});
 
-								// snap.pay(obj.snapToken, {
-								// 	// Optional
-								// 	onSuccess: function (result) {
-								// 		console.log("onSuccess")
-								// 		/* You may add your own js here, this is just example */
-								// 		//document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-								// 		document.getElementById('result-json').value += JSON.stringify(result, null, 2);
-								// 		// $('#finishFormZakat').submit();
-								// 	},
-								// 	// Optional
-								// 	onPending: function (result) {
-								// 		console.log("onPending")
-								// 		/* You may add your own js here, this is just example */
-								// 		document.getElementById('result-json').value += JSON.stringify(result, null, 2);
-								// 		// $('#finishFormZakat').submit();
-								// 	},
-								// 	// Optional
-								// 	onError: function (result) {
-								// 		console.log("onError")
-								// 		/* You may add your own js here, this is just example */
-								// 		document.getElementById('result-json').value += JSON.stringify(result, null, 2);
-								// 		// $('#finishFormZakat').submit();
-								// 	}
-								// });
+										setTimeout(function () {
+										window.location.href = "<?php echo base_url('transaksi/customer'); ?>";
+										}, 3000); 
+									}
+								}else {
+									for (var i = 0; i < obj.inputerror.length; i++) {
+										$('[name="'+obj.inputerror[i]+'"]').parent().parent().addClass('has-error');
+										$('[name="'+obj.inputerror[i]+'"]').next().text(obj.error_string[i]); 
+									}
+									Swal.fire({type: 'warning',text: 'Proses simpan gagal, silahkan lengkapi data yang harus diisi !',title : 'Peringatan'});
+								}
 
-                                setTimeout(function () {
-							       window.location.href = "<?php echo base_url('transaksi/customer'); ?>";
-							    }, 1500); 
+								$('#proses_data').text('Proses'); //change button text
+								$('#proses_data').attr('disabled',false); //set button enable
+							},
+							error: function (jqXHR, textStatus, errorThrown){
+								$("#loading").hide();
+								alert('Error get data from ajax');
 							}
-						}else {
-							for (var i = 0; i < obj.inputerror.length; i++) {
-								$('[name="'+obj.inputerror[i]+'"]').parent().parent().addClass('has-error');
-								$('[name="'+obj.inputerror[i]+'"]').next().text(obj.error_string[i]); 
-							}
-							Swal.fire({type: 'warning',text: 'Proses simpan gagal, silahkan lengkapi data yang harus diisi !',title : 'Peringatan'});
-						}
-
-						$('#proses_data').text('Proses'); //change button text
-	        			$('#proses_data').attr('disabled',false); //set button enable
-					},
-	               	error: function (jqXHR, textStatus, errorThrown){
-	               		$("#loading").hide();
-	                    alert('Error get data from ajax');
-	               	}
+						});
+					}else{
+						return false;
+					}
 				});
-			}else{
-	        	return false;
-	      	}
-	    });
+		}
+		
 	}
 
 	function get_ongkir(id_umkm){

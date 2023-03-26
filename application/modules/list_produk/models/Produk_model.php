@@ -193,6 +193,23 @@ class Produk_model extends CI_Model{
 		return $result;
 	}
 
+	function get_produk_diskontertinggi(){
+		$this->db->select('a.kode_produk,a.nama_produk,a.harga,a.id_produk,a.diskon,a.diskon_nominal,a.ratting,b.nama_usaha,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto,(select COUNT(id_ulasan) from m_ulasan where id_produk = a.id_produk) as jumlah_ulasan,d.id_umkm as username,d.username as nik,
+			d.namausaha,d.cara_pembayaran,e.nama_kec,e.nama_kel,f.id_wishlist');
+		$this->db->from('m_produk a');
+		$this->db->join('m_jenis_usaha b','b.id_jenis_usaha = a.id_jenis_usaha','left');
+		$this->db->join('m_umkm d','d.id_umkm = a.id_umkm');
+		$this->db->join('m_umkm_alamat e','e.id_umkm = d.id_umkm','left');
+		$this->db->join('m_wishlist f','f.id_produk = a.id_produk AND f.status = "like" AND f.username = "'.$this->session->identity.'"','left');
+		$this->db->where('a.status',1);
+		$this->db->where('a.stok >',0);
+		$this->db->group_by('a.id_produk');
+		$this->db->order_by('a.diskon','desc');
+		$this->db->limit(1);
+		$result = $this->db->get()->result();
+		return $result;
+	}
+
 	function get_cari_produk($q=null,$limit=null){
         $this->db->select('a.kode_produk,a.nama_produk,a.id_produk,a.id_umkm,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto');
 		$this->db->from('m_produk a');

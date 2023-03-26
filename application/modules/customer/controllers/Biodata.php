@@ -13,7 +13,7 @@ class Biodata extends MY_Controller {
 
      public function index() {
           $this->template->add_title_segment('Biodata');
-          $this->template->add_meta_tag("description", "Portal UMKM Kota Tangerang");
+          $this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
           $this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
 
           $data  = $this->user_model->cek_login($this->session->identity);

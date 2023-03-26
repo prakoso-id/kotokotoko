@@ -101,7 +101,7 @@
                                 <img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" width="80px">
                             </div>
                             <div class="sub-right">
-                                <span style="font-size: 13px;"><b>Portal UMKM Kota Tangerang</b></span>
+                                <span style="font-size: 13px;"><b>Toko Muslimah no 1 di indonesia</b></span>
                             </div>
                         </div>
                     </a>

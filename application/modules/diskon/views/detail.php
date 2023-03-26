@@ -272,7 +272,7 @@
     </div>
     <div class="bestseller">
         <div class="ecome-heading style5v3 spc5v3" style="margin-bottom: 0px;">
-            <h1>Lainnya di toko ini</h1>
+            <h1>Lainnya dari kami</h1>
             <a href="<?php echo base_url('toko/'.short($produk->id_umkm)) ?>" class="btn-show">Lihat Semua<i class="ion-ios-arrow-forward"></i></a>
         </div>
         <div class="owl-carousel owl-theme owl-cate v2 js-owl-cate">

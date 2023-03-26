@@ -146,8 +146,8 @@ class List_umkm extends MY_Controller {
 		$this->template->add_css('assets/css/pesan.css');
 		$this->template->add_css('assets/mytemplate/css/profil_umkm.css');
 		$this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
-		$this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js',true);
-		$this->template->add_js('assets/plugins/datatables/dataTables.bootstrap.min.js',true);
+		$this->template->add_js(base_url().'assets/plugins/datatables/jquery.dataTables.min.js',true);
+		$this->template->add_js(base_url().'assets/plugins/datatables/dataTables.bootstrap.min.js',true);
 
 		$this->template->add_meta_tag("og:title", $data_umkm->namausaha." - ".$data_umkm->nama_kel.", ".$data_umkm->nama_kec." | Protal UMKM Kota Tangerang");
 		$this->template->add_meta_tag("og:description", "Belanja online aman dan nyaman hanya di ".$data_umkm->namausaha);

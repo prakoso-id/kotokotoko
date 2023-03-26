@@ -3,14 +3,27 @@
 		content: ' ' !important;
 	}
 </style>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Semua Produk Kami</h4>
+                    <div class="breadcrumb__links">
+						<a href="<?php echo base_url(); ?>">Beranda</a>
+                        <span>Produk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 <div class="container container-240 shop-collection">
-    <ul class="breadcrumb">
-        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-        <li><a href="<?php echo base_url('list-umkm'); ?>">Toko</a></li>
-        <li class="active"><?php echo $umkm->namausaha; ?></li>
-    </ul>
 
-    <div class="container profile-container">
+
+    <!-- <div class="container profile-container">
     	<div class="profile-env">
 			<header class="row">
 	            <div class="col-sm-2">
@@ -107,7 +120,7 @@
 	            </div>
 	        </header>
 		</div>
-	</div>
+	</div> -->
 
   	<ul class="product-tab-sw2 my-tab">
     	<li class="tab-produk active"><a data-toggle="tab" href="#produk" aria-expanded="false">Produk</a></li>
@@ -227,7 +240,10 @@
 		                	<?php 
 		                	if ($produk) {
 		                		foreach ($produk as $value) {
-		                			echo card_produk($value,'col-xs-12 col-sm-6 col-md-4 product-grid product-grid-v2');
+									echo '<div class="col-lg-4 col-md-6 col-sm-6">';
+									echo card_produk($value,'product-grid product-grid-v2');
+									echo '</div>';
+		                			// echo card_produk($value,'col-xs-12 col-sm-6 col-md-4 product-grid product-grid-v2');
 		                		}
 		                	}else{
 		                		if ($cari !== '' || $kat !== '') {

@@ -376,6 +376,16 @@ class Transaksi extends MY_Controller {
             case 'penjual':
                 $list = $this->m_table->get_datatables('data_penjualan',$sort,$order);
                 foreach ($list as $l) {
+
+
+                    $data_pengguna = $this->get_pengguna_by_username($l->username);
+
+                    if($data_pengguna==null){
+                        $data_pengguna = $this->get_data_visitor($l->username);
+                    }
+
+                    // echo json_encode($data_pengguna);die;
+
                     $btn_ulasan = '';
                     if($l->id_status_transaksi == 4){ //jika status = sampai tujuan
                         $cek = cek_ulasan($l->id_transaksi);
@@ -424,7 +434,7 @@ class Transaksi extends MY_Controller {
                                     Pembeli
                                 </span>
                                 <span data-testid="txtBomInvoiceNumber-425371452" class="font--ellipsis text-color-1">
-                                    '.$l->nama.'
+                                    '.$data_pengguna->nama.'
                                 </span>
                             </div>
                             <div class="trx-info trx-info--with-32" style="width:20%;text-align:right;">
@@ -486,10 +496,10 @@ class Transaksi extends MY_Controller {
                                         </a>
                                     </div>
                                     <div class="css-gcemtj">
-                                         <div class="css-1jyc08">
-                                             <a href="javascript:void(0);" onclick="hubungi_pesan('.$l->id_transaksi.','.$l->id_umkm.')">
+                                         <div class="css-1jyc08" >
+                                             <a href="javascript:void(0);" style="display:none;" onclick="hubungi_pesan('.$l->id_transaksi.','.$l->id_umkm.')">
                                                  <span class="fa fa-comments" style="font-size: 14px;margin-top: -5px;margin-right: 10px;"></span>
-                                                 <span>Hubungi '.text($l->nama).'</span>
+                                                 <span>Hubungi '.text($data_pengguna->nama).'</span>
                                              </a>
                                          </div>
                                      </div>
@@ -751,11 +761,16 @@ class Transaksi extends MY_Controller {
                 echo json_encode($data);
             break;
             case 'bayar_midtrans':
-                $data_costumer = $this->get_contact_user($this->session->user_id);
                 $transaksi = $this->get_transaksi($this->input->post('id',true));
+                $data_costumer = $this->get_contact_user($this->session->user_id);
+                if($data_costumer == null){
+                   $data_costumer = $this->get_data_visitor($this->session->identity);
+                }
                 $firstName = $this->splitName($data_costumer->nama);
-                // echo json_encode($data_costumer);die;
-                if($transaksi->token_midtrans){
+
+                
+                
+                if($transaksi->token_midtrans !== null){
                     $snapToken = $transaksi->token_midtrans;
                 }else{
                     try {
@@ -1010,6 +1025,7 @@ class Transaksi extends MY_Controller {
                 if($transaksi->token_midtrans == $this->input->post('snapToken',true)){
                     $data = array(
                         'id_status_transaksi'   => 1,
+                        'tgl_pembayaran'        => date('Y-m-d H:i:s'),
                         'updated_at'            => date('Y-m-d H:i:s'),
                         'updated_by'            => $this->session->identity
                     );
@@ -1283,4 +1299,22 @@ class Transaksi extends MY_Controller {
             mt_rand(0, 0xffff)
         );
     }
+
+    private function get_data_visitor($visitor_id){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_visitor_anon a';
+        $query['where']     = 'a.visitor_id =  "'.$visitor_id.'"';
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
+
+    private function get_pengguna_by_username($username){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_pengguna a';
+        $query['where']     = 'a.username = "'.$username.'"';
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
+
+
 }

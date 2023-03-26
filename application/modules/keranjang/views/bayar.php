@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb__text">
-                    <h4>Produk</h4>
+                    <h4>Checkout</h4>
                     <div class="breadcrumb__links">
 						<a href="<?php echo base_url(); ?>">Beranda</a>
 						<a href="<?php echo base_url('keranjang'); ?>">Keranjang</a>
@@ -30,19 +30,46 @@
 </section>
 <!-- Breadcrumb Section End -->
 <div class="container container-240">
-    <ul class="breadcrumb">
-        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-        <li><a href="<?php echo base_url('keranjang'); ?>">Keranjang</a></li>
-		<li class="active">Checkout</li>
-    </ul>
     <div class="row shop-colect">
     	<div class="col-md-12 col-sm-12 col-xs-12 collection-list">
             <div class="e-product">
                 <div class="pd-top" style="padding: 20px 0;">
-                    <h1 class="title">Checkout</h1>
+                    <h1 class="title"></h1>
                 </div>
                 <div class="row">
                 	<form id="checkout-form" class="clearfix">
+						
+						<?php if($data_user === null){?>
+							<div class="col-md-12" style="margin-bottom: 20px;">
+								<div class="shopping-cart bd-7">
+									<table class="table" width="100%">
+										<thead>
+											<tr><th>Informasi Penerima</th></tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<label for="exampleInputEmail1">Email </label>
+													<input type="email" class="form-control" id="email_anon" name="email_anon" aria-describedby="emailHelp" placeholder="Email Penerima">
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<label for="exampleInputEmail1">Nama Penerima </label>
+													<input type="text" class="form-control" id="nama_anon" name="nama_anon" aria-describedby="emailHelp" placeholder="Nama Penerima">
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<label for="exampleInputEmail1">No Telp </label>
+													<input type="text" class="form-control" id="no_telp_anon" name="no_telp_anon" aria-describedby="emailHelp" onkeypress="return Angkasaja(event)" placeholder="083111111***">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						<?} ?>
                 		<div class="col-md-12" style="margin-bottom: 20px;">
                 			<div class="shopping-cart bd-7">
                 				<table class="table" width="100%">
@@ -68,6 +95,8 @@
 								</table>
 								<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value='<?php echo $this->security->get_csrf_hash(); ?>'>
 								<input type="hidden" name="type" value="checkout">
+								<input type="hidden" id="data_user" name="data_user" value="<?= ($data_user == '') ? 'kosong' : 'ada';?>">
+
                 			</div>
                 		</div>
 

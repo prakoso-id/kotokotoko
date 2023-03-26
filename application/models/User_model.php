@@ -44,7 +44,8 @@ class User_model extends CI_Model
 
      public function is_login()
      {
-          if($this->is_umkm_admin()  OR $this->is_umkm_user() )
+          // echo json_encode($this->session->identity);die;
+          if($this->is_umkm_admin()  OR $this->is_umkm_user() OR $this->session->identity)
           {
                return true;
           }else{
