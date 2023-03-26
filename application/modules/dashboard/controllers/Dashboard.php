@@ -14,8 +14,8 @@ class Dashboard extends MY_Controller {
 
 	public function index() {
 		$this->template->add_title_segment('Dashboard');
-		$this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
         $this->template->add_css("assets/mytemplate_backend/modules/smart_wizard/css/smart_wizard_all.min.css");
         $this->template->add_css("assets/mytemplate_backend/modules/owlcarousel2/dist/assets/owl.carousel.min.css");
         $this->template->add_css("assets/mytemplate_backend/modules/owlcarousel2/dist/assets/owl.theme.default.min.css");
@@ -41,11 +41,13 @@ class Dashboard extends MY_Controller {
             'produk_terbaik' => $produk_terbaik
 		);
 
-        if ($this->user_model->is_umkm_admin() || $this->user_model->is_umkm_verifikator()) {
-            $this->template->render("index_admin",$this->data);
-        }else{
-            $this->template->render("index",$this->data);
-        }
+        // if ($this->user_model->is_umkm_admin() || $this->user_model->is_umkm_verifikator()) {
+        //     $this->template->render("index_admin",$this->data);
+        // }else{
+        //     $this->template->render("index",$this->data);
+        // }
+        $this->template->render("index",$this->data);
+
 	}
 
     public function ajax_confirm_eorder() {
@@ -1813,10 +1815,15 @@ class Dashboard extends MY_Controller {
                 case 'transaksi':
                     $list = $this->m_table->get_datatables('data_penjualan',$sort,$order);
                     foreach ($list as $l) {
+                        $data_pengguna = $this->get_pengguna_by_username($l->username);
+
+                        if($data_pengguna==null){
+                            $data_pengguna = $this->get_data_visitor($l->username);
+                        }
                         $no++;
                         $l->no = $no;
                         $l->created_transaksi = indonesian_date($l->created_transaksi);
-                        $l->nama = text($l->nama);
+                        $l->nama = text($data_pengguna->nama);
                         $l->namausaha = text($l->namausaha);
                         $l->total = 'Rp. '.rp($l->total);
                         $l->aksi = '<button class="btn btn-sm btn-info" title="Detail Transaksi" onclick="detail_transaksi('.$l->id_transaksi.')"><i class="fa fa-fw fa-eye"></i></button>'; 
@@ -2164,6 +2171,22 @@ class Dashboard extends MY_Controller {
                     break;
             }
         }
+    }
+
+    private function get_data_visitor($visitor_id){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_visitor_anon a';
+        $query['where']     = 'a.visitor_id =  "'.$visitor_id.'"';
+        $data               = $this->query_model->getRow($query);
+        return $data;
+    }
+
+    private function get_pengguna_by_username($username){
+        $query['select']    = 'a.*';
+        $query['table']     = 'm_pengguna a';
+        $query['where']     = 'a.username = "'.$username.'"';
+        $data               = $this->query_model->getRow($query);
+        return $data;
     }
 
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/logo.png" type="image/png">
+  <link rel="shortcut icon" href="<?php echo base_url()?>assets/templateFE2/img/logo.png" type="image/png">
   <?php echo $meta_tag; ?>
   <title><?php echo $site_title; ?></title>
 
@@ -138,7 +138,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2020 <div class="bullet"></div> Development By <a href="https://diskominfo.tangerangkota.go.id/" target="_blank">Diskominfo Kota Tangerang</a>
+          Copyright &copy; 2020 <div class="bullet"></div> Development By : RobDev
         </div>
         <div class="footer-right">
           

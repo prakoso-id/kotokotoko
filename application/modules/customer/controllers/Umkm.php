@@ -13,8 +13,8 @@ class Umkm extends MY_Controller {
 
 	public function index() {
 		$this->template->add_title_segment('UMKM');
-		$this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 		// $this->template->add_css('assets/css/css_umkm.css');
         $this->template->add_css(base_url().'assets/css/css_admin.css');
         $this->template->add_css(base_url()."assets/mytemplate_backend/modules/smart_wizard/css/smart_wizard_all.min.css");

@@ -68,7 +68,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                               <div class="card card-statistic-1" onclick="list_produk(null,'Stok Tersedia',null,'tersedia')" style="cursor: pointer;">
                                 <div class="card-icon bg-success">
                                   <i class="fas fa-boxes"></i>
@@ -98,7 +98,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                  
+                            </div>                   -->
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -442,7 +442,7 @@ function list_produk(id_jenis_usaha=null,ket=null,status=null,stok=null){
         columns: [
             {'data':'no','orderable':false,"className": "text-center"},
             {'data':'nama_produk'},
-            {'data':'namausaha'},
+            {'data':'namausaha','visible':false},
             {'data':'stok',"className": "text-center"},
             {'data':'harga',"className": "text-right"},
             {'data':'nama_usaha'},
@@ -542,7 +542,7 @@ function list_transaksi(id_status_transaksi=null,ket=null){
             {'data':'created_transaksi'},
             {'data':'no_invoice'},
             {'data':'nama'},
-            {'data':'namausaha'},
+            {'data':'namausaha','visible':false},
             {'data':'total',"className": "text-right"},
             {'data':'nama_status'},
             {'data':'aksi','orderable':false,"className": "text-center"},

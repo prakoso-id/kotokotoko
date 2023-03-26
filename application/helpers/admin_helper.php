@@ -990,6 +990,7 @@ function card_dasarhukum($data,$class=''){
 }
 
 function card_produk($data,$class='', $diskon = null){
+     // echo $data
      $CI = get_instance();
      
      $jum_ulasan = ($data->jumlah_ulasan)? $data->jumlah_ulasan : "Belum Ada";
@@ -1013,8 +1014,11 @@ function card_produk($data,$class='', $diskon = null){
      }
 
      $ribbon_price = '';
-     if ($CI->session->identity == $data->nik) {
-          $btn_keranjang = '<span></span>';
+     
+     if ($data->nik) {
+          if($CI->session->identity == $data->nik){
+               $btn_keranjang = '<span></span>';
+          }
      }else{
           $btn_keranjang = '<a href="javascript:void(0)" class="add-cart" data-id="'.$data->id_produk.'" title="Tambahkan ke Keranjang">+ Add To Cart</a>';
      }
@@ -1060,19 +1064,19 @@ function card_produk($data,$class='', $diskon = null){
                               '.$ribbon_price.'
                          <ul class="product__hover">
                               <li>
-                                   <a href="javascript:void(0)" style="background-color:#fff;" class="btn btn-icon" title="Tambahkan ke Favorit" onclick="wishlist('.$data->id_produk.')">'.$icon_love.'
+                                   <a href="javascript:void(0)" style="background-color:#fff; font-size:20px;" class="btn btn-icon" title="Tambahkan ke Favorit" onclick="wishlist('.$data->id_produk.')">'.$icon_love.'
                                    </a>
                               </li>
-                              <li><a class="btn btn-icon" style="background-color:#fff;" href="'.base_url('list-produk/produk/'.$parameter).'"><i class="fa fa-eye"></i></a></li>
+                              <li><a class="btn btn-icon" style="background-color:#fff; font-size:20px;" href="'.base_url('list-produk/produk/'.$parameter).'"><i class="fa fa-eye"></i></a></li>
 
                          </ul>
                     </div>
                </div>
           <div class="product__item__text product-info">
                <h6>  
-                    '.readMore($data->nama_produk,50).'
+               <a  href="'.base_url('list-produk/produk/'.$parameter).'">'.readMore($data->nama_produk,50).'</a>
+                    
                </h6>
-               '.$btn_keranjang.'
                <div class="rating">
                     '.$icon_star.'
                </div>

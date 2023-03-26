@@ -9,7 +9,7 @@ class Wishlist_model extends CI_Model{
     }
 
     private function _get_q_produk(){
-    	$this->db->select('a.kode_produk,a.nama_produk,a.harga,a.stok,a.id_produk,a.diskon,a.diskon_nominal,a.ratting,b.nama_usaha,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto,(select COUNT(id_ulasan) from m_ulasan where id_produk = a.id_produk) as jumlah_ulasan,d.id_umkm as username,d.namausaha,e.nama_kec,e.nama_kel,x.id_wishlist');
+    	$this->db->select('a.kode_produk,a.nama_produk,a.harga,a.stok,a.id_produk,a.diskon,a.diskon_nominal,a.ratting,b.nama_usaha,(select foto from m_produk_foto  WHERE id_produk = a.id_produk LIMIT 1) as foto,(select COUNT(id_ulasan) from m_ulasan where id_produk = a.id_produk) as jumlah_ulasan,d.id_umkm as username,d.username as nik, d.namausaha,e.nama_kec,e.nama_kel,x.id_wishlist');
 		$this->db->from('m_wishlist x');
 		$this->db->join('m_produk a','a.id_produk = x.id_produk');
 		$this->db->join('m_jenis_usaha b','b.id_jenis_usaha = a.id_jenis_usaha','left');

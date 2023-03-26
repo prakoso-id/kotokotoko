@@ -6357,7 +6357,8 @@ button.close {
   color: #fff;
   font-weight: 500;
   background: #54f0ff;
-  background-image: linear-gradient(122deg, #E63219, #AB2828);
+  /* background-image: linear-gradient(122deg, #E63219, #AB2828); */
+  background-image: linear-gradient(122deg, #2d0600, #191616);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s; }
@@ -19089,13 +19090,13 @@ footer .f-top {
   }
 
   .fa-gradient {
-    background: -webkit-gradient(linear, left top, left bottom, from(#E63219), to(#AB2828));
+    background: -webkit-gradient(linear, left top, left bottom, from(#98508f), to(#412c05));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .fa-gradient2 {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ff61ea), to(#fec252));
+    background: -webkit-gradient(linear, left top, left bottom, from(#98508f), to(#412c05));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

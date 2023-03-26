@@ -137,7 +137,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2020 <div class="bullet"></div> Development By <a href="https://diskominfo.tangerangkota.go.id/" target="_blank">Diskominfo Kota Tangerang</a>
+          Copyright &copy; 2020 <div class="bullet"></div> Development By : RobDev
         </div>
         <div class="footer-right">
           

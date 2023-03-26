@@ -49,7 +49,7 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="position-relative row form-group">
+					<div class="position-relative row form-group" style="display: none;">
 						<label class="col-sm-3 col-form-label" style="font-weight:600">Group</label>
 						<div class="col-sm-9">
 							<select name="id_group" class="form-control id_group select2" style="width: 100%">
@@ -117,7 +117,7 @@
 							<span class="help-block"></span>
 						</div>
 					</div>
-					<div class="position-relative row form-group">
+					<div class="position-relative row form-group"style="display: none;">
 						<label class="col-sm-3 col-form-label" style="font-weight:600">Group</label>
 						<div class="col-sm-9">
 							<select name="id_group" class="form-control id_group select2" style="width: 100%">
@@ -155,22 +155,6 @@
 				<div class="position-relative row form-group">
 					<label class="col-sm-3 col-form-label" style="font-weight:700">Nama Lengkap</label>
 					<label class="col-sm-9 col-form-label nama" style="font-weight:500"></label>
-				</div>
-				<div class="position-relative row form-group">
-					<label class="col-sm-3 col-form-label" style="font-weight:700">Jenis Kelamin</label>
-					<label class="col-sm-9 col-form-label jenis_kelamin" style="font-weight:500"></label>
-				</div>
-				<div class="position-relative row form-group">
-					<label class="col-sm-3 col-form-label" style="font-weight:700">Email</label>
-					<label class="col-sm-9 col-form-label email" style="font-weight:500"></label>
-				</div>
-				<div class="position-relative row form-group">
-					<label class="col-sm-3 col-form-label" style="font-weight:700">Domisili</label>
-					<label class="col-sm-9 col-form-label domisili" style="font-weight:500"></label>
-				</div>
-				<div class="position-relative row form-group">
-					<label class="col-sm-3 col-form-label" style="font-weight:700">Alamat</label>
-					<label class="col-sm-9 col-form-label alamat" style="font-weight:500"></label>
 				</div>
 				<div class="position-relative row form-group">
 					<label class="col-sm-3 col-form-label" style="font-weight:700">Status</label>

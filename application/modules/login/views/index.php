@@ -358,7 +358,7 @@
           	var data = new FormData(form);
 
             $.ajax({ 
-               	url: "<?php echo base_url('login/ajax_daftar') ?>",
+               	url: "<?php echo base_url('login/ajax_proses_daftar') ?>",
                	method:"POST",
                	data: data,
                	dataType: "json",
@@ -368,7 +368,7 @@
                	success: function(data){
                		$('#loading').hide();
                		if (data.status) {
-               			// swal({type: 'success',title: 'Sukses',text: 'Berhasil Login'});
+               			swal({type: 'success',title: 'Sukses',text: 'Berhasil Mendaftarkan'});
 						window.location.href = data.redirect;
                			
                		}else{

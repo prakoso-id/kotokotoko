@@ -162,7 +162,7 @@
 
 
 
-<div class="our-blog" style="padding-top: 10px;padding-bottom: 0px;margin-bottom: 10px;">
+<div class="our-blog" style="padding-top: 10px;padding-bottom: 0px;margin-top:20px;margin-bottom: 10px; min-height:500px;">
     <div class="container container-240">
         <div class="ecome-heading style2">
             <div class="row">

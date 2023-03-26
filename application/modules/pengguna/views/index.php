@@ -22,9 +22,9 @@
 			      		<div class="card-body">
 			      			<div class="row" style="margin-bottom: 10px;">
 			      				<div class="col-md-12">
-									<button type="button" class="btn btn-danger tambah_data">
+									<!-- <button type="button" class="btn btn-danger tambah_data">
 										<i class="fa fa-plus"></i> &nbsp; Tambah
-									</button>
+									</button> -->
 									<button type="button" class="btn btn-secondary" onclick="table_data()">
 										<i class="fa fa-undo"></i> &nbsp; Refresh
 									</button>
@@ -36,13 +36,13 @@
 					              	<select class="form-control select2 filter_group" name="filter_group">
 										<option value="0">-- Semua Group --</option>
 										<option value="1">Administrator</option>
-										<option value="3">Verifikator</option>
+										<!-- <option value="3">Verifikator</option> -->
 										<option value="2">Pengguna</option>
 									</select>
 					            </div>
 					            <div class="form-group col-md-4">
-					              	<label for="filter_username">NIK / NIP</label>
-					              	<input type="text" name="filter_username" id="filter_username" placeholder="Cari NIK / NIP" required="" class="filter_username form-control" maxlength="20">
+					              	<label for="filter_username">Username</label>
+					              	<input type="text" name="filter_username" id="filter_username" placeholder="Cari Username" required="" class="filter_username form-control" maxlength="20">
 					            </div>
 					            <div class="form-group col-md-4">
 					              	<label for="filter_nama">Nama Lengkap</label>

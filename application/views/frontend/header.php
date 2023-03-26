@@ -24,6 +24,9 @@
                                             <li class="item-cart">
                                                 <a class="<?php echo ($active == 'wishlist'?'active-menu':'')?>" href="<?php echo base_url('dashboard') ?>"><img src="<?php echo base_url()?>assets/mytemplate/img/icon-user.png" alt="" width="19px"> Dashboard</a>
                                             </li>
+                                            <li class="item-cart">
+                                                <a  href="<?php echo base_url('keluar') ?>">Keluar</a>
+                                            </li>
                                         </ul>
                                     <?php }else{?>
                                         <ul class="mini-products-list">
@@ -38,6 +41,9 @@
                                             </li>
                                             <li class="item-cart">
                                                 <a class="<?php echo ($active == 'wishlist'?'active-menu':'')?>" href="<?php echo base_url('wishlist') ?>">Produk Favorit</a>
+                                            </li>
+                                            <li class="item-cart">
+                                                <a  href="<?php echo base_url('keluar') ?>">Keluar</a>
                                             </li>
                                         </ul>
                                     <?php } ?>

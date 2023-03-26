@@ -383,11 +383,12 @@ ol {
 }
 
 .header__top__hover ul {
+	min-width: 200px;
 	background: #ffffff;
 	display: inline-block;
 	padding: 2px 0;
 	position: absolute;
-	left: 0;
+	left: -100px;
 	top: 44px;
 	opacity: 0;
 	visibility: hidden;
@@ -963,13 +964,13 @@ ol {
 }
 
 .product__item:hover .product__item__text a {
-	top: 22px;
+	/* top: 22px; */
 	opacity: 1;
-	visibility: visible;
+	/* visibility: visible; */
 }
 
 .product__item:hover .product__item__text h6 {
-	opacity: 0;
+	opacity: 1;
 }
 
 .product__item:hover .product__item__text .product__color__select {
@@ -1059,17 +1060,17 @@ ol {
 }
 
 .product__item__text a {
-	font-size: 15px;
-	color: #e53637;
+	font-size: 18px;
+	color: #181818;
 	font-weight: 700;
 	position: absolute;
 	left: 0;
 	top: 0;
-	opacity: 0;
-	visibility: hidden;
+	opacity: 1;
+	/* visibility: hidden;
 	-webkit-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
+	transition: all, 0.3s; */
 }
 
 .product__item__text h6 {

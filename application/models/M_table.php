@@ -99,6 +99,7 @@ class M_table extends CI_model
                 if(@$filter['id_umkm']) $this->db->where('a.id_umkm', $filter['id_umkm']);
                 if(@$filter['nama_umkm']) $this->db->like('c.namausaha', $filter['nama_umkm']);
                 if(@$filter['group']) $this->db->where('a.id_jenis_usaha', $filter['group']);
+
                 
                 if(@$filter['status']) {
                     if (@$filter['status'] != 1) {

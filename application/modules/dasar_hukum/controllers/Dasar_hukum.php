@@ -15,7 +15,7 @@ class Dasar_hukum extends MY_Controller {
 
         $this->template->add_title_segment('Dasar Hukum');
         $this->template->add_meta_tag("description", "Dasar Hukum UMKM Kota Tangerang");
-        $this->template->add_meta_tag("keywords", "dasar hukum, dasar hukum,news,umkm,portal umkm,kota tangerang,tangerang,portal");
+        $this->template->add_meta_tag("keywords", "dasar hukum, dasar hukum,news,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $k = keranjangku();
         $keranjang = $k['keranjang'];
@@ -116,7 +116,7 @@ class Dasar_hukum extends MY_Controller {
         $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Dasar Hukum');
         $this->template->add_meta_tag("description", "Dasar Hukum UMKM Kota Tangerang");
-        $this->template->add_meta_tag("keywords", "dasar hukum, dasar hukum,news,umkm,portal umkm,kota tangerang,tangerang,portal");
+        $this->template->add_meta_tag("keywords", "dasar hukum, dasar hukum,news,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $k = keranjangku();
         $keranjang = $k['keranjang'];
@@ -144,8 +144,8 @@ class Dasar_hukum extends MY_Controller {
         $this->template->set_layout('templatesv2/backend');
 
 		$this->template->add_title_segment('Dasar Hukum UMKM');
-		$this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $this->template->add_css('assets/css/css_admin.css');
         $this->template->add_js('https://cdn.ckeditor.com/4.9.2/standard-all/ckeditor.js');

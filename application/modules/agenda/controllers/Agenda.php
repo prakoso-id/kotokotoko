@@ -13,7 +13,7 @@ class Agenda extends MY_Controller {
         $this->template->set_layout('frontend/index');
         $this->template->add_title_segment('Agenda');
         $this->template->add_meta_tag("description", "Agenda UMKM Kota Tangerang");
-        $this->template->add_meta_tag("keywords", "agenda, agenda,news,umkm,portal umkm,kota tangerang,tangerang,portal");
+        $this->template->add_meta_tag("keywords", "agenda, agenda,news,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $k = keranjangku();
         $keranjang = $k['keranjang'];
@@ -118,7 +118,7 @@ class Agenda extends MY_Controller {
         
         $this->template->add_title_segment('Agenda');
         $this->template->add_meta_tag("description", "Agenda UMKM Kota Tangerang");
-        $this->template->add_meta_tag("keywords", "agenda, agenda,news,umkm,portal umkm,kota tangerang,tangerang,portal");
+        $this->template->add_meta_tag("keywords", "agenda, agenda,news,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $this->template->add_meta_tag("og:title", $data_berita->judul." | Protal UMKM Kota Tangerang");
         $this->template->add_meta_tag("og:description", 'Lokasi : '.$data_berita->lokasi);
@@ -155,8 +155,8 @@ class Agenda extends MY_Controller {
         $this->template->set_layout('templatesv2/backend');
 
 		$this->template->add_title_segment('Agenda UMKM');
-		$this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $this->template->add_css(base_url().'assets/css/css_admin.css');
         $this->template->add_css('https://js.arcgis.com/4.8/esri/css/main.css');

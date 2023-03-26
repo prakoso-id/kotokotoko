@@ -14,8 +14,8 @@ class Keranjang extends MY_Controller {
 	public function index() {
 		$this->session->set_tempdata('code',random_num(20),60);
 		$this->template->add_title_segment('Keranjang');
-		$this->template->add_meta_tag("description", "Keranjang Belanja Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "keranjang produk, product, umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Keranjang Belanja Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "keranjang produk, product, toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$k = keranjangku();
         $keranjang = $k['keranjang'];
@@ -280,8 +280,8 @@ class Keranjang extends MY_Controller {
 
 	public function bayar($code){
 		$this->template->add_title_segment('Checkout');
-		$this->template->add_meta_tag("description", "Checkout Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "Checkout produk, product, umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Checkout Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "Checkout produk, product, toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
         $this->template->add_js(base_url().'assets/plugins/datatables/jquery.dataTables.min.js',true);

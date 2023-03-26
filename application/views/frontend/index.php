@@ -7,6 +7,8 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="<?php echo base_url()?>assets/templateFE2/img/logo.png" type="image/png">
+
     <?php echo $meta_tag; ?>
     <title><?php echo $site_title; ?></title>
 

@@ -13,8 +13,8 @@ class List_produk extends MY_Controller {
 
 	private function _get_list_produk($site_url,$kategori=null){
 		$this->template->add_title_segment('Produk');
-		$this->template->add_meta_tag("description", "List Produk Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "list produk, product, umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "List Produk Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "list produk, product, toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$k = keranjangku();
         $data['keranjang'] = $k['keranjang'];
@@ -122,8 +122,8 @@ class List_produk extends MY_Controller {
 
 	public function produk($kode, $diskon = null) {
 		$this->template->add_title_segment('Produk');
-		$this->template->add_meta_tag("description", "Produk Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "list product,product,umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Produk Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "list product,product,toko,muslim,moslem clothes,pakaian muslim,termurah");
 		$this->template->add_css(base_url().'assets/css/pesan.css');
 		$this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');
 		$this->template->add_css(base_url().'assets/mytemplate/css/detail_produk.css');

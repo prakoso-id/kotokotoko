@@ -13,7 +13,7 @@ class List_berita extends MY_Controller {
 		$this->load->library('pagination');
 		$this->template->add_title_segment('Berita');
 		$this->template->add_meta_tag("description", "Berita UMKM Kota Tangerang");
-		$this->template->add_meta_tag("keywords", "berita, berita,news,umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("keywords", "berita, berita,news,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$k = keranjangku();
         $keranjang = $k['keranjang'];
@@ -114,7 +114,7 @@ class List_berita extends MY_Controller {
 
 		$this->template->add_title_segment('Berita');
 		$this->template->add_meta_tag("description", $data_berita->judul);
-		$this->template->add_meta_tag("keywords", "berita, list berita,news,umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("keywords", "berita, list berita,news,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$this->template->add_meta_tag("og:title", $data_berita->judul." | Protal UMKM Kota Tangerang");
 		$this->template->add_meta_tag("og:description", readMore($data_berita->berita,100));

@@ -13,8 +13,8 @@ class Pengguna extends MY_Controller {
 
 	public function index() {
 		$this->template->add_title_segment('Data Pengguna');
-		$this->template->add_meta_tag("description", "Toko Muslimah no 1 di indonesia");
-		$this->template->add_meta_tag("keywords", "umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$this->data = array(
 			'active'	=> 'pengguna',

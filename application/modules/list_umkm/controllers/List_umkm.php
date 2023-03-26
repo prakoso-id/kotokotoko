@@ -13,7 +13,7 @@ class List_umkm extends MY_Controller {
 	private function _get_list_data($site_url,$type,$id_umkm=null){
 		$this->template->add_title_segment('UMKM');
 		$this->template->add_meta_tag("description", "Data UMKM Kota Tangerang");
-		$this->template->add_meta_tag("keywords", "profil,umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("keywords", "profil,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$k = keranjangku();
         $data['keranjang'] = $k['keranjang'];
@@ -142,7 +142,7 @@ class List_umkm extends MY_Controller {
 
 		$this->template->add_title_segment('UMKM');
 		$this->template->add_meta_tag("description", $data_umkm->namausaha);
-		$this->template->add_meta_tag("keywords", "profil,umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("keywords", "profil,toko,muslim,moslem clothes,pakaian muslim,termurah");
 		$this->template->add_css('assets/css/pesan.css');
 		$this->template->add_css('assets/mytemplate/css/profil_umkm.css');
 		$this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
@@ -270,7 +270,7 @@ class List_umkm extends MY_Controller {
 
 		$this->template->add_title_segment('UMKM');
 		$this->template->add_meta_tag("description", $data_umkm->nama_perusahaan);
-		$this->template->add_meta_tag("keywords", "profil,umkm,portal umkm,kota tangerang,tangerang,portal");
+		$this->template->add_meta_tag("keywords", "profil,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		if($this->user_model->is_login())
 		{

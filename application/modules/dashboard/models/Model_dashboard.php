@@ -131,10 +131,10 @@ class Model_dashboard extends CI_Model
                            count( CASE WHEN a.stok < 1 THEN 1 ELSE NULL END ) AS jum_habis");
         $this->db->from('m_produk as a');
         $this->db->join('m_umkm c','c.id_umkm = a.id_umkm');
-        $this->db->join('m_pengguna e','c.username = e.username');
-        if(!$this->user_model->is_umkm_admin() && !$this->user_model->is_umkm_verifikator()){
-            $this->db->where('e.username',$this->session->identity);
-        }
+        // $this->db->join('m_pengguna e','c.username = e.username');
+        // if(!$this->user_model->is_umkm_admin() && !$this->user_model->is_umkm_verifikator()){
+        //     $this->db->where('e.username',$this->session->identity);
+        // }
         return $this->db->get()->row();
     }
 
@@ -143,10 +143,10 @@ class Model_dashboard extends CI_Model
         $this->db->from('m_produk as a');
         $this->db->join('m_jenis_usaha b','b.id_jenis_usaha = a.id_jenis_usaha','left');
         $this->db->join('m_umkm c','c.id_umkm = a.id_umkm');
-        $this->db->join('m_pengguna e','c.username = e.username');
-        if(!$this->user_model->is_umkm_admin() && !$this->user_model->is_umkm_verifikator()){
-            $this->db->where('e.username',$this->session->identity);
-        }
+        // $this->db->join('m_pengguna e','c.username = e.username');
+        // if(!$this->user_model->is_umkm_admin() && !$this->user_model->is_umkm_verifikator()){
+        //     $this->db->where('e.username',$this->session->identity);
+        // }
         $this->db->order_by('a.ratting','desc');
         $this->db->order_by('jum_terjual','desc');
         $this->db->limit(6);
@@ -157,7 +157,7 @@ class Model_dashboard extends CI_Model
         $this->db->select("a.id_jenis_usaha,count(a.id_produk) as jum");
         $this->db->from('m_produk as a');
         $this->db->join('m_umkm c','c.id_umkm = a.id_umkm');
-        $this->db->join('m_pengguna e','c.username = e.username');
+        // $this->db->join('m_pengguna e','c.username = e.username');
         $this->db->group_by('a.id_jenis_usaha');
         return $this->db->get()->result();
     }

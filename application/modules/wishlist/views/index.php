@@ -74,7 +74,9 @@
                         <?php 
                         if ($wishlist) {
                             foreach ($wishlist as $value) {
-                                echo card_produk($value,'col-xs-6 col-sm-6 col-md-3 col-lg-3');
+                                echo '<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">';
+                                echo card_produk($value,'product-grid product-grid-v2');
+                                echo '</div>';
                             }
                         }else{ ?>
                             <div class="shopping-cart v2 bd-7 ">

@@ -362,7 +362,8 @@ a:-webkit-any-link {
   color: #fff;
   font-weight: 500;
   background: #54f0ff;
-  background-image: linear-gradient(122deg, #e63219, #AB2828);
+  /* background-image: linear-gradient(122deg, #e63219, #AB2828); */
+  background-image: linear-gradient(122deg, #2d0600, #191616);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s; }
