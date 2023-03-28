@@ -12,8 +12,8 @@ class Logo_umkm extends MY_Controller {
     }
 
     public function index() {
-        $this->template->add_title_segment('Logo UMKM');
-        $this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+        $this->template->add_title_segment('Logo ');
+        $this->template->add_meta_tag("description", "Yazer Indonesia Moslem Clothes no 1 di indonesia");
         $this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
         $this->template->add_css(base_url().'assets/css/css_admin.css');
         $this->data = array(

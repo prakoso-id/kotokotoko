@@ -98,7 +98,7 @@
                                 <img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" width="80px">
                             </div>
                             <div class="sub-right">
-                                <span style="font-size: 13px;"><b>Yazeri Indonesia Moslem Clothes no 1 di indonesia</b></span>
+                                <span style="font-size: 13px;"><b>Yazer Indonesia Moslem Clothes no 1 di indonesia</b></span>
                             </div>
                         </div> -->
                         <img src="<?php echo base_url(); ?>assets/images/borongsaylogomedium.png" alt="" class="img-reponsive logo-atas">

@@ -16,7 +16,7 @@ class Wishlist extends MY_Controller {
 	public function index() {
 		// $this->session->set_tempdata('jenis_menu','user',300); 
 		$this->template->add_title_segment('Produk Favorit Saya');
-		$this->template->add_meta_tag("description", "Produk Favorit Saya Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("description", "Produk Favorit Saya Yazer Indonesia Moslem Clothes no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "Produk Favorit Saya, wishlist, product, toko,muslim,moslem clothes,pakaian muslim,termurah");
 
 		$k = keranjangku();

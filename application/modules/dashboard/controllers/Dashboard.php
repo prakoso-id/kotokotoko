@@ -14,7 +14,7 @@ class Dashboard extends MY_Controller {
 
 	public function index() {
 		$this->template->add_title_segment('Dashboard');
-		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("description", "Yazer Indonesia Moslem Clothes no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
         $this->template->add_css("assets/mytemplate_backend/modules/smart_wizard/css/smart_wizard_all.min.css");
         $this->template->add_css("assets/mytemplate_backend/modules/owlcarousel2/dist/assets/owl.carousel.min.css");

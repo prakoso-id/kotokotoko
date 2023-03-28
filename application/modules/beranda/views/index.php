@@ -1,3 +1,10 @@
+<style>
+    .kategory_view{
+        width: 450px;
+        height: 400px;
+        object-fit: cover;
+    }
+</style>
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
@@ -48,7 +55,7 @@
                          <div class="'.$col.'">
                              <div class="banner__item '.$bannerItem.'">
                                  <div class="banner__item__pic">
-                                     <img src="'.base_url().'assets/images/kategori/'.$value->banner.'" alt="">
+                                     <img class="kategory_view" src="'.base_url().'assets/images/kategori/'.$value->banner.'" alt="">
                                  </div>
                                  <div class="banner__item__text">
                                      <h2>'.$value->nama_usaha.'</h2>

@@ -11,7 +11,7 @@
                                         <img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" width="50px">
                                     </div>
                                     <div class="sub-right" style="margin-top:3px;">
-                                        <span style="font-size: 15px;"><b>Yazeri Indonesia Moslem Clothes no 1 di indonesia</b></span>
+                                        <span style="font-size: 15px;"><b>Yazer Indonesia Moslem Clothes no 1 di indonesia</b></span>
                                     </div>
                                 </div> -->
                                 <img src="<?php echo base_url(); ?>assets/images/borongsaylogosmall.png" alt="" class="img-reponsive" style="width: 80%;">

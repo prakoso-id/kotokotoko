@@ -15,7 +15,7 @@ $config['template_js'] = array(
 );
 
 //default site title
-$config['base_title'] = 'Yazeri Indonesia Moslem Clothes no 1 di indonesia';
+$config['base_title'] = 'Yazer Indonesia Moslem Clothes no 1 di indonesia';
 
 //default title separator
 $config['title_separator'] = ' | ';

@@ -13,7 +13,7 @@ class Daftar_alamat extends MY_Controller {
 
 	public function index() {
 		$this->template->add_title_segment('Daftar Alamat');
-		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_meta_tag("description", "Yazer Indonesia Moslem Clothes no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $this->template->add_css(base_url().'assets/plugins/datatables/dataTables.bootstrap.css');

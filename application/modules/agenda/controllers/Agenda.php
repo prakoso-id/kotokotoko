@@ -154,8 +154,8 @@ class Agenda extends MY_Controller {
         }
         $this->template->set_layout('templatesv2/backend');
 
-		$this->template->add_title_segment('Agenda UMKM');
-		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_title_segment('Agenda ');
+		$this->template->add_meta_tag("description", "Yazer Indonesia Moslem Clothes no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $this->template->add_css(base_url().'assets/css/css_admin.css');

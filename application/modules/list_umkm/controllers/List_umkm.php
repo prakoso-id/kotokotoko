@@ -11,7 +11,7 @@ class List_umkm extends MY_Controller {
 	}
 
 	private function _get_list_data($site_url,$type,$id_umkm=null){
-		$this->template->add_title_segment('UMKM');
+		$this->template->add_title_segment('');
 		$this->template->add_meta_tag("description", "Data UMKM Kota Tangerang");
 		$this->template->add_meta_tag("keywords", "profil,toko,muslim,moslem clothes,pakaian muslim,termurah");
 
@@ -140,7 +140,7 @@ class List_umkm extends MY_Controller {
 			redirect(base_url('not-found'));
 		}
 
-		$this->template->add_title_segment('UMKM');
+		$this->template->add_title_segment('');
 		$this->template->add_meta_tag("description", $data_umkm->namausaha);
 		$this->template->add_meta_tag("keywords", "profil,toko,muslim,moslem clothes,pakaian muslim,termurah");
 		$this->template->add_css('assets/css/pesan.css');
@@ -268,7 +268,7 @@ class List_umkm extends MY_Controller {
 			redirect(base_url('toko/'.$id));
 		}
 
-		$this->template->add_title_segment('UMKM');
+		$this->template->add_title_segment('');
 		$this->template->add_meta_tag("description", $data_umkm->nama_perusahaan);
 		$this->template->add_meta_tag("keywords", "profil,toko,muslim,moslem clothes,pakaian muslim,termurah");
 

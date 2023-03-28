@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/mytemplate/css/slick.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/mytemplate/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/mytemplate/css/style.css">
 
     <link rel="stylesheet" href="<?= base_url('assets/templateFE2/')?>css/style.css" type="text/css">

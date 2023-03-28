@@ -107,7 +107,7 @@
         $('.form-control').removeClass('is-invalid');
         $('.help-block').empty();
         $('#modal_upload').modal('show');
-        $('#modal_upload .modal-title').text('Upload Data UMKM');
+        $('#modal_upload .modal-title').text('Upload Data ');
     }
 
     function upload(){
@@ -445,7 +445,7 @@
                 $('#loading').hide();
 
                 $('#modal_detail').modal('show');
-                $('.modal-title').text('Verifikasi Pendataan IUMKM');
+                $('.modal-title').text('Verifikasi Pendataan I');
             },
             error: function (jqXHR, textStatus, errorThrown){
                 $('#loading').hide();
@@ -462,7 +462,7 @@
         $('.help').empty();
         $('.alasan').attr('style','display:none');
         $('#modal_tambah').modal('show');
-        $('.modal-title').text('Konfirmasi UMKM');
+        $('.modal-title').text('Konfirmasi ');
     }
 
     $('[name="status"]').change(function(){
@@ -961,7 +961,7 @@
                 $('[name="file_foto"]').val(data.foto_pas);
 
                 $('#modal_ubah').modal('show');
-                $('#modal_ubah .modal-title').text('Ubah Pendataan IUMKM');
+                $('#modal_ubah .modal-title').text('Ubah Pendataan I');
             },
             error: function (jqXHR, textStatus, errorThrown){
                 alert('Error get data from ajax');

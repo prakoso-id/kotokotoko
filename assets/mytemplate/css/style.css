@@ -14706,9 +14706,9 @@ i.star {
   padding: 15px 28px 37px 22px; }
   @media (max-width: 480px) {
     .dropdown-cart {
-      right: -18px;
+      right: 11px;
       width: 300px;
-      min-width: 300px; } }
+      min-width: 250px; } }
   @media (max-width: 1025px) {
     .dropdown-cart {
       margin: 10px 0 0; } }

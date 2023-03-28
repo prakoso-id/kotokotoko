@@ -13,7 +13,7 @@ class Biodata extends MY_Controller {
 
      public function index() {
           $this->template->add_title_segment('Biodata');
-          $this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+          $this->template->add_meta_tag("description", "Yazer Indonesia Moslem Clothes no 1 di indonesia");
           $this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
           $data  = $this->user_model->cek_login($this->session->identity);

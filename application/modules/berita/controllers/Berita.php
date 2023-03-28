@@ -12,8 +12,8 @@ class Berita extends MY_Controller {
 	}
 
 	public function index() {
-		$this->template->add_title_segment('Berita UMKM');
-		$this->template->add_meta_tag("description", "Yazeri Indonesia Moslem Clothes no 1 di indonesia");
+		$this->template->add_title_segment('Berita ');
+		$this->template->add_meta_tag("description", "Yazer Indonesia Moslem Clothes no 1 di indonesia");
 		$this->template->add_meta_tag("keywords", "toko,muslim,moslem clothes,pakaian muslim,termurah");
 
         $this->template->add_css('assets/css/css_admin.css');

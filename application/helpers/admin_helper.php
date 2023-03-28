@@ -567,16 +567,16 @@ function readMore($text, $length, $mode = 2)
      else{
           if ($mode != 1)
           {
-               $char = $text{$length - 1};
+               $char = $text[$length - 1];
                switch($mode)
                {
                     case 2: 
                     while($char != ' ') {
-                         $char = $text{--$length};
+                         $char = $text[--$length];
                     }
                     case 3:
                     while($char != ' ') {
-                         $char = $text{++$num_char};
+                         $char = $text[++$num_char];
                     }
                }
           }

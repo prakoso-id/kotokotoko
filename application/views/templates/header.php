@@ -12,7 +12,7 @@
 	<div id="top-header">
 		<div class="container">
 			<div class="pull-left">
-				<span>Yazeri Indonesia Moslem Clothes no 1 di indonesia</span>
+				<span>Yazer Indonesia Moslem Clothes no 1 di indonesia</span>
 			</div>
 			<div class="pull-right">
 				<ul class="header-top-links">
@@ -132,7 +132,7 @@
 				<div class="header-logo">
 					<a class="logo" href="<?php echo base_url(); ?>" style="font-size: 20px;font-weight: 700">
 						<img style="width: auto !important;" src="<?php echo base_url('assets/images/logo.png');?>" alt="">
-						Yazeri Indonesia Moslem Clothes no 1 di indonesia
+						Yazer Indonesia Moslem Clothes no 1 di indonesia
 					</a>
 				</div>
 				<!-- /Logo -->

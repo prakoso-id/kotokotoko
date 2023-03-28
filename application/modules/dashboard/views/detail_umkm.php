@@ -580,7 +580,7 @@ function lihat_data(id){
             $('#loading').hide();
 
             $('#modal_data').modal('show');
-            $('#modal_data .modal-title').text('Detail Pendataan UMKM');
+            $('#modal_data .modal-title').text('Detail Pendataan ');
         },
         error: function (jqXHR, textStatus, errorThrown){
             $('#loading').hide();

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>LOGIN - BORONG SAY Kota Tangerang</title>
+	<title>LOGIN - Yazer Indonesia</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?php echo base_url('assets/images/borongsayiconsmall.png') ?>"/>
+	<link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/vendor/bootstrap/css/bootstrap.min.css') ?>">
 <!--===============================================================================================-->
@@ -63,10 +63,13 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-20 p-r-20 p-t-20 p-b-20">
 				<span class="login100-form-title p-b-20">
-					
+					<a href="<?php echo base_url('') ?>"> 
+						<img src="<?php echo base_url('assets/images/logomedium.png'); ?>" alt="" style="width: 250px;">
+					</a>
+					<br>
 					<a href="<?php echo base_url('') ?>" style="font-size:24px"> 
 						<span id="form-lable">LOGIN</span>
-						<!-- <p>BORONG SAY Kota Tangerang.</p> -->
+						<!-- <p>Yazer Indonesia</p> -->
 					</a>
 				</span>
 
@@ -75,7 +78,7 @@
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username Tidak Boleh Kosong">
 						<span class="label-input100">Username</span>
 						<input type="hidden" name="<?=$name;?>" value="<?=$hash;?>" />
-						<input class="input100" type="text" name="username" placeholder="NIK atau Email" value="<?php echo @$this->session->flashdata('username'); ?>">
+						<input class="input100" type="text" name="username" placeholder="Username" value="<?php echo @$this->session->flashdata('username'); ?>">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 

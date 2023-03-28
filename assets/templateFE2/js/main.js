@@ -83,6 +83,32 @@
     /*-----------------------
         Hero Slider
     ------------------------*/
+
+    $('.js-click-product').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.js-product-slider',
+        dots: false,
+        focusOnSelect: true,
+        infinite: true,
+        arrows: false,
+        vertical: true,
+        responsive: [
+
+            {
+                breakpoint: 1367,
+                settings: {
+                    vertical: false
+                }
+            }
+        ]
+    });
+    $('.js-product-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        asNavFor: '.js-click-product'
+    });
     $(".hero__slider").owlCarousel({
         loop: true,
         margin: 0,
